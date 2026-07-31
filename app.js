@@ -132,6 +132,18 @@ document.querySelector("#storageButton").addEventListener("click", () => {
   }
 });
 
+initializeBackupManager({
+  state,
+  persistState: saveState,
+  onRestored: () => {
+    renderDomains();
+    renderProgress();
+    updateStorageSummary();
+  },
+  showMessage: showToast,
+  closeDialog: () => storageDialog.close()
+});
+
 document.querySelector("#resetProgressButton").addEventListener("click", () => {
   const confirmed = window.confirm(
     "Wil je alle lokaal opgeslagen antwoorden, resultaten en voortgang wissen?"

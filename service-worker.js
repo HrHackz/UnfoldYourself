@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v8";
+const CACHE_VERSION = "v9";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -32,6 +32,7 @@ const CORE_APP_FILES = [
   "./tests/self-values-drives-engine.js",
   "./core/test-registry.js",
   "./core/storage.js",
+  "./core/backup.js",
   "./core/profile-ui.js",
   "./core/test-engine.js",
   "./core/test-renderer.js",

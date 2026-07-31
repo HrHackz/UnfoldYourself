@@ -1114,9 +1114,10 @@
       </div>
 
       <p class="dialog-intro">
-        Je voortgang en resultaten worden lokaal in deze browser
-        opgeslagen. Back-up downloaden en importeren voegen we
-        in een volgende bouwfase toe.
+        Je voortgang, antwoorden en resultaten worden lokaal in
+        deze browser opgeslagen. Download regelmatig een back-up
+        zodat je je profiel kunt herstellen na het wissen van
+        browsergegevens of op een ander toestel.
       </p>
 
       <div class="storage-summary">
@@ -1132,6 +1133,52 @@
         </div>
 
       </div>
+
+      <section
+        class="storage-backup-panel"
+        aria-labelledby="storageBackupTitle"
+      >
+        <div>
+          <h3 id="storageBackupTitle">
+            Persoonlijke back-up
+          </h3>
+
+          <p>
+            Het back-upbestand bevat je volledige lokale profiel,
+            actieve testen, antwoorden en resultaten.
+          </p>
+        </div>
+
+        <div class="storage-backup-actions">
+          <button
+            class="button button-primary"
+            id="downloadBackupButton"
+            type="button"
+          >
+            Back-up downloaden
+          </button>
+
+          <button
+            class="button button-secondary"
+            id="importBackupButton"
+            type="button"
+          >
+            Back-up herstellen
+          </button>
+
+          <input
+            id="backupFileInput"
+            type="file"
+            accept=".json,application/json"
+            hidden
+          >
+        </div>
+
+        <p class="storage-privacy-note">
+          Bewaar dit bestand privé. Het is niet versleuteld en kan
+          persoonlijke antwoorden en testresultaten bevatten.
+        </p>
+      </section>
 
       <div class="dialog-actions">
 
@@ -1220,6 +1267,7 @@
 <script src="./tests/self-values-drives-engine.js" defer></script>
 <script src="./core/test-registry.js" defer></script>
 <script src="./core/storage.js" defer></script>
+<script src="./core/backup.js" defer></script>
 <script src="./core/profile-ui.js" defer></script>
 <script src="./core/test-engine.js" defer></script>
 <script src="./core/test-renderer.js" defer></script>
