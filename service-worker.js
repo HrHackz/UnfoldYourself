@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v6";
+const CACHE_VERSION = "v7";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -24,7 +24,9 @@ const CORE_APP_FILES = [
   "./fixes.css",
   "./core/app-config.js",
   "./core/test-utils.js",
+  "./core/personality-answer-bank.js",
   "./tests/big-five-engine.js",
+  "./tests/hexaco-engine.js",
   "./tests/sixteen-personalities-engine.js",
   "./tests/disc-engine.js",
   "./core/test-registry.js",
@@ -46,15 +48,16 @@ const CORE_APP_FILES = [
 /* =========================================================
    TESTDATA
 
-   Voeg toekomstige losse testbestanden hier toe.
-   Voorbeeld:
-   "./hexaco-questions.js",
-   "./hexaco-choices.js"
+   Voeg toekomstige losse testbestanden hier toe en controleer
+   ieder pad voordat de cacheversie wordt gepubliceerd.
 ========================================================= */
 
 const TEST_DATA_FILES = [
   "./big-five-choices.js",
   "./big-five-questions.js",
+  "./hexaco-answer-bank-map.js",
+  "./hexaco-questions.js",
+  "./hexaco-results.js",
   "./sixteen-personalities-questions.js",
   "./sixteen-personalities-results.js",
   "./disc-questions.js",

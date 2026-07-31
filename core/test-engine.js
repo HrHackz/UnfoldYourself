@@ -17,7 +17,8 @@ function getActiveTestSession(testId) {
 
 
 function createTestSession(
-  definition
+  definition,
+  options = {}
 ) {
   if (
     typeof definition
@@ -27,7 +28,9 @@ function createTestSession(
     return definition.createSession({
       definition,
       startedAt:
-        new Date().toISOString()
+        new Date().toISOString(),
+      forceAll:
+        options.forceAll === true
     });
   }
 
@@ -40,16 +43,43 @@ function createTestSession(
 }
 
 
-function getQuestionsForSession(
+function getBaseQuestionsForSession(
   definition,
   session
 ) {
-  const baseQuestions =
+  const definitionQuestions =
     Array.isArray(
       definition?.questions
     )
       ? definition.questions
       : [];
+
+  if (!Array.isArray(session?.questionIds)) {
+    return definitionQuestions;
+  }
+
+  const questionById = new Map(
+    definitionQuestions.map(question => [
+      question.id,
+      question
+    ])
+  );
+
+  return session.questionIds
+    .map(questionId => questionById.get(questionId))
+    .filter(Boolean);
+}
+
+
+function getQuestionsForSession(
+  definition,
+  session
+) {
+  const baseQuestions =
+    getBaseQuestionsForSession(
+      definition,
+      session
+    );
 
   const additionalQuestions =
     Array.isArray(
@@ -171,11 +201,44 @@ function showTestIntroduction() {
   testIntroDescription.textContent =
     definition.description;
 
+  const questionPlan =
+    typeof definition.getQuestionPlan === "function"
+      ? definition.getQuestionPlan()
+      : {
+          total: definition.questions.length,
+          reusable: 0,
+          remaining: definition.questions.length
+        };
+
+  const introRemainingCount = activeSession
+    ? getBaseQuestionsForSession(
+        definition,
+        activeSession
+      ).length
+    : questionPlan.remaining;
+
+  const introReusableCount = activeSession
+    ? Number(
+        activeSession.reusedAnswerCount ||
+        Math.max(
+          0,
+          definition.questions.length -
+          introRemainingCount
+        )
+      )
+    : questionPlan.reusable;
+
   testQuestionCount.textContent =
-    `${definition.questions.length} vragen`;
+    introReusableCount > 0
+      ? `${introRemainingCount} nieuwe vragen · ${introReusableCount} antwoorden hergebruikt`
+      : `${introRemainingCount || definition.questions.length} vragen`;
 
   testEstimatedTime.textContent =
-    definition.estimatedTime;
+    introReusableCount > 0 && definition.usesPersonalityAnswerBank === true
+      ? introRemainingCount === 0
+        ? "Je rapport kan direct worden berekend"
+        : `Ongeveer ${Math.max(3, Math.ceil(introRemainingCount / 6))} tot ${Math.max(5, Math.ceil(introRemainingCount / 4))} minuten`
+      : definition.estimatedTime;
 
  const evidence =
   definition.evidence || {};
@@ -193,14 +256,19 @@ testEvidenceDisclaimer.textContent =
   "Dit resultaat is bedoeld voor zelfinzicht en persoonlijke ontwikkeling.";
 
   if (activeSession) {
-    const answeredQuestions =
-      Object.keys(activeSession.answers || {}).length;
-
     const sessionQuestions =
       getQuestionsForSession(
         definition,
         activeSession
       );
+
+    const answeredQuestions =
+      sessionQuestions.filter(question => {
+        return hasSavedAnswer(
+          activeSession,
+          question.id
+        );
+      }).length;
 
     const savedPercentage = Math.round(
       (
@@ -249,6 +317,20 @@ function beginOrResumeTest() {
     saveState();
   }
 
+  const sessionQuestions =
+    getQuestionsForSession(
+      definition,
+      state.activeTests[activeTestId]
+    );
+
+  if (sessionQuestions.length === 0) {
+    completeActiveTest();
+    showToast(
+      "Je bestaande antwoorden waren voldoende om dit rapport direct te berekenen."
+    );
+    return;
+  }
+
   hideAllTestScreens();
   questionScreen.hidden = false;
 
@@ -267,6 +349,12 @@ function renderCurrentQuestion() {
     return;
   }
 
+  const baseQuestions =
+    getBaseQuestionsForSession(
+      definition,
+      session
+    );
+
   const sessionQuestions =
     getQuestionsForSession(
       definition,
@@ -275,6 +363,11 @@ function renderCurrentQuestion() {
 
   const totalQuestions =
     sessionQuestions.length;
+
+  if (totalQuestions === 0) {
+    completeActiveTest();
+    return;
+  }
 
   const safeQuestionIndex = Math.max(
     0,
@@ -299,7 +392,7 @@ function renderCurrentQuestion() {
     question?.isTieBreak === true;
 
   const baseQuestionCount =
-    definition.questions.length;
+    baseQuestions.length;
 
   const additionalQuestionCount =
     Array.isArray(
@@ -529,17 +622,13 @@ function selectCurrentAnswer(
     questionId
   ] = value;
 
-  saveState();
-
-  answerWarning.hidden = true;
-
   const sessionQuestions =
     getQuestionsForSession(
       definition,
       session
     );
 
-  const question =
+  const currentQuestion =
     sessionQuestions[
       session.currentQuestionIndex
     ];
@@ -547,8 +636,31 @@ function selectCurrentAnswer(
   const currentChoices =
     getChoicesForQuestion(
       definition,
-      question
+      currentQuestion
     );
+
+  const selectedChoice =
+    currentChoices.find(choice => {
+      return answerValuesEqual(
+        choice.value,
+        value
+      );
+    });
+
+  if (
+    typeof persistQuestionAnswerToBank === "function"
+  ) {
+    persistQuestionAnswerToBank({
+      definition,
+      question: currentQuestion,
+      selectedChoice,
+      selectedValue: value
+    });
+  }
+
+  saveState();
+
+  answerWarning.hidden = true;
 
   const optionButtons =
     answerOptions.querySelectorAll(
@@ -828,7 +940,10 @@ function restartActiveTest() {
   state.activeTests[
     activeTestId
   ] = createTestSession(
-    definition
+    definition,
+    {
+      forceAll: true
+    }
   );
 
   saveState();

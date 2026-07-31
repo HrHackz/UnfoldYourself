@@ -56,3 +56,13 @@
     min-height: 100px;
   }
 }
+
+/* Persoonlijkheidsmodellen: Big Five en HEXACO delen één catalogusingang. */
+.personality-model-card {
+  border-color: rgba(111, 92, 255, 0.28);
+}
+
+.personality-model-back {
+  justify-self: start;
+  margin-bottom: 0.25rem;
+}

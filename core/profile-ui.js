@@ -83,95 +83,410 @@ function renderProgress() {
   document.querySelector("#centerProgress").textContent = `${progress.percentage}%`;
 }
 
-function openDomain(domainId) {
-  const domain = domains.find(item => item.id === domainId);
-  if (!domain) return;
+const BIG_FIVE_TEST_ID =
+  "persoonlijkheid::Big Five-test";
 
-  activeDomainId = domainId;
-  const progress = getDomainProgress(domain);
+const HEXACO_TEST_ID =
+  "persoonlijkheid::HEXACO-test";
 
-  document.querySelector("#drawerEyebrow").textContent = "Profielgebied";
-  document.querySelector("#drawerTitle").textContent = domain.title;
-  document.querySelector("#drawerProgressLabel").textContent =
-    `${progress.completed} van ${progress.total} testen voltooid`;
-  document.querySelector("#drawerProgressPercent").textContent = `${progress.percentage}%`;
-  document.querySelector("#drawerProgressBar").style.width = `${progress.percentage}%`;
+
+function createCatalogTestCard(
+  domain,
+  name,
+  description
+) {
+  const testId = makeTestId(
+    domain.id,
+    name
+  );
+
+  const isCompleted =
+    state.completedTests.includes(
+      testId
+    );
+
+  const testDefinition =
+    testLibrary[testId];
+
+  const isActive =
+    Boolean(
+      state.activeTests[testId]
+    );
+
+  const article =
+    document.createElement(
+      "article"
+    );
+
+  article.className =
+    "test-card";
+
+  const copy =
+    document.createElement(
+      "div"
+    );
+
+  const heading =
+    document.createElement(
+      "h3"
+    );
+
+  const paragraph =
+    document.createElement(
+      "p"
+    );
+
+  heading.textContent = name;
+  paragraph.textContent = description;
+  copy.append(
+    heading,
+    paragraph
+  );
+
+  const status =
+    document.createElement(
+      "span"
+    );
+
+  status.className =
+    "test-status";
+
+  if (isCompleted) {
+    status.textContent =
+      "VOLTOOID";
+  } else if (isActive) {
+    status.textContent =
+      "IN UITVOERING";
+  } else if (testDefinition) {
+    status.textContent =
+      "BESCHIKBAAR";
+  } else {
+    status.textContent =
+      "BINNENKORT";
+  }
+
+  const actions =
+    document.createElement(
+      "div"
+    );
+
+  actions.className =
+    "test-card-actions";
+
+  const actionButton =
+    document.createElement(
+      "button"
+    );
+
+  actionButton.type = "button";
+  actionButton.className =
+    "test-start-button";
+
+  if (!testDefinition) {
+    actionButton.textContent =
+      "Binnenkort beschikbaar";
+    actionButton.disabled = true;
+  } else if (isCompleted) {
+    actionButton.textContent =
+      "Bekijk resultaat";
+
+    actionButton.addEventListener(
+      "click",
+      () => openTestFlow(testId)
+    );
+  } else if (isActive) {
+    actionButton.textContent =
+      "Ga verder";
+
+    actionButton.addEventListener(
+      "click",
+      () => openTestFlow(testId)
+    );
+  } else {
+    actionButton.textContent =
+      "Start test";
+
+    actionButton.addEventListener(
+      "click",
+      () => openTestFlow(testId)
+    );
+  }
+
+  actions.appendChild(
+    actionButton
+  );
+
+  article.append(
+    copy,
+    status,
+    actions
+  );
+
+  return article;
+}
+
+
+function createPersonalityModelCard() {
+  const modelIds = [
+    BIG_FIVE_TEST_ID,
+    HEXACO_TEST_ID
+  ];
+
+  const completedCount =
+    modelIds.filter(testId => {
+      return state.completedTests.includes(
+        testId
+      );
+    }).length;
+
+  const hasActiveModel =
+    modelIds.some(testId => {
+      return Boolean(
+        state.activeTests[testId]
+      );
+    });
+
+  const article =
+    document.createElement(
+      "article"
+    );
+
+  article.className =
+    "test-card personality-model-card";
+
+  const copy =
+    document.createElement(
+      "div"
+    );
+
+  const heading =
+    document.createElement(
+      "h3"
+    );
+
+  const paragraph =
+    document.createElement(
+      "p"
+    );
+
+  heading.textContent =
+    "Big Five-test of HEXACO-test";
+
+  paragraph.textContent =
+    "Kies het persoonlijkheidsmodel dat je wilt gebruiken. Bronidentieke antwoorden worden tussen beide testen hergebruikt, zodat je dezelfde vraag niet opnieuw hoeft te beantwoorden.";
+
+  copy.append(
+    heading,
+    paragraph
+  );
+
+  const status =
+    document.createElement(
+      "span"
+    );
+
+  status.className =
+    "test-status";
+
+  status.textContent =
+    completedCount > 0
+      ? `${completedCount} VAN 2 VOLTOOID`
+      : hasActiveModel
+        ? "IN UITVOERING"
+        : "BESCHIKBAAR";
+
+  const actions =
+    document.createElement(
+      "div"
+    );
+
+  actions.className =
+    "test-card-actions";
+
+  const actionButton =
+    document.createElement(
+      "button"
+    );
+
+  actionButton.type = "button";
+  actionButton.className =
+    "test-start-button";
+  actionButton.textContent =
+    "Kies Big Five of HEXACO";
+
+  actionButton.addEventListener(
+    "click",
+    openPersonalityModelChooser
+  );
+
+  actions.appendChild(
+    actionButton
+  );
+
+  article.append(
+    copy,
+    status,
+    actions
+  );
+
+  return article;
+}
+
+
+function openPersonalityModelChooser() {
+  const domain = domains.find(
+    item => item.id === "persoonlijkheid"
+  );
+
+  if (!domain) {
+    return;
+  }
+
+  activeDomainId = domain.id;
+
+  document.querySelector(
+    "#drawerEyebrow"
+  ).textContent =
+    "Persoonlijkheidsmodellen";
+
+  document.querySelector(
+    "#drawerTitle"
+  ).textContent =
+    "Kies Big Five of HEXACO";
 
   testList.replaceChildren();
 
-  domain.tests.forEach(([name, description]) => {
-    const testId = makeTestId(domain.id, name);
-    const isCompleted = state.completedTests.includes(testId);
+  const backButton =
+    document.createElement(
+      "button"
+    );
 
-    const article = document.createElement("article");
-    article.className = "test-card";
+  backButton.type = "button";
+  backButton.className =
+    "button button-ghost personality-model-back";
+  backButton.textContent =
+    "← Terug naar Persoonlijkheid";
 
-    const copy = document.createElement("div");
-    const heading = document.createElement("h3");
-    const paragraph = document.createElement("p");
-    heading.textContent = name;
-    paragraph.textContent = description;
-    copy.append(heading, paragraph);
+  backButton.addEventListener(
+    "click",
+    () => openDomain(
+      "persoonlijkheid"
+    )
+  );
 
-const testDefinition = testLibrary[testId];
+  testList.appendChild(
+    backButton
+  );
 
-const isActive =
-  Boolean(state.activeTests[testId]);
+  const modelNames = [
+    "Big Five-test",
+    "HEXACO-test"
+  ];
 
-const status = document.createElement("span");
-status.className = "test-status";
+  modelNames.forEach(name => {
+    const entry = domain.tests.find(
+      ([testName]) => testName === name
+    );
 
-if (isCompleted) {
-  status.textContent = "VOLTOOID";
-} else if (isActive) {
-  status.textContent = "IN UITVOERING";
-} else if (testDefinition) {
-  status.textContent = "BESCHIKBAAR";
-} else {
-  status.textContent = "BINNENKORT";
-}
+    if (!entry) {
+      return;
+    }
 
-    const actions = document.createElement("div");
-    actions.className = "test-card-actions";
-
-const actionButton = document.createElement("button");
-
-actionButton.type = "button";
-actionButton.className = "test-start-button";
-
-if (!testDefinition) {
-  actionButton.textContent = "Binnenkort beschikbaar";
-  actionButton.disabled = true;
-} else if (isCompleted) {
-  actionButton.textContent = "Bekijk resultaat";
-
-  actionButton.addEventListener("click", () => {
-    openTestFlow(testId);
-  });
-} else if (isActive) {
-  actionButton.textContent = "Ga verder";
-
-  actionButton.addEventListener("click", () => {
-    openTestFlow(testId);
-  });
-} else {
-  actionButton.textContent = "Start test";
-
-  actionButton.addEventListener("click", () => {
-    openTestFlow(testId);
+    testList.appendChild(
+      createCatalogTestCard(
+        domain,
+        entry[0],
+        entry[1]
+      )
+    );
   });
 }
 
-    actions.appendChild(actionButton);
-    article.append(copy, status, actions);
-    testList.appendChild(article);
-  });
+
+function openDomain(domainId) {
+  const domain = domains.find(
+    item => item.id === domainId
+  );
+
+  if (!domain) {
+    return;
+  }
+
+  activeDomainId = domainId;
+  const progress =
+    getDomainProgress(domain);
+
+  document.querySelector(
+    "#drawerEyebrow"
+  ).textContent =
+    "Profielgebied";
+
+  document.querySelector(
+    "#drawerTitle"
+  ).textContent =
+    domain.title;
+
+  document.querySelector(
+    "#drawerProgressLabel"
+  ).textContent =
+    `${progress.completed} van ${progress.total} testen voltooid`;
+
+  document.querySelector(
+    "#drawerProgressPercent"
+  ).textContent =
+    `${progress.percentage}%`;
+
+  document.querySelector(
+    "#drawerProgressBar"
+  ).style.width =
+    `${progress.percentage}%`;
+
+  testList.replaceChildren();
+
+  domain.tests.forEach(
+    ([name, description]) => {
+      if (
+        domain.id === "persoonlijkheid" &&
+        name === "HEXACO-test"
+      ) {
+        return;
+      }
+
+      if (
+        domain.id === "persoonlijkheid" &&
+        name === "Big Five-test"
+      ) {
+        testList.appendChild(
+          createPersonalityModelCard()
+        );
+
+        return;
+      }
+
+      testList.appendChild(
+        createCatalogTestCard(
+          domain,
+          name,
+          description
+        )
+      );
+    }
+  );
 
   overlay.hidden = false;
-  domainDrawer.classList.add("is-open");
-  domainDrawer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("no-scroll");
-  document.querySelector("#closeDrawerButton").focus();
+  domainDrawer.classList.add(
+    "is-open"
+  );
+  domainDrawer.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+  document.body.classList.add(
+    "no-scroll"
+  );
+  document.querySelector(
+    "#closeDrawerButton"
+  ).focus();
 }
 
 function closeDomain() {

@@ -948,6 +948,15 @@
 
           <div class="result-actions">
 
+            <button
+              class="button button-primary"
+              id="personalityCrossTestButton"
+              type="button"
+              hidden
+            >
+              Breid mijn persoonlijkheidsprofiel uit
+            </button>
+
 		<button
  		 class="button button-secondary"
  		 id="printResultButton"
@@ -993,7 +1002,7 @@
       </div>
 
       <p>
-        Versie 0.6 · DISC-gedragsstijltest toegevoegd
+        Versie 0.7 · IPIP-HEXACO en gedeelde persoonlijkheidsantwoorden
       </p>
 
     </div>
@@ -1190,6 +1199,9 @@
 <!-- Testdata: uitsluitend gegevens, zonder uitvoeringslogica. -->
 <script src="./big-five-choices.js" defer></script>
 <script src="./big-five-questions.js" defer></script>
+<script src="./hexaco-answer-bank-map.js" defer></script>
+<script src="./hexaco-questions.js" defer></script>
+<script src="./hexaco-results.js" defer></script>
 <script src="./sixteen-personalities-questions.js" defer></script>
 <script src="./sixteen-personalities-results.js" defer></script>
 <script src="./disc-questions.js" defer></script>
@@ -1198,7 +1210,9 @@
 <!-- Applicatiekern en testspecifieke modules; volgorde is bewust expliciet. -->
 <script src="./core/app-config.js" defer></script>
 <script src="./core/test-utils.js" defer></script>
+<script src="./core/personality-answer-bank.js" defer></script>
 <script src="./tests/big-five-engine.js" defer></script>
+<script src="./tests/hexaco-engine.js" defer></script>
 <script src="./tests/sixteen-personalities-engine.js" defer></script>
 <script src="./tests/disc-engine.js" defer></script>
 <script src="./core/test-registry.js" defer></script>

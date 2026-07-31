@@ -10,7 +10,8 @@ function loadState() {
   const fallback = {
     completedTests: [],
     activeTests: {},
-    results: {}
+    results: {},
+    responseBank: {}
   };
 
   try {
@@ -61,6 +62,13 @@ function loadState() {
         typeof saved.results ===
           "object"
           ? saved.results
+          : {},
+
+      responseBank:
+        saved.responseBank &&
+        typeof saved.responseBank ===
+          "object"
+          ? saved.responseBank
           : {}
     };
 

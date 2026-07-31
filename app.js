@@ -83,6 +83,7 @@ const resultContentGrid = document.querySelector(".result-content-grid");
 const resultCompletedDate = document.querySelector("#resultCompletedDate");
 const printCompletedDate = document.querySelector("#printCompletedDate");
 const printResultButton = document.querySelector("#printResultButton");
+const personalityCrossTestButton = document.querySelector("#personalityCrossTestButton");
 const resultMethodSource = document.querySelector("#resultMethodSource");
 const resultMethodDisclaimer = document.querySelector("#resultMethodDisclaimer");
 
@@ -98,6 +99,13 @@ const toastMessage = document.querySelector("#toastMessage");
 let activeDomainId = null;
 let activeTestId = null;
 let toastTimer = null;
+
+const migratedPersonalityAnswers =
+  migrateActivePersonalitySessionsToAnswerBank();
+
+if (migratedPersonalityAnswers > 0) {
+  saveState();
+}
 
 
 /* Applicatie-events en serviceworkerregistratie. */
@@ -140,6 +148,7 @@ document.querySelector("#resetProgressButton").addEventListener("click", () => {
 
   state.activeTests = {};
   state.results = {};
+  state.responseBank = {};
 
   localStorage.removeItem(
     LEGACY_PROFILE_STORAGE_KEY
@@ -223,6 +232,20 @@ restartTestButton.addEventListener(
 printResultButton.addEventListener(
   "click",
   printActiveResult
+);
+
+personalityCrossTestButton.addEventListener(
+  "click",
+  () => {
+    const targetTestId =
+      personalityCrossTestButton.dataset.targetTestId;
+
+    if (!targetTestId) {
+      return;
+    }
+
+    openTestFlow(targetTestId);
+  }
 );
 
 

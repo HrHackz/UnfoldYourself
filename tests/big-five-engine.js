@@ -559,6 +559,7 @@ function getBigFiveQuestionChoices(question) {
   return sourceChoices.map(choice => {
     return {
       value: Number(choice.score),
+      rawValue: Number(choice.color),
       color: Number(choice.color),
       label: String(choice.text),
 
@@ -613,6 +614,12 @@ const mappedBigFiveQuestions =
           Number(question.facet),
 
         facetLabel,
+
+        answerBankKey:
+          window.BIG_FIVE_ANSWER_BANK_KEYS?.[
+            question.id
+          ] ||
+          `ipip-neo-120:${question.id}`,
 
         category:
           `${domain.label} · ${facetLabel}`
@@ -1171,6 +1178,25 @@ const BIG_FIVE_TEST_DEFINITION = {
 
     resultType:
       "faceted-dimensions",
+
+    usesPersonalityAnswerBank:
+      true,
+
+    createSession({
+      definition,
+      startedAt,
+      forceAll = false
+    }) {
+      return createAdaptivePersonalitySession({
+        definition,
+        startedAt,
+        forceAll
+      });
+    },
+
+    getQuestionPlan() {
+      return getAdaptiveQuestionPlan(this);
+    },
 
     mainScoreHeading:
       "Meest uitgesproken score",

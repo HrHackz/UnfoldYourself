@@ -2,13 +2,16 @@
 
 /*
   Unfold Yourself — testregister
-  Afhankelijkheden: tests/big-five-engine.js, tests/sixteen-personalities-engine.js, tests/disc-engine.js.
+  Afhankelijkheden: tests/big-five-engine.js, tests/hexaco-engine.js, tests/sixteen-personalities-engine.js, tests/disc-engine.js.
   Klassiek script; laadvolgorde staat expliciet in index.html.
 */
 
 const testLibrary = {
   [BIG_FIVE_TEST_DEFINITION.id]:
     BIG_FIVE_TEST_DEFINITION,
+
+  [HEXACO_TEST_DEFINITION.id]:
+    HEXACO_TEST_DEFINITION,
 
   [SIXTEEN_PERSONALITIES_TEST_DEFINITION.id]:
     SIXTEEN_PERSONALITIES_TEST_DEFINITION,

@@ -659,6 +659,85 @@ function formatMainResultScore(
 }
 
 
+function configurePersonalityCrossTestButton(result) {
+  personalityCrossTestButton.hidden = true;
+  personalityCrossTestButton.dataset.targetTestId = "";
+
+  const pair = {
+    "persoonlijkheid::Big Five-test": {
+      targetId: "persoonlijkheid::HEXACO-test",
+      targetLabel: "HEXACO"
+    },
+    "persoonlijkheid::HEXACO-test": {
+      targetId: "persoonlijkheid::Big Five-test",
+      targetLabel: "Big Five"
+    }
+  };
+
+  const relation = pair[result?.testId];
+
+  if (!relation) {
+    return;
+  }
+
+  const targetDefinition =
+    getTestDefinition(
+      relation.targetId
+    );
+
+  if (!targetDefinition) {
+    return;
+  }
+
+  const isCompleted =
+    state.completedTests.includes(
+      relation.targetId
+    ) &&
+    Boolean(
+      state.results[
+        relation.targetId
+      ]
+    );
+
+  const isActive =
+    Boolean(
+      state.activeTests[
+        relation.targetId
+      ]
+    );
+
+  const plan =
+    typeof targetDefinition.getQuestionPlan === "function"
+      ? targetDefinition.getQuestionPlan()
+      : {
+          total: targetDefinition.questions.length,
+          reusable: 0,
+          remaining: targetDefinition.questions.length
+        };
+
+  if (isCompleted) {
+    personalityCrossTestButton.textContent =
+      `Bekijk mijn ${relation.targetLabel}-resultaat`;
+  } else if (isActive) {
+    personalityCrossTestButton.textContent =
+      `Ga verder met ${relation.targetLabel}`;
+  } else if (plan.remaining === 0) {
+    personalityCrossTestButton.textContent =
+      `Maak mijn ${relation.targetLabel}-rapport direct`;
+  } else if (plan.reusable > 0) {
+    personalityCrossTestButton.textContent =
+      `Breid uit naar ${relation.targetLabel} · nog ${plan.remaining} vragen`;
+  } else {
+    personalityCrossTestButton.textContent =
+      `Start de ${relation.targetLabel}-test`;
+  }
+
+  personalityCrossTestButton.dataset.targetTestId =
+    relation.targetId;
+  personalityCrossTestButton.hidden = false;
+}
+
+
 function renderTestResult(result) {
   if (!result) {
     return;
@@ -900,6 +979,10 @@ function renderTestResult(result) {
   resultMethodDisclaimer.textContent =
     evidence.disclaimer ||
     "Dit resultaat is bedoeld voor zelfinzicht en persoonlijke ontwikkeling.";
+
+  configurePersonalityCrossTestButton(
+    result
+  );
 
   finishTestButton.textContent =
     "Terug naar mijn profiel";
