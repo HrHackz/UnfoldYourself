@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v10";
+const CACHE_VERSION = "v11";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -71,11 +71,10 @@ const TEST_DATA_FILES = [
   "./disc-results.js",
   "./self-values-drives-questions.js",
   "./self-values-drives-results.js",
+  "./data/identity-intersectionality/countries.js",
   "./data/identity-intersectionality/questions.js",
   "./data/identity-intersectionality/sources.js",
   "./data/identity-intersectionality/benchmarks-belgium.js",
-  "./data/identity-intersectionality/benchmarks-europe.js",
-  "./data/identity-intersectionality/benchmarks-global.js",
   "./data/identity-intersectionality/interpretations.js"
 ];
 

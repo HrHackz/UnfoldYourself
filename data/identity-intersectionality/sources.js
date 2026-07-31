@@ -1,112 +1,152 @@
 "use strict";
 
-/* Unfold Yourself — bronnenregister voor de kruispuntdenkentest. */
-
 window.IDENTITY_INTERSECTIONALITY_SOURCES = [
   {
     "id": "crenshaw-1989",
     "type": "theory",
-    "citation": "Crenshaw, K. (1989). Demarginalizing the Intersection of Race and Sex. University of Chicago Legal Forum, 1989(1), 139–167.",
+    "citation": "Crenshaw, K. (1989). Demarginalizing the Intersection of Race and Sex.",
     "url": "https://chicagounbound.uchicago.edu/uclf/vol1989/iss1/8/",
-    "note": "Grondtekst over het analyseren van overlappende discriminatiegronden."
+    "note": "Grondtekst over overlappende discriminatiegronden."
   },
   {
     "id": "crenshaw-1991",
     "type": "theory",
-    "citation": "Crenshaw, K. (1991). Mapping the Margins: Intersectionality, Identity Politics, and Violence against Women of Color. Stanford Law Review, 43(6), 1241–1299.",
+    "citation": "Crenshaw, K. (1991). Mapping the Margins. Stanford Law Review, 43(6), 1241–1299.",
     "url": "https://www.jstor.org/stable/1229039",
-    "note": "Werk over structurele, politieke en representatieve intersectionaliteit."
+    "note": "Structurele en politieke intersectionaliteit."
   },
   {
     "id": "mcintosh-1988",
     "type": "theory",
-    "citation": "McIntosh, P. (1988/1989). White Privilege and Male Privilege / White Privilege: Unpacking the Invisible Knapsack. Wellesley Centers for Women.",
-    "url": "https://www.wcwonline.org/Fact-Sheets-Briefs/white-privilege-unpacking-the-invisible-knapsack-2",
-    "note": "Reflectiekader voor alledaagse, vaak onzichtbare voordelen."
+    "citation": "McIntosh, P. (1988/1989). White Privilege: Unpacking the Invisible Knapsack.",
+    "url": "https://nationalseedproject.org/Key-SEED-Texts/white-privilege-unpacking-the-invisible-knapsack",
+    "note": "Bewustwording van onzichtbare maatschappelijke voordelen."
   },
   {
     "id": "collins-1990",
     "type": "theory",
-    "citation": "Collins, P. H. (1990). Black Feminist Thought: Knowledge, Consciousness, and the Politics of Empowerment. Boston: Unwin Hyman.",
-    "url": "https://www.routledge.com/Black-Feminist-Thought/Collins/p/book/9781032157837",
-    "note": "Ontwikkelt het idee van een matrix van onderling verbonden machtsverhoudingen."
+    "citation": "Collins, P. H. (1990). Black Feminist Thought.",
+    "url": "https://www.routledge.com/Black-Feminist-Thought/Collins/p/book/9780415964722",
+    "note": "Matrix van macht en onderlinge werking van maatschappelijke posities."
   },
   {
-    "id": "celis-meier-2012",
-    "type": "theory",
-    "citation": "Celis, K., Outshoorn, J., Meier, P., & Motmans, J. (2012). Institutionalizing Intersectionality in the Low Countries: Belgium and The Netherlands. In Institutionalizing Intersectionality. Palgrave Macmillan.",
-    "url": "https://link.springer.com/chapter/10.1057/9781137031068_5",
-    "note": "Peer-reviewed Belgische en Nederlandse beleidscontext."
-  },
-  {
-    "id": "unia-origin-2024",
-    "type": "method",
-    "citation": "Unia (2024). Study on self-identification of origin in Belgium.",
-    "url": "https://www.unia.be/files/Report-Study-on-self-identification-of-origin-in-Belgium.pdf",
-    "note": "Onderbouwt zelfidentificatie, gevoeligheid en beperkingen van administratieve proxies."
-  },
-  {
-    "id": "unia-equality-2024",
-    "type": "method",
-    "citation": "Unia (2024). Improving Equality Data Collection in Belgium II: disability, health status and physical characteristics.",
-    "url": "https://www.unia.be/files/Report-IEDCB-II-disability-health-status-and-physical-characteristics.pdf",
-    "note": "Methodische basis voor equality data en datalacunes."
+    "id": "statbel-population-2026",
+    "type": "belgium",
+    "citation": "Statbel (2026). Structure of the population on 1 January 2026.",
+    "url": "https://statbel.fgov.be/en/themes/population/structure-population",
+    "note": "België telde 11.867.634 inwoners; 20,67% was 65 jaar of ouder."
   },
   {
     "id": "statbel-origin-2026",
     "type": "belgium",
-    "citation": "Statbel (2026). Origin of the Belgian population. Referentiedatum 1 januari 2026.",
+    "citation": "Statbel (2026). Origin of the Belgian population.",
     "url": "https://statbel.fgov.be/en/themes/population/structure-population/origin",
     "note": "63,4% Belg met Belgische achtergrond, 22,8% Belg met buitenlandse achtergrond en 13,8% niet-Belg."
-  },
-  {
-    "id": "statbel-poverty-2025",
-    "type": "belgium",
-    "citation": "Statbel (2026). Risk of poverty or social exclusion, EU-SILC 2025.",
-    "url": "https://statbel.fgov.be/en/news/more-19-million-belgians-are-risk-poverty-or-social-exclusion",
-    "note": "16.5% van de Belgische bevolking liep in 2025 risico op armoede of sociale uitsluiting."
-  },
-  {
-    "id": "statbel-education-2025",
-    "type": "belgium",
-    "citation": "Statbel (2026). Level of education, 2025.",
-    "url": "https://statbel.fgov.be/en/themes/work-training/training-and-education/level-education",
-    "note": "52.7% van de 25-34-jarigen had in 2025 een diploma hoger onderwijs."
-  },
-  {
-    "id": "statbel-age-2026",
-    "type": "belgium",
-    "citation": "Statbel (2026). Structure of the population on 1 January 2026.",
-    "url": "https://statbel.fgov.be/en/themes/population/structure-population",
-    "note": "Een vijfde van de Belgische bevolking was 65 jaar of ouder."
   },
   {
     "id": "igvm-paygap-2025",
     "type": "belgium",
     "citation": "Instituut voor de gelijkheid van vrouwen en mannen (2025). De loonkloof tussen vrouwen en mannen in België.",
     "url": "https://igvm-iefh.belgium.be/nl/themas/werk/loonkloof/cijfers",
-    "note": "7.0% gecorrigeerd voor arbeidsduur; 19.5% zonder correctie, op basis van loon- en tewerkstellingsgegevens 2023."
+    "note": "Officiële Belgische indicatoren over genderongelijkheid in betaalde arbeid."
   },
   {
     "id": "fra-lgbti-belgium-2024",
     "type": "belgium",
-    "citation": "European Union Agency for Fundamental Rights (2024). EU LGBTIQ Survey III – Belgium country sheet.",
+    "citation": "FRA (2024). EU LGBTIQ Survey III – Belgium country sheet.",
     "url": "https://fra.europa.eu/sites/default/files/fra_uploads/lgbtiq_survey-2024-country_sheet-belgium.pdf",
-    "note": "32% van de Belgische respondenten voelde zich in het voorafgaande jaar op minstens één levensdomein gediscrimineerd; geen kanssteekproef."
+    "note": "Belgische ervaringsdata onder LGBTIQ-respondenten; geen bevolkingsprevalentie."
   },
   {
-    "id": "statbel-disability-2026",
+    "id": "unia-origin-2024",
     "type": "belgium",
-    "citation": "Statbel (2026). Employment and unemployment: long-term activity limitations.",
+    "citation": "Unia (2024). Study on self-identification of origin in Belgium.",
+    "url": "https://www.unia.be/files/Report-Study-on-self-identification-of-origin-in-Belgium.pdf",
+    "note": "Onderbouwt zelfidentificatie en toont hogere discriminatierisico’s bij niet-Belgische herkomst of niet-witte huidskleur."
+  },
+  {
+    "id": "unia-equality-2024",
+    "type": "method",
+    "citation": "Unia (2024). Improving Equality Data Collection in Belgium II.",
+    "url": "https://www.unia.be/files/Report-IEDCB-II-disability-health-status-and-physical-characteristics.pdf",
+    "note": "Belgische equality-data en datalacunes rond handicap, gezondheid en fysieke kenmerken."
+  },
+  {
+    "id": "statbel-education-2025",
+    "type": "belgium",
+    "citation": "Statbel (2026). Level of education, data 2025.",
+    "url": "https://statbel.fgov.be/en/themes/work-training/training-and-education/level-education",
+    "note": "52,7% van de 25–34-jarigen had een diploma hoger onderwijs."
+  },
+  {
+    "id": "statbel-language-2022",
+    "type": "belgium",
+    "citation": "Statbel (2022). Insufficient knowledge of the language is the main barrier on the Belgian labour market.",
+    "url": "https://statbel.fgov.be/en/news/insufficient-knowledge-language-main-barrier-belgian-labour-market",
+    "note": "Bij in het buitenland geborenen werd onvoldoende kennis van een officiële taal vaak als arbeidsmarktbarrière genoemd."
+  },
+  {
+    "id": "statbel-disability-2025",
+    "type": "belgium",
+    "citation": "Statbel (2025/2026). Long-term activity limitations and employment.",
     "url": "https://statbel.fgov.be/en/themes/work-training/labour-market/employment-and-unemployment",
-    "note": "In 2025 was 26,8% van de 20–64-jarigen met ernstige langdurige beperkingen aan het werk, tegenover 60,6% bij matige beperkingen."
+    "note": "In 2025 was 26,8% van personen met ernstige langdurige beperkingen aan het werk, tegenover 78,8% zonder langdurige beperking."
   },
   {
-    "id": "sciensano-belhealth-2024",
+    "id": "unia-age-2025",
     "type": "belgium",
-    "citation": "Sciensano (2024/2025). Mental health trends in Belgium: BELHEALTH waves 2022–2024.",
-    "url": "https://www.sciensano.be/sites/default/files/mental_health_trends_in_belgium_-_belhealth_waves_1_to_5_-_2022-24.pdf",
-    "note": "Toont verhoogde angst- en depressiesymptomen tegenover de pre-pandemische referentie; zelfrapportage en surveybeperkingen gelden."
+    "citation": "Unia (2025/2026). Research on age discrimination in Belgium.",
+    "url": "https://www.unia.be/en/knowledge-recommendations/research-age-discrimination-in-belgium-2025",
+    "note": "Meer dan een derde van de bevraagde Belgen rapporteerde leeftijdsdiscriminatie; jongeren en ouderen kunnen beide getroffen worden."
+  },
+  {
+    "id": "elections-belgium",
+    "type": "belgium",
+    "citation": "FOD Binnenlandse Zaken. Kiesrechten van niet-Belgische inwoners.",
+    "url": "https://elections.fgov.be/europe/are-you-a-european-citizen-living-in-belgium",
+    "note": "Niet-Belgische inwoners hebben niet automatisch dezelfde politieke rechten als Belgische staatsburgers."
+  },
+  {
+    "id": "eu-free-movement",
+    "type": "belgium",
+    "citation": "Europese Commissie. Working in another EU country.",
+    "url": "https://employment-social-affairs.ec.europa.eu/policies-and-activities/moving-working-europe/working-another-eu-country_en",
+    "note": "EU-burgers hebben vrij verkeer om in andere EU-landen te wonen en te werken; voor niet-EU-burgers hangt dit af van status en regels."
+  },
+  {
+    "id": "dofi-residence",
+    "type": "belgium",
+    "citation": "Dienst Vreemdelingenzaken. Verblijfsrechten en langdurig verblijf in België.",
+    "url": "https://dofi.ibz.be/en",
+    "note": "Officiële informatie over tijdelijke, permanente en voorwaardelijke verblijfsrechten."
+  },
+  {
+    "id": "statbel-financial-2025",
+    "type": "belgium",
+    "citation": "Statbel (2026). Material and social deprivation, data 2025.",
+    "url": "https://statbel.fgov.be/en/themes/households/poverty-and-living-conditions/material-and-social-deprivation",
+    "note": "22,1% kon een onverwachte uitgave van ongeveer €1.450 niet opvangen."
+  },
+  {
+    "id": "nbb-wealth-2024",
+    "type": "belgium",
+    "citation": "Nationale Bank van België (2025). Distributional wealth accounts – Q4 2024.",
+    "url": "https://www.nbb.be/doc/dq/e/dq3/histo/def24iv.pdf",
+    "note": "De rijkste 10% bezat 54,9% van het nettovermogen van Belgische huishoudens."
+  },
+  {
+    "id": "worldbank-income",
+    "type": "method",
+    "citation": "World Bank. Country and Lending Groups.",
+    "url": "https://datahelpdesk.worldbank.org/knowledgebase/articles/906519-world-bank-country-and-lending-groups",
+    "note": "Internationale economische context voor geboortelanden; niet gebruikt als waardering van personen of culturen."
+  },
+  {
+    "id": "undp-hdi",
+    "type": "method",
+    "citation": "UNDP. Human Development Index data center.",
+    "url": "https://hdr.undp.org/data-center/human-development-index",
+    "note": "Context rond gezondheid, onderwijs en levensstandaard van landen."
   },
   {
     "id": "statbel-digital-2025",
@@ -116,227 +156,42 @@ window.IDENTITY_INTERSECTIONALITY_SOURCES = [
     "note": "61% van de Belgen van 16–74 jaar had minstens digitale basisvaardigheden."
   },
   {
-    "id": "statbel-geography-2026",
+    "id": "statbel-learning-2025",
     "type": "belgium",
-    "citation": "Statbel (2026). Geographical breakdowns and accessibility indicators.",
-    "url": "https://statbel.fgov.be/en/themes/datalab/geographical-breakdowns",
-    "note": "Bereikbaarheid van haltes en voorzieningen varieert sterk tussen regio’s en woonomgevingen."
+    "citation": "Statbel (2026). Lifelong learning, data 2025.",
+    "url": "https://statbel.fgov.be/en/themes/work-training/training-and-education/lifelong-learning",
+    "note": "40,7% van de 25–64-jarigen nam in 2025 deel aan onderwijs of opleiding."
   },
   {
-    "id": "eurostat-poverty-2025",
-    "type": "europe",
-    "citation": "Eurostat (2026). Living conditions in Europe – poverty and social exclusion, data 2025.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Living_conditions_in_Europe_-_poverty_and_social_exclusion",
-    "note": "In 2025 liep 20,9% van de EU-bevolking risico op armoede of sociale uitsluiting."
-  },
-  {
-    "id": "eurostat-education-2024",
-    "type": "europe",
-    "citation": "Eurostat (2026). Education and training statistics, data 2024.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Educational_attainment_statistics",
-    "note": "In 2024 had 44% van de 25–34-jarigen in de EU tertiair onderwijs afgerond."
-  },
-  {
-    "id": "eurostat-gender-2024",
-    "type": "europe",
-    "citation": "Eurostat (2025). Labour market statistics at regional level, 2024.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Labour_market_statistics_at_regional_level",
-    "note": "EU-werkgelegenheidsgraad 20–64: 80.8% mannen en 70.8% vrouwen; kloof 10.0 procentpunt in 2024."
-  },
-  {
-    "id": "eurostat-citizenship-2025",
-    "type": "europe",
-    "citation": "Eurostat (2026). SDG 10 – Reduced inequalities.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=SDG_10_-_Reduced_inequalities",
-    "note": "In 2025 was 77.0% van de eigen onderdanen en 65.2% van niet-EU-burgers werkzaam."
-  },
-  {
-    "id": "fra-lgbti-eu-2024",
-    "type": "europe",
-    "citation": "European Union Agency for Fundamental Rights (2024). LGBTIQ equality at a crossroads.",
-    "url": "https://fra.europa.eu/en/publication/2024/lgbtiq-equality-crossroads-progress-and-challenges",
-    "note": "37% van de EU-respondenten voelde zich in het voorafgaande jaar gediscrimineerd; vrijwillige online survey, geen bevolkingsprevalentie."
-  },
-  {
-    "id": "eurostat-disability-2025",
-    "type": "europe",
-    "citation": "Eurostat (2026). Disability employment gap, data 2025.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=SDG_8_-_Decent_work_and_economic_growth",
-    "note": "De EU-werkgelegenheidskloof tussen mensen met en zonder handicap bedroeg 24,2 procentpunt in 2025."
-  },
-  {
-    "id": "eurostat-digital-2025",
-    "type": "europe",
-    "citation": "Eurostat (2026). Skills for the digital age, data 2025.",
-    "url": "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Skills_for_the_digital_age",
-    "note": "60% van de EU-bevolking van 16–74 jaar had in 2025 minstens digitale basisvaardigheden."
-  },
-  {
-    "id": "eurostat-rural-2023",
-    "type": "europe",
-    "citation": "Eurostat (2024). Access to internet in urban and rural areas in 2023.",
-    "url": "https://ec.europa.eu/eurostat/web/products-eurostat-news/w/ddn-20241122-1",
-    "note": "Internettoegang: 95% van huishoudens in steden, 93% in voorsteden en 91% in landelijke gebieden."
-  },
-  {
-    "id": "fra-racial-eu-2023",
-    "type": "benchmark",
-    "citation": "European Union Agency for Fundamental Rights (2023). Being Black in the EU – Experiences of people of African descent.",
-    "url": "https://fra.europa.eu/en/publication/2023/being-black-eu",
-    "note": "Survey in 13 EU Member States on racism and discrimination experienced by people of African descent."
-  },
-  {
-    "id": "who-europe-mental-2025",
-    "type": "benchmark",
-    "citation": "WHO Regional Office for Europe (2025). Mental health in the WHO European Region.",
-    "url": "https://www.who.int/europe/health-topics/mental-health",
-    "note": "Regional estimate and policy context for mental health; not a benchmark for neurodivergence."
-  },
-  {
-    "id": "fra-muslim-eu-2024",
-    "type": "benchmark",
-    "citation": "European Union Agency for Fundamental Rights (2024). Being Muslim in the EU – Experiences of Muslims.",
-    "url": "https://fra.europa.eu/en/publication/2024/being-muslim-eu",
-    "note": "Survey in 13 EU countries; results describe respondents and are not a population census."
-  },
-  {
-    "id": "eu-languages-2026",
-    "type": "benchmark",
-    "citation": "European Union (2026). Languages, multilingualism and language rules.",
-    "url": "https://european-union.europa.eu/principles-countries-history/languages_en",
-    "note": "Official overview of the 24 official EU languages."
-  },
-  {
-    "id": "ec-equality-data",
-    "type": "method",
-    "citation": "European Commission. Equality data collection: guidance and identified data gaps.",
-    "url": "https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/combatting-discrimination/equality-data-collection_en",
-    "note": "Methodological context on gaps, comparability and safeguards in equality-data collection."
-  },
-  {
-    "id": "worldbank-social-protection-2025",
-    "type": "global",
-    "citation": "World Bank (2025). State of Social Protection Report 2025: The 2-Billion-Person Challenge.",
-    "url": "https://www.worldbank.org/en/topic/socialprotection/publication/state-of-social-protection-2025-2-billion-person-challenge",
-    "note": "Twee miljard mensen in lage- en middeninkomenslanden zijn onvoldoende of niet gedekt door sociale bescherming."
-  },
-  {
-    "id": "undp-hdi-2025",
-    "type": "global",
-    "citation": "UNDP (2025). Human Development Report 2025 and Human Development Index data center.",
-    "url": "https://hdr.undp.org/data-center/human-development-index",
-    "note": "Vergelijkt gezondheid, kennis en levensstandaard tussen landen; landgemiddelden voorspellen geen individuele positie."
-  },
-  {
-    "id": "un-wpp-2024",
-    "type": "global",
-    "citation": "United Nations DESA (2024). World Population Prospects 2024.",
-    "url": "https://population.un.org/wpp/",
-    "note": "Wereldwijde leeftijdsstructuren verschillen sterk tussen landen en veranderen door vergrijzing en demografische transitie."
-  },
-  {
-    "id": "ohchr-lgbti-global",
-    "type": "global",
-    "citation": "OHCHR. About LGBTI people and human rights.",
-    "url": "https://www.ohchr.org/en/sexual-orientation-and-gender-identity/about-lgbti-people-and-human-rights",
-    "note": "Meer dan 60 landen criminaliseren nog private, vrijwillige relaties tussen volwassenen van hetzelfde geslacht."
-  },
-  {
-    "id": "who-mental-health-2025",
-    "type": "global",
-    "citation": "World Health Organization (2025). World mental health today: latest data.",
-    "url": "https://www.who.int/publications/i/item/9789240113817",
-    "note": "Meer dan één miljard mensen leven met een psychische aandoening; grote zorg- en ondersteuningskloven blijven bestaan."
-  },
-  {
-    "id": "ohchr-human-rights",
-    "type": "global",
-    "citation": "United Nations / OHCHR. Universal Declaration of Human Rights.",
-    "url": "https://www.ohchr.org/en/human-rights/universal-declaration/translations/english",
-    "note": "Grondslag voor gelijke rechten ongeacht onder meer nationaliteit, afkomst, religie, taal of andere status."
-  },
-  {
-    "id": "unhcr-stateless-2025",
-    "type": "global",
-    "citation": "UNHCR (2026). Stateless people, reporting period ending December 2025.",
-    "url": "https://www.unhcr.org/about-unhcr/who-we-protect/stateless-people",
-    "note": "Minstens 4,5 miljoen mensen waren geregistreerd als staatloos; de werkelijke omvang ligt vermoedelijk hoger."
-  },
-  {
-    "id": "unesco-language-2025",
-    "type": "global",
-    "citation": "UNESCO (2025). Languages matter: global guidance on multilingual education.",
-    "url": "https://www.unesco.org/en/languages-education",
-    "note": "40% van de mensen wereldwijd krijgt geen onderwijs in een taal die zij vloeiend spreken en begrijpen."
-  },
-  {
-    "id": "worldbank-internet",
-    "type": "global",
-    "citation": "World Bank. Individuals using the Internet (% of population), World Development Indicators.",
-    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
-    "note": "Wereldwijde indicator met grote verschillen tussen landen, inkomensgroepen, gender en stedelijkheid."
-  },
-  {
-    "id": "worldbank-urban",
-    "type": "global",
-    "citation": "World Bank / UN Population Division. Urban population (% of total population), World Development Indicators.",
-    "url": "https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS",
-    "note": "Wereldwijde urbanisatie is hoog, maar nationale definities en toegang tot diensten verschillen sterk."
-  },
-  {
-    "id": "undp-gii-2025",
-    "type": "global",
-    "citation": "UNDP (2025). Human Development Report 2025 – Gender Inequality Index.",
-    "url": "https://hdr.undp.org/data-center/thematic-composite-indices/gender-inequality-index",
-    "note": "Vergelijkt reproductieve gezondheid, empowerment en arbeidsmarktparticipatie; geen maat voor genderdiversiteit."
-  },
-  {
-    "id": "unesco-education-2026",
-    "type": "global",
-    "citation": "UNESCO Global Education Monitoring Report (2026). Access and equity.",
-    "url": "https://www.unesco.org/reports/gem-report/en/2026-access-equity",
-    "note": "Wereldwijd had in 2024 ongeveer 24% van de 25–34-jarigen tertiair onderwijs afgerond; verschillen tussen regio’s zijn groot."
-  },
-  {
-    "id": "ilo-disability-2024",
-    "type": "global",
-    "citation": "International Labour Organization (2024). A study on the employment and wage outcomes of people with disabilities.",
-    "url": "https://www.ilo.org/publications/study-employment-and-wage-outcomes-people-disabilities",
-    "note": "Wereldwijd bestaan duidelijke werkgelegenheids- en loonverschillen; ongeveer één op zes mensen heeft een significante handicap."
+    "id": "unia-law",
+    "type": "belgium",
+    "citation": "Unia. Discrimination under Belgian law.",
+    "url": "https://www.unia.be/en/understanding-discrimination/discrimination-under-law",
+    "note": "Overzicht van beschermde kenmerken, waaronder huidskleur, afkomst, religie, leeftijd, handicap en seksuele oriëntatie."
   },
   {
     "id": "unia-help",
     "type": "support",
-    "citation": "Unia – onafhankelijk interfederaal gelijkekansencentrum.",
-    "url": "https://www.unia.be/en/report-discrimination",
-    "note": "Gratis en vertrouwelijke informatie en meldmogelijkheid voor discriminatie binnen Unia’s bevoegdheden."
+    "citation": "Unia – melding en informatie over discriminatie.",
+    "url": "https://www.unia.be/en",
+    "note": "Belgisch gelijkekansencentrum."
   },
   {
     "id": "igvm-help",
     "type": "support",
     "citation": "Instituut voor de gelijkheid van vrouwen en mannen.",
-    "url": "https://igvm-iefh.belgium.be/",
-    "note": "Informatie en ondersteuning rond discriminatie op basis van gender en aanverwante criteria."
+    "url": "https://igvm-iefh.belgium.be/en",
+    "note": "Informatie en meldingen rond genderdiscriminatie."
   },
   {
     "id": "myria-help",
     "type": "support",
     "citation": "Myria – Federaal Migratiecentrum.",
     "url": "https://www.myria.be/en",
-    "note": "Informatie en advies over de grondrechten van vreemdelingen en migratie."
-  },
-  {
-    "id": "cavaria-help",
-    "type": "support",
-    "citation": "çavaria – Vlaamse belangenorganisatie voor LGBTI+ personen.",
-    "url": "https://cavaria.be/en/who-we-are",
-    "note": "Netwerk, informatie, welzijns- en gelijkekansenwerking."
-  },
-  {
-    "id": "vaph-help",
-    "type": "support",
-    "citation": "Vlaams Agentschap voor Personen met een Handicap (VAPH).",
-    "url": "https://www.vaph.be/en/welcome",
-    "note": "Informatie over ondersteuning en hulpmiddelen in Vlaanderen."
+    "note": "Informatie over migratie en grondrechten van vreemdelingen."
   }
 ];
+
+function getIdentitySourceById(sourceId) {
+  return (window.IDENTITY_INTERSECTIONALITY_SOURCES || []).find(source => source.id === sourceId) || null;
+}

@@ -26,6 +26,13 @@ function prepareResultForPrint() {
       )
     );
 
+  const expandableDetails =
+    Array.from(
+      document.querySelectorAll(
+        "details[data-print-expand='true']"
+      )
+    );
+
   resultPrintState = {
     facetReportWasHidden:
       facetReport.hidden,
@@ -37,6 +44,14 @@ function prepareResultForPrint() {
 
     facetItems:
       facetItems.map(item => {
+        return {
+          element: item,
+          wasOpen: item.open
+        };
+      }),
+
+    expandableDetails:
+      expandableDetails.map(item => {
         return {
           element: item,
           wasOpen: item.open
@@ -53,6 +68,10 @@ function prepareResultForPrint() {
       item.open = true;
     });
   }
+
+  expandableDetails.forEach(item => {
+    item.open = true;
+  });
 
   document.body.classList.add(
     "printing-result"
@@ -81,6 +100,12 @@ function restoreResultAfterPrint() {
 
   resultPrintState
     .facetItems
+    .forEach(savedItem => {
+      savedItem.element.open =
+        savedItem.wasOpen;
+    });
+
+  (resultPrintState.expandableDetails || [])
     .forEach(savedItem => {
       savedItem.element.open =
         savedItem.wasOpen;

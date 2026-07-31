@@ -1,1203 +1,1754 @@
 "use strict";
 
-/* Unfold Yourself — Deelidentiteiten- en kruispuntdenkentest: vraagdata. */
+/* Unfold Yourself — neutrale vraagdata voor Deelidentiteiten- en kruispuntdenken v2. */
 
 window.IDENTITY_INTERSECTIONALITY_METADATA = {
-  "id": "identity-intersectionality-42-nl",
+  "id": "identity-intersectionality-42-nl-v2",
+  "schemaVersion": 2,
   "title": "Deelidentiteiten- en kruispuntdenkentest",
   "itemCount": 42,
   "axisCount": 14,
-  "instructions": "Beantwoord elke vraag vanuit je huidige maatschappelijke context. Bij gevoelige vragen kun je altijd ‘Zeg ik liever niet’ kiezen. De tool beoordeelt je waarde als persoon niet; hij helpt patronen van toegang en barrières zichtbaar te maken.",
-  "methodNote": "Per as worden drie lagen gecombineerd: maatschappelijke positie, zelfgerapporteerde toegang en ervaren barrières. De uitkomst is een transparante reflectie-index en geen bevolkingspercentiel, diagnose of objectief bewijs van discriminatie.",
-  "privacyNote": "De antwoorden kunnen gevoelige persoonsgegevens bevatten. Alles blijft lokaal in deze browser, tenzij je zelf een back-upbestand downloadt. Een back-upbestand is niet versleuteld.",
+  "instructions": "Beantwoord alle 42 vragen. De tool plaatst je per as tussen meer structurele benadeling en meer structureel voordeel in de Belgische context.",
+  "methodNote": "Elke as wordt afzonderlijk berekend uit drie antwoorden en Belgische contextdata. Een interne schaal van 0 tot 100 plaatst de stip; het percentage blijft verborgen en er is geen totaalscore.",
+  "privacyNote": "De antwoorden kunnen gevoelige persoonsgegevens bevatten. Ze blijven lokaal in je browser, tenzij je zelf een back-up downloadt.",
   "lastReviewed": "2026-07-31"
 };
 
 window.IDENTITY_INTERSECTIONALITY_AXES = [
   {
     "id": "gender",
-    "label": "Gender, genderidentiteit en -expressie",
+    "label": "Geslacht en gender",
     "shortLabel": "Gender",
-    "icon": "G",
-    "description": "Hoe genderidentiteit, genderexpressie en maatschappelijke genderverwachtingen je toegang en behandeling kunnen beïnvloeden."
-  },
-  {
-    "id": "ethnicity",
-    "label": "Etniciteit, afkomst en racialisering",
-    "shortLabel": "Afkomst",
-    "icon": "A",
-    "description": "Hoe afkomst, huidskleur, naam en de manier waarop anderen je racialiseren maatschappelijke kansen kunnen beïnvloeden."
-  },
-  {
-    "id": "socioeconomic",
-    "label": "Sociale klasse en sociaaleconomische positie",
-    "shortLabel": "Socio-economisch",
-    "icon": "S",
-    "description": "De invloed van financiële zekerheid, vermogen, sociaal netwerk en de achtergrond waarin je bent opgegroeid."
-  },
-  {
-    "id": "education",
-    "label": "Onderwijs- en opleidingsniveau",
-    "shortLabel": "Onderwijs",
-    "icon": "O",
-    "description": "Hoe diploma’s, erkenning van kwalificaties en praktisch of theoretisch onderwijs toegang tot kansen beïnvloeden."
-  },
-  {
-    "id": "age",
-    "label": "Leeftijd en levensfase",
-    "shortLabel": "Leeftijd",
-    "icon": "L",
-    "description": "Hoe leeftijd en levensfase kunnen samenhangen met geloofwaardigheid, kansen, autonomie en toegang."
+    "description": "Hoe je genderidentiteit en maatschappelijke verwachtingen je positie kunnen beïnvloeden."
   },
   {
     "id": "sexualOrientation",
     "label": "Seksuele oriëntatie",
     "shortLabel": "Oriëntatie",
-    "icon": "SO",
-    "description": "Hoe heteronormativiteit, zichtbaarheid en veiligheid rondom seksuele oriëntatie kunnen doorwerken."
+    "description": "Hoe openheid, zichtbaarheid en de maatschappelijke norm rond je oriëntatie kunnen doorwerken."
   },
   {
-    "id": "disability",
-    "label": "Lichamelijke of verstandelijke mogelijkheden",
-    "shortLabel": "Toegankelijkheid",
-    "icon": "T",
-    "description": "Hoe beperkingen, chronische aandoeningen en de toegankelijkheid van omgevingen participatie beïnvloeden."
+    "id": "skinColor",
+    "label": "Huidskleur",
+    "shortLabel": "Huidskleur",
+    "description": "Hoe huidskleur en zichtbare racialisering invloed kunnen hebben op aannames en behandeling."
   },
   {
-    "id": "mentalNeuro",
-    "label": "Psychische gezondheid en neurodivergentie",
-    "shortLabel": "Psychisch & neuro",
-    "icon": "PN",
-    "description": "Hoe psychische kwetsbaarheid, neurodivergentie, stigma en passende ondersteuning kunnen samenhangen."
+    "id": "ethnicity",
+    "label": "Etniciteit en herkomst",
+    "shortLabel": "Herkomst",
+    "description": "Hoe culturele of etnische herkomst, erbij horen en als buitenstaander gezien worden kunnen doorwerken."
+  },
+  {
+    "id": "nationality",
+    "label": "Nationaliteit",
+    "shortLabel": "Nationaliteit",
+    "description": "Hoe nationaliteit samenhangt met formele rechten, mobiliteit en politieke deelname."
+  },
+  {
+    "id": "socialClass",
+    "label": "Sociale klasse",
+    "shortLabel": "Klasse",
+    "description": "Hoe opleiding, financiële achtergrond en toegang tot netwerken je kansen kunnen beïnvloeden."
+  },
+  {
+    "id": "culture",
+    "label": "Cultuur",
+    "shortLabel": "Cultuur",
+    "description": "Hoe gewoonten, communicatie en aanpassingsdruk aansluiten bij dominante normen."
   },
   {
     "id": "religion",
     "label": "Religie en levensbeschouwing",
     "shortLabel": "Levensbeschouwing",
-    "icon": "R",
-    "description": "Hoe een dominante, minderheids- of zichtbare levensbeschouwing invloed kan hebben op erkenning en ruimte."
+    "description": "Hoe maatschappelijke routines en ruimte voor geloof of levensbeschouwing je positie beïnvloeden."
   },
   {
-    "id": "citizenship",
-    "label": "Verblijfsstatus en staatsburgerschap",
-    "shortLabel": "Verblijfsstatus",
-    "icon": "V",
-    "description": "Hoe paspoort, verblijfsrecht en administratieve zekerheid toegang tot rechten en voorzieningen beïnvloeden."
+    "id": "health",
+    "label": "Gezondheidssituatie",
+    "shortLabel": "Gezondheid",
+    "description": "Hoe gezondheid, langdurige omstandigheden en toegankelijkheid je deelname kunnen beïnvloeden."
   },
   {
-    "id": "language",
-    "label": "Taal, accent en taligheid",
-    "shortLabel": "Taal",
-    "icon": "TA",
-    "description": "Hoe beheersing van dominante talen, accent en erkenning van meertaligheid invloed hebben op deelname."
+    "id": "age",
+    "label": "Leeftijd",
+    "shortLabel": "Leeftijd",
+    "description": "Hoe je levensfase samenhangt met erkenning, kansen en uitsluiting."
   },
   {
-    "id": "geography",
-    "label": "Geografische locatie en woonomgeving",
-    "shortLabel": "Woonomgeving",
-    "icon": "W",
-    "description": "Hoe bereikbaarheid, vervoer en nabijheid van werk, onderwijs, zorg en diensten kansen beïnvloeden."
+    "id": "residence",
+    "label": "Verblijfsstatuut",
+    "shortLabel": "Verblijfsstatuut",
+    "description": "Hoe juridische zekerheid en verblijfsrechten je bewegingsruimte beïnvloeden."
   },
   {
-    "id": "appearance",
-    "label": "Uiterlijk en lichaamsbouw",
-    "shortLabel": "Uiterlijk",
-    "icon": "U",
-    "description": "Hoe lichaamsbouw, gewicht, zichtbare kenmerken en schoonheidsnormen sociale behandeling kunnen beïnvloeden."
+    "id": "wealth",
+    "label": "Bezit en financiële zekerheid",
+    "shortLabel": "Bezit",
+    "description": "Hoe vermogen, buffers en inkomensafhankelijkheid je keuzevrijheid beïnvloeden."
   },
   {
-    "id": "digital",
-    "label": "Digitale toegang en geletterdheid",
-    "shortLabel": "Digitaal",
-    "icon": "D",
-    "description": "Hoe toegang tot apparaten, verbinding, digitale vaardigheden en ondersteuning maatschappelijke deelname beïnvloeden."
+    "id": "geopolitics",
+    "label": "Noord-Zuid / Oost-West",
+    "shortLabel": "Geopolitieke herkomst",
+    "description": "Hoe geboorteland, opgroeiregio en beeldvorming over herkomst kunnen doorwerken."
+  },
+  {
+    "id": "socialChange",
+    "label": "Maatschappelijke ontwikkeling",
+    "shortLabel": "Ontwikkeling",
+    "description": "Hoe maatschappelijke veranderingen en je aanpassingsmogelijkheden je kansen beïnvloeden."
   }
 ];
 
 window.IDENTITY_INTERSECTIONALITY_CHOICE_SETS = {
-  "agreement": [
+  "genderIdentity": [
     {
-      "value": 1,
+      "value": "man",
+      "label": "Man",
       "marker": "1",
-      "label": "Helemaal oneens",
-      "description": "Dit is vrijwel nooit mijn ervaring.",
-      "score": 0
+      "score": 85
     },
     {
-      "value": 2,
+      "value": "woman",
+      "label": "Vrouw",
       "marker": "2",
-      "label": "Oneens",
-      "description": "Dit geldt eerder niet voor mij.",
-      "score": 25
-    },
-    {
-      "value": 3,
-      "marker": "3",
-      "label": "Deels / wisselend",
-      "description": "Dit verschilt per situatie of periode.",
-      "score": 50
-    },
-    {
-      "value": 4,
-      "marker": "4",
-      "label": "Eens",
-      "description": "Dit geldt meestal voor mij.",
-      "score": 75
-    },
-    {
-      "value": 5,
-      "marker": "5",
-      "label": "Helemaal eens",
-      "description": "Dit is zeer duidelijk mijn ervaring.",
-      "score": 100
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Dit antwoord wordt niet meegerekend.",
-      "score": null
-    }
-  ],
-  "barrierFrequency": [
-    {
-      "value": 1,
-      "marker": "1",
-      "label": "Nooit",
-      "description": "Ik herken dit niet in mijn ervaring.",
-      "score": 100
-    },
-    {
-      "value": 2,
-      "marker": "2",
-      "label": "Zelden",
-      "description": "Dit is uitzonderlijk gebeurd.",
-      "score": 75
-    },
-    {
-      "value": 3,
-      "marker": "3",
-      "label": "Soms",
-      "description": "Dit komt af en toe voor.",
-      "score": 50
-    },
-    {
-      "value": 4,
-      "marker": "4",
-      "label": "Regelmatig",
-      "description": "Dit speelt merkbaar in meerdere situaties.",
-      "score": 25
-    },
-    {
-      "value": 5,
-      "marker": "5",
-      "label": "Vaak",
-      "description": "Dit is een terugkerende barrière.",
-      "score": 0
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Dit antwoord wordt niet meegerekend.",
-      "score": null
-    }
-  ],
-  "position-gender": [
-    {
-      "value": "cis-man",
-      "marker": "1",
-      "label": "Cisgender man",
-      "description": "Mijn genderidentiteit en geboortegeslacht komen overeen en ik identificeer mij als man.",
-      "score": 90
-    },
-    {
-      "value": "cis-woman",
-      "marker": "2",
-      "label": "Cisgender vrouw",
-      "description": "Mijn genderidentiteit en geboortegeslacht komen overeen en ik identificeer mij als vrouw.",
       "score": 65
-    },
-    {
-      "value": "trans",
-      "marker": "3",
-      "label": "Transgender persoon",
-      "description": "Mijn genderidentiteit komt niet overeen met het geslacht dat mij bij geboorte werd toegewezen.",
-      "score": 35
     },
     {
       "value": "nonbinary",
-      "marker": "4",
-      "label": "Non-binair of genderdivers",
-      "description": "Mijn genderidentiteit valt niet uitsluitend binnen man of vrouw.",
+      "label": "Non-binair",
+      "marker": "3",
       "score": 30
     },
     {
-      "value": "intersex-other",
+      "value": "genderfluid",
+      "label": "Genderfluïde",
+      "marker": "4",
+      "score": 30
+    },
+    {
+      "value": "other",
+      "label": "Anders",
       "marker": "5",
-      "label": "Intersekse of anders",
-      "description": "Een andere gender- of seksepositie is voor mij relevanter.",
-      "score": 30
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-ethnicity": [
-    {
-      "value": "dominant-majority",
-      "marker": "1",
-      "label": "Meestal gezien als deel van de dominante witte meerderheid",
-      "description": "Mijn naam, uiterlijk of afkomst wordt in België meestal niet als minderheidskenmerk gelezen.",
-      "score": 85
-    },
-    {
-      "value": "context-dependent",
-      "marker": "2",
-      "label": "Mijn positie wisselt per omgeving",
-      "description": "Ik word afhankelijk van de context soms als meerderheid en soms als minderheid gezien.",
-      "score": 55
-    },
-    {
-      "value": "racialised-minority",
-      "marker": "3",
-      "label": "Meestal geracialiseerd als zichtbare of culturele minderheid",
-      "description": "Mijn naam, huidskleur, uiterlijk of afkomst wordt doorgaans als minderheidskenmerk gelezen.",
-      "score": 30
-    },
-    {
-      "value": "not-sure",
-      "marker": "4",
-      "label": "Ik weet dit niet of herken deze indeling niet",
-      "description": "Mijn maatschappelijke positionering is niet eenduidig.",
-      "score": 50
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-socioeconomic": [
-    {
-      "value": "high-security",
-      "marker": "1",
-      "label": "Ruime financiële zekerheid en sterke vangnetten",
-      "description": "Onverwachte kosten en langere inkomensuitval zijn doorgaans op te vangen.",
-      "score": 90
-    },
-    {
-      "value": "stable",
-      "marker": "2",
-      "label": "Redelijk stabiele financiële situatie",
-      "description": "De meeste kosten zijn haalbaar, maar grote tegenslagen vragen aanpassing.",
-      "score": 70
-    },
-    {
-      "value": "limited",
-      "marker": "3",
-      "label": "Beperkte financiële ruimte",
-      "description": "Geldgebrek beperkt regelmatig keuzes of deelname.",
-      "score": 40
-    },
-    {
-      "value": "insecure",
-      "marker": "4",
-      "label": "Ernstige of langdurige financiële onzekerheid",
-      "description": "Basisuitgaven, schulden of instabiel inkomen vormen een terugkerende druk.",
-      "score": 20
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-education": [
-    {
-      "value": "tertiary",
-      "marker": "1",
-      "label": "Hoger onderwijs afgerond of gelijkwaardig erkend",
-      "description": "Bachelor, master, graduaat of een gelijkwaardig erkende kwalificatie.",
-      "score": 85
-    },
-    {
-      "value": "upper-secondary",
-      "marker": "2",
-      "label": "Secundair, technisch of beroepsonderwijs afgerond",
-      "description": "Mijn kwalificatie geeft toegang tot een deel van de arbeidsmarkt, maar niet tot alle formele functies.",
-      "score": 65
-    },
-    {
-      "value": "lower-secondary",
-      "marker": "3",
-      "label": "Geen diploma hoger secundair onderwijs",
-      "description": "Formele diplomavereisten beperken mijn toegang merkbaar.",
       "score": 35
-    },
-    {
-      "value": "unrecognised",
-      "marker": "4",
-      "label": "Diploma of ervaring wordt niet volledig erkend",
-      "description": "Ik heb kennis of een buitenlands diploma dat niet vanzelf als gelijkwaardig wordt erkend.",
-      "score": 35
-    },
-    {
-      "value": "still-studying",
-      "marker": "5",
-      "label": "Nog in opleiding",
-      "description": "Mijn uiteindelijke onderwijspositie is nog in ontwikkeling.",
-      "score": 55
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
     }
   ],
-  "position-age": [
+  "alignment": [
     {
-      "value": "under-18",
+      "value": 1,
+      "label": "Volledig",
       "marker": "1",
-      "label": "Jonger dan 18 jaar",
-      "description": "Minderjarigheid kan autonomie en toegang beperken.",
-      "score": 40
+      "score": 100
     },
     {
-      "value": "18-24",
+      "value": 2,
+      "label": "Grotendeels",
       "marker": "2",
-      "label": "18 tot en met 24 jaar",
-      "description": "Een vroege levensfase kan minder status, inkomen of werkervaring betekenen.",
-      "score": 60
+      "score": 75
     },
     {
-      "value": "25-54",
+      "value": 3,
+      "label": "Gedeeltelijk",
       "marker": "3",
-      "label": "25 tot en met 54 jaar",
-      "description": "Deze leeftijdsgroep ligt doorgaans het dichtst bij de institutionele norm van de actieve beroepsleeftijd.",
-      "score": 85
-    },
-    {
-      "value": "55-64",
-      "marker": "4",
-      "label": "55 tot en met 64 jaar",
-      "description": "Ervaring kan voordeel geven, terwijl leeftijdsselectie kan toenemen.",
-      "score": 60
-    },
-    {
-      "value": "65-plus",
-      "marker": "5",
-      "label": "65 jaar of ouder",
-      "description": "Rechten en ervaring kunnen sterk zijn, maar leeftijdsbarrières en digitale of fysieke toegankelijkheid kunnen toenemen.",
       "score": 50
     },
     {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-sexualOrientation": [
-    {
-      "value": "heterosexual",
-      "marker": "1",
-      "label": "Heteroseksueel",
-      "description": "Mijn oriëntatie past binnen de maatschappelijke heteronorm.",
-      "score": 90
-    },
-    {
-      "value": "gay-lesbian",
-      "marker": "2",
-      "label": "Homo of lesbisch",
-      "description": "Mijn oriëntatie valt buiten de heteronorm.",
-      "score": 50
-    },
-    {
-      "value": "bi-pan",
-      "marker": "3",
-      "label": "Bi-, pan- of multiseksueel",
-      "description": "Mijn oriëntatie kan onzichtbaar, verkeerd begrepen of betwist worden.",
-      "score": 45
-    },
-    {
-      "value": "asexual-other",
+      "value": 4,
+      "label": "Nauwelijks",
       "marker": "4",
-      "label": "Aseksueel, queer of anders",
-      "description": "Mijn oriëntatie past niet vanzelf in dominante verwachtingen.",
-      "score": 45
-    },
-    {
-      "value": "questioning",
-      "marker": "5",
-      "label": "Ik ben dit nog aan het verkennen",
-      "description": "Mijn positie is nog niet vastgelegd of benoemd.",
-      "score": 50
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-disability": [
-    {
-      "value": "none",
-      "marker": "1",
-      "label": "Geen langdurige beperking of chronische aandoening",
-      "description": "Mijn dagelijkse deelname vraagt doorgaans geen structurele aanpassingen.",
-      "score": 90
-    },
-    {
-      "value": "mild",
-      "marker": "2",
-      "label": "Lichte of wisselende beperking",
-      "description": "Sommige situaties vragen aanpassing, maar veel omgevingen blijven toegankelijk.",
-      "score": 65
-    },
-    {
-      "value": "moderate",
-      "marker": "3",
-      "label": "Merkbare langdurige beperking of chronische aandoening",
-      "description": "Toegankelijkheid, energie of ondersteuning beïnvloeden mijn deelname geregeld.",
-      "score": 40
-    },
-    {
-      "value": "severe",
-      "marker": "4",
-      "label": "Ernstige of meervoudige beperking",
-      "description": "Veel omgevingen of systemen vragen substantiële ondersteuning of aanpassing.",
-      "score": 20
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-mentalNeuro": [
-    {
-      "value": "none",
-      "marker": "1",
-      "label": "Geen relevante psychische kwetsbaarheid of neurodivergentie",
-      "description": "Deze as vraagt momenteel geen bijzondere ondersteuning.",
-      "score": 85
-    },
-    {
-      "value": "managed",
-      "marker": "2",
-      "label": "Een kwetsbaarheid of neurodivergentie die meestal goed ondersteund is",
-      "description": "Er is een relevante identiteit of ervaring, maar passende strategieën of steun zijn vaak beschikbaar.",
-      "score": 60
-    },
-    {
-      "value": "current",
-      "marker": "3",
-      "label": "Actuele psychische kwetsbaarheid of onvoldoende ondersteunde neurodivergentie",
-      "description": "Stigma, prikkelbelasting, energie of toegang tot steun beïnvloeden mijn functioneren merkbaar.",
-      "score": 40
-    },
-    {
-      "value": "multiple",
-      "marker": "4",
-      "label": "Meerdere of zwaar doorwerkende kwetsbaarheden",
-      "description": "Deze as heeft een grote invloed op dagelijkse deelname en veiligheid.",
       "score": 25
     },
     {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 0
     }
   ],
-  "position-religion": [
+  "frequencyBarrier": [
     {
-      "value": "dominant-secular",
+      "value": 1,
+      "label": "Nooit",
       "marker": "1",
-      "label": "Seculier of behorend tot een cultureel dominante traditie",
-      "description": "Mijn levensbeschouwing vraagt doorgaans weinig uitleg of aanpassing in publieke instellingen.",
-      "score": 80
+      "score": 100
     },
     {
-      "value": "minority-not-visible",
+      "value": 2,
+      "label": "Zelden",
       "marker": "2",
-      "label": "Religieuze of levensbeschouwelijke minderheid die meestal niet zichtbaar is",
-      "description": "Mijn positie wijkt af van de norm, maar is niet altijd direct herkenbaar.",
-      "score": 55
+      "score": 75
     },
     {
-      "value": "visible-minority",
+      "value": 3,
+      "label": "Soms",
       "marker": "3",
-      "label": "Zichtbare religieuze of levensbeschouwelijke minderheid",
-      "description": "Kleding, naam, rituelen of overtuigingen kunnen maatschappelijke behandeling beïnvloeden.",
-      "score": 35
-    },
-    {
-      "value": "mixed-other",
-      "marker": "4",
-      "label": "Gemengde, veranderende of andere levensbeschouwing",
-      "description": "Mijn positie past niet volledig in één categorie.",
       "score": 50
     },
     {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-citizenship": [
-    {
-      "value": "belgian",
-      "marker": "1",
-      "label": "Belgisch staatsburger",
-      "description": "Ik heb volledige en stabiele burgerrechten in België.",
-      "score": 90
-    },
-    {
-      "value": "eu",
-      "marker": "2",
-      "label": "Burger van een andere EU-lidstaat",
-      "description": "Ik heb ruime verblijfs- en arbeidsrechten binnen de EU, met enkele administratieve verschillen.",
-      "score": 80
-    },
-    {
-      "value": "permanent-non-eu",
-      "marker": "3",
-      "label": "Niet-EU-burger met duurzaam of permanent verblijf",
-      "description": "Mijn verblijf is relatief stabiel, maar rechten en procedures kunnen verschillen.",
-      "score": 60
-    },
-    {
-      "value": "temporary",
+      "value": 4,
+      "label": "Vaak",
       "marker": "4",
-      "label": "Tijdelijk verblijfsrecht of verblijfsrecht gekoppeld aan studie, werk of familie",
-      "description": "Mijn toegang kan afhankelijk zijn van voorwaarden en verlengingen.",
-      "score": 40
+      "score": 25
     },
     {
-      "value": "protection",
+      "value": 5,
+      "label": "Zeer vaak",
       "marker": "5",
-      "label": "Erkende vluchtelingenstatus, subsidiaire bescherming of lopende asielprocedure",
-      "description": "Rechten, procedures en onzekerheid kunnen mijn toegang sterk bepalen.",
-      "score": 30
-    },
-    {
-      "value": "undocumented",
-      "marker": "6",
-      "label": "Geen stabiel of officieel verblijfsrecht",
-      "description": "Toegang tot werk, huisvesting, zorg en bescherming is zeer beperkt.",
-      "score": 10
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
+      "score": 0
     }
   ],
-  "position-language": [
+  "orientation": [
     {
-      "value": "dominant-native",
+      "value": "heterosexual",
+      "label": "Heteroseksueel",
+      "score": 92,
+      "marker": "1"
+    },
+    {
+      "value": "homosexual",
+      "label": "Homoseksueel",
+      "score": 44,
+      "marker": "2"
+    },
+    {
+      "value": "lesbian",
+      "label": "Lesbisch",
+      "score": 44,
+      "marker": "3"
+    },
+    {
+      "value": "bisexual",
+      "label": "Biseksueel",
+      "score": 40,
+      "marker": "4"
+    },
+    {
+      "value": "pansexual",
+      "label": "Panseksueel",
+      "score": 38,
+      "marker": "5"
+    },
+    {
+      "value": "asexual",
+      "label": "Aseksueel",
+      "score": 45,
+      "marker": "6"
+    },
+    {
+      "value": "queer",
+      "label": "Queer",
+      "score": 35,
+      "marker": "7"
+    },
+    {
+      "value": "other",
+      "label": "Een andere oriëntatie",
+      "score": 40,
+      "marker": "8"
+    },
+    {
+      "value": "unsure",
+      "label": "Nog niet zeker",
+      "score": 42,
+      "marker": "9"
+    }
+  ],
+  "commonness": [
+    {
+      "value": 1,
+      "label": "Zeer gebruikelijk",
       "marker": "1",
-      "label": "Moedertaalspreker van de dominante standaardtaal in mijn omgeving",
-      "description": "Mijn taal en accent worden meestal als vanzelfsprekend en gezaghebbend gezien.",
-      "score": 90
+      "score": 100
     },
     {
-      "value": "fluent-accent",
+      "value": 2,
+      "label": "Gebruikelijk",
       "marker": "2",
-      "label": "Zeer vlot, met een herkenbaar accent of andere moedertaal",
-      "description": "Ik kan volledig deelnemen, maar mijn accent of taalachtergrond wordt soms opgemerkt.",
-      "score": 70
+      "score": 75
     },
     {
-      "value": "functional",
+      "value": 3,
+      "label": "Wisselend",
       "marker": "3",
-      "label": "Functionele beheersing met merkbare beperkingen",
-      "description": "Complexe gesprekken, formulieren of formele situaties kosten extra inspanning.",
-      "score": 45
+      "score": 50
     },
     {
-      "value": "limited",
+      "value": 4,
+      "label": "Ongebruikelijk",
       "marker": "4",
-      "label": "Beperkte beheersing van de dominante taal",
-      "description": "Taal vormt een duidelijke barrière in meerdere levensdomeinen.",
-      "score": 20
+      "score": 25
     },
     {
-      "value": "sign-language",
+      "value": 5,
+      "label": "Zeer ongebruikelijk",
       "marker": "5",
-      "label": "Gebarentaal of alternatieve communicatie is voor mij belangrijk",
-      "description": "Toegang hangt sterk af van tolken, ondertiteling of communicatieaanpassingen.",
-      "score": 35
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
+      "score": 0
     }
   ],
-  "position-geography": [
+  "openness": [
     {
-      "value": "well-connected-city",
+      "value": 1,
+      "label": "Volledig",
       "marker": "1",
-      "label": "Stedelijk en goed verbonden",
-      "description": "Werk, zorg, onderwijs, vervoer en diensten zijn meestal dichtbij of goed bereikbaar.",
-      "score": 85
+      "score": 100
     },
     {
-      "value": "suburban-town",
+      "value": 2,
+      "label": "Grotendeels",
       "marker": "2",
-      "label": "Stad, gemeente of randgebied met redelijke voorzieningen",
-      "description": "De meeste voorzieningen zijn bereikbaar, soms met extra verplaatsing.",
-      "score": 70
+      "score": 75
     },
     {
-      "value": "rural-connected",
+      "value": 3,
+      "label": "Gedeeltelijk",
       "marker": "3",
-      "label": "Landelijk gebied met voldoende vervoer of eigen mobiliteit",
-      "description": "Afstand is merkbaar maar meestal overbrugbaar.",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Nauwelijks",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "skinTone": [
+    {
+      "value": 1,
+      "label": "Zeer licht",
+      "marker": "1",
+      "score": 92
+    },
+    {
+      "value": 2,
+      "label": "Licht",
+      "marker": "2",
+      "score": 82
+    },
+    {
+      "value": 3,
+      "label": "Tussen licht en donker",
+      "marker": "3",
       "score": 55
     },
     {
-      "value": "remote",
+      "value": 4,
+      "label": "Donker",
       "marker": "4",
-      "label": "Afgelegen of slecht verbonden woonomgeving",
-      "description": "Afstand, vervoer of lokaal aanbod beperken regelmatig mijn keuzes.",
       "score": 30
     },
     {
-      "value": "unstable-housing",
+      "value": 5,
+      "label": "Zeer donker",
       "marker": "5",
-      "label": "Instabiele huisvesting of geen vaste woonplaats",
-      "description": "Woononzekerheid maakt toegang tot diensten en kansen extra kwetsbaar.",
-      "score": 15
-    },
-    {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
+      "score": 20
     }
   ],
-  "position-appearance": [
+  "majorityPerception": [
     {
-      "value": "conforming",
+      "value": 1,
+      "label": "Vrijwel altijd",
       "marker": "1",
-      "label": "Mijn uiterlijk en lichaamsbouw sluiten meestal aan bij dominante normen",
-      "description": "Ik word zelden negatief beoordeeld om gewicht, lichaamsvorm of zichtbare kenmerken.",
-      "score": 80
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Meestal",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Soms",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Zelden",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Vrijwel nooit",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "ethnicity": [
+    {
+      "value": "belgian",
+      "label": "Belgisch",
+      "score": 90,
+      "marker": ""
+    },
+    {
+      "value": "north-west-europe",
+      "label": "Noord- of West-Europees",
+      "score": 82,
+      "marker": ""
+    },
+    {
+      "value": "south-europe",
+      "label": "Zuid-Europees",
+      "score": 70,
+      "marker": ""
+    },
+    {
+      "value": "central-east-europe",
+      "label": "Centraal- of Oost-Europees",
+      "score": 60,
+      "marker": ""
+    },
+    {
+      "value": "north-africa",
+      "label": "Noord-Afrikaans",
+      "score": 35,
+      "marker": ""
+    },
+    {
+      "value": "sub-saharan-africa",
+      "label": "Sub-Saharaans Afrikaans",
+      "score": 30,
+      "marker": ""
+    },
+    {
+      "value": "middle-east-west-asia",
+      "label": "Midden-Oosters of West-Aziatisch",
+      "score": 35,
+      "marker": ""
+    },
+    {
+      "value": "south-asia",
+      "label": "Zuid-Aziatisch",
+      "score": 40,
+      "marker": ""
+    },
+    {
+      "value": "east-asia",
+      "label": "Oost-Aziatisch",
+      "score": 50,
+      "marker": ""
+    },
+    {
+      "value": "southeast-asia",
+      "label": "Zuidoost-Aziatisch",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "north-america",
+      "label": "Noord-Amerikaans",
+      "score": 75,
+      "marker": ""
+    },
+    {
+      "value": "latin-caribbean",
+      "label": "Latijns-Amerikaans of Caribisch",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "oceania-pacific",
+      "label": "Oceanië of Pacifisch",
+      "score": 60,
+      "marker": ""
     },
     {
       "value": "mixed",
+      "label": "Gemengde herkomst",
+      "score": 55,
+      "marker": ""
+    },
+    {
+      "value": "other",
+      "label": "Andere herkomst",
+      "score": 50,
+      "marker": ""
+    }
+  ],
+  "belonging": [
+    {
+      "value": 1,
+      "label": "Volledig",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Grotendeels",
       "marker": "2",
-      "label": "Mijn positie verschilt per omgeving",
-      "description": "Sommige kenmerken passen binnen de norm en andere roepen sneller beoordeling op.",
-      "score": 55
+      "score": 75
     },
     {
-      "value": "stigmatised",
+      "value": 3,
+      "label": "Gedeeltelijk",
       "marker": "3",
-      "label": "Mijn uiterlijk of lichaamsbouw wijkt zichtbaar af van dominante normen",
-      "description": "Gewicht, littekens, huidaandoeningen, lichaamsvorm of andere kenmerken beïnvloeden behandeling merkbaar.",
-      "score": 35
-    },
-    {
-      "value": "not-sure",
-      "marker": "4",
-      "label": "Ik weet dit niet of herken deze indeling niet",
-      "description": "Mijn positionering is niet eenduidig.",
       "score": 50
     },
     {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
-    }
-  ],
-  "position-digital": [
-    {
-      "value": "strong",
-      "marker": "1",
-      "label": "Betrouwbare toegang en sterke digitale vaardigheden",
-      "description": "Ik beschik over geschikte apparaten, verbinding en vaardigheden voor digitale diensten.",
-      "score": 90
+      "value": 4,
+      "label": "Nauwelijks",
+      "marker": "4",
+      "score": 25
     },
     {
-      "value": "adequate",
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "mobility": [
+    {
+      "value": 1,
+      "label": "Zeer veel",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Veel",
       "marker": "2",
-      "label": "Voldoende toegang en basisvaardigheden",
-      "description": "De meeste digitale taken lukken, al heb ik soms hulp nodig.",
-      "score": 70
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Gemiddeld",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Weinig",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Zeer weinig",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "politicalRights": [
+    {
+      "value": "full",
+      "label": "Volledig stemrecht",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": "most",
+      "label": "Stemrecht bij de meeste verkiezingen",
+      "marker": "2",
+      "score": 80
+    },
+    {
+      "value": "local",
+      "label": "Alleen beperkt of lokaal stemrecht",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": "none",
+      "label": "Geen stemrecht",
+      "marker": "4",
+      "score": 10
+    },
+    {
+      "value": "underage",
+      "label": "Nog niet stemgerechtigd door mijn leeftijd",
+      "marker": "5",
+      "score": 55
+    }
+  ],
+  "education": [
+    {
+      "value": "none",
+      "label": "Geen diploma",
+      "score": 10,
+      "marker": ""
+    },
+    {
+      "value": "primary",
+      "label": "Basisonderwijs",
+      "score": 20,
+      "marker": ""
+    },
+    {
+      "value": "lower-secondary",
+      "label": "Lager secundair onderwijs",
+      "score": 30,
+      "marker": ""
+    },
+    {
+      "value": "upper-secondary",
+      "label": "Hoger secundair onderwijs",
+      "score": 50,
+      "marker": ""
+    },
+    {
+      "value": "vocational",
+      "label": "Beroeps- of vakopleiding",
+      "score": 55,
+      "marker": ""
+    },
+    {
+      "value": "graduate",
+      "label": "Graduaat",
+      "score": 68,
+      "marker": ""
+    },
+    {
+      "value": "professional-bachelor",
+      "label": "Professionele bachelor",
+      "score": 78,
+      "marker": ""
+    },
+    {
+      "value": "academic-bachelor",
+      "label": "Academische bachelor",
+      "score": 80,
+      "marker": ""
+    },
+    {
+      "value": "master",
+      "label": "Master",
+      "score": 90,
+      "marker": ""
+    },
+    {
+      "value": "doctorate",
+      "label": "Doctoraat",
+      "score": 95,
+      "marker": ""
+    },
+    {
+      "value": "studying",
+      "label": "Nog bezig met een opleiding",
+      "score": 55,
+      "marker": ""
+    },
+    {
+      "value": "foreign",
+      "label": "Buitenlands diploma dat moeilijk te vergelijken is",
+      "score": 45,
+      "marker": ""
+    }
+  ],
+  "upbringingFinance": [
+    {
+      "value": 1,
+      "label": "Er waren vaak tekorten",
+      "marker": "1",
+      "score": 0
+    },
+    {
+      "value": 2,
+      "label": "Er waren regelmatig financiële zorgen",
+      "marker": "2",
+      "score": 25
+    },
+    {
+      "value": 3,
+      "label": "De basisbehoeften konden meestal worden betaald",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Er was voldoende financiële ruimte",
+      "marker": "4",
+      "score": 75
+    },
+    {
+      "value": 5,
+      "label": "Er was veel financiële zekerheid",
+      "marker": "5",
+      "score": 100
+    }
+  ],
+  "networkAccess": [
+    {
+      "value": 1,
+      "label": "Zeer veel",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Veel",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Gemiddeld",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Weinig",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Zeer weinig",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "culturalFit": [
+    {
+      "value": 1,
+      "label": "Volledig",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Grotendeels",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Gedeeltelijk",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Nauwelijks",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "religion": [
+    {
+      "value": "christianity",
+      "label": "Christendom",
+      "score": 85,
+      "marker": ""
+    },
+    {
+      "value": "islam",
+      "label": "Islam",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "judaism",
+      "label": "Jodendom",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "hinduism",
+      "label": "Hindoeïsme",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "buddhism",
+      "label": "Boeddhisme",
+      "score": 50,
+      "marker": ""
+    },
+    {
+      "value": "sikhism",
+      "label": "Sikhisme",
+      "score": 40,
+      "marker": ""
+    },
+    {
+      "value": "other-religion",
+      "label": "Andere religie",
+      "score": 40,
+      "marker": ""
+    },
+    {
+      "value": "multiple",
+      "label": "Meerdere religieuze tradities",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "spiritual",
+      "label": "Spiritueel, maar niet religieus",
+      "score": 65,
+      "marker": ""
+    },
+    {
+      "value": "humanistic",
+      "label": "Humanistisch",
+      "score": 72,
+      "marker": ""
+    },
+    {
+      "value": "agnostic",
+      "label": "Agnostisch",
+      "score": 75,
+      "marker": ""
+    },
+    {
+      "value": "atheist",
+      "label": "Atheïstisch",
+      "score": 78,
+      "marker": ""
+    },
+    {
+      "value": "none",
+      "label": "Geen specifieke levensbeschouwing",
+      "score": 80,
+      "marker": ""
+    }
+  ],
+  "healthGeneral": [
+    {
+      "value": 1,
+      "label": "Zeer goed",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Goed",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Gemiddeld",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Minder goed",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Slecht",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "healthSituation": [
+    {
+      "value": "none",
+      "label": "Geen langdurige gezondheidsproblemen",
+      "score": 100,
+      "marker": ""
+    },
+    {
+      "value": "chronic",
+      "label": "Een chronische lichamelijke aandoening",
+      "score": 50,
+      "marker": ""
+    },
+    {
+      "value": "physical",
+      "label": "Een lichamelijke beperking",
+      "score": 30,
+      "marker": ""
+    },
+    {
+      "value": "sensory",
+      "label": "Een zintuiglijke beperking, zoals slechtziendheid of slechthorendheid",
+      "score": 35,
+      "marker": ""
+    },
+    {
+      "value": "cognitive",
+      "label": "Een verstandelijke of cognitieve beperking",
+      "score": 25,
+      "marker": ""
+    },
+    {
+      "value": "learning",
+      "label": "Een leerstoornis",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "neurodivergent",
+      "label": "Neurodivergentie, zoals ADHD of autisme",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "mental",
+      "label": "Een langdurige psychische kwetsbaarheid",
+      "score": 40,
+      "marker": ""
+    },
+    {
+      "value": "multiple",
+      "label": "Meerdere van deze situaties",
+      "score": 15,
+      "marker": ""
+    },
+    {
+      "value": "other",
+      "label": "Een andere langdurige gezondheidssituatie",
+      "score": 40,
+      "marker": ""
+    }
+  ],
+  "ageGroup": [
+    {
+      "value": "18-24",
+      "label": "18 tot en met 24 jaar",
+      "score": 55,
+      "marker": "1"
+    },
+    {
+      "value": "25-34",
+      "label": "25 tot en met 34 jaar",
+      "score": 85,
+      "marker": "2"
+    },
+    {
+      "value": "35-44",
+      "label": "35 tot en met 44 jaar",
+      "score": 90,
+      "marker": "3"
+    },
+    {
+      "value": "45-54",
+      "label": "45 tot en met 54 jaar",
+      "score": 78,
+      "marker": "4"
+    },
+    {
+      "value": "55+",
+      "label": "55 jaar of ouder",
+      "score": 55,
+      "marker": "5"
+    }
+  ],
+  "residenceStatus": [
+    {
+      "value": "citizen",
+      "label": "Staatsburger",
+      "score": 100,
+      "marker": ""
+    },
+    {
+      "value": "eu-free-movement",
+      "label": "Burger met verblijfsrecht door vrij verkeer",
+      "score": 90,
+      "marker": ""
+    },
+    {
+      "value": "permanent",
+      "label": "Permanent verblijfsrecht",
+      "score": 90,
+      "marker": ""
+    },
+    {
+      "value": "temporary",
+      "label": "Tijdelijke verblijfsvergunning",
+      "score": 65,
+      "marker": ""
+    },
+    {
+      "value": "work-study",
+      "label": "Verblijfsrecht via werk of studie",
+      "score": 60,
+      "marker": ""
+    },
+    {
+      "value": "family",
+      "label": "Verblijfsrecht via partner of familie",
+      "score": 60,
+      "marker": ""
+    },
+    {
+      "value": "refugee",
+      "label": "Erkende vluchtelingenstatus",
+      "score": 55,
+      "marker": ""
+    },
+    {
+      "value": "temporary-protection",
+      "label": "Tijdelijke bescherming",
+      "score": 45,
+      "marker": ""
+    },
+    {
+      "value": "asylum",
+      "label": "Asielprocedure loopt",
+      "score": 25,
+      "marker": ""
+    },
+    {
+      "value": "undocumented",
+      "label": "Geen officieel verblijfsrecht",
+      "score": 5,
+      "marker": ""
+    },
+    {
+      "value": "other",
+      "label": "Ander verblijfsstatuut",
+      "score": 45,
+      "marker": ""
+    }
+  ],
+  "certainty": [
+    {
+      "value": 1,
+      "label": "Zeer zeker",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Zeker",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Wisselend",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Onzeker",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Zeer onzeker",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "wealthSituation": [
+    {
+      "value": "debt",
+      "label": "Mijn schulden zijn groter dan mijn bezit",
+      "score": 0,
+      "marker": "1"
+    },
+    {
+      "value": "minimal",
+      "label": "Ik heb nauwelijks spaargeld of bezit",
+      "score": 20,
+      "marker": "2"
     },
     {
       "value": "limited",
+      "label": "Ik heb een beperkte financiële reserve",
+      "score": 45,
+      "marker": "3"
+    },
+    {
+      "value": "months",
+      "label": "Ik heb voldoende reserve om meerdere maanden te overbruggen",
+      "score": 75,
+      "marker": "4"
+    },
+    {
+      "value": "substantial",
+      "label": "Ik heb veel spaargeld, beleggingen, vastgoed of ander bezit",
+      "score": 100,
+      "marker": "5"
+    }
+  ],
+  "unexpectedExpense": [
+    {
+      "value": 1,
+      "label": "Zeer gemakkelijk",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Gemakkelijk",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Met enige moeite",
       "marker": "3",
-      "label": "Beperkte apparaten, verbinding of vaardigheden",
-      "description": "Digitale vereisten kosten veel tijd of beperken mijn deelname.",
-      "score": 40
+      "score": 50
     },
     {
-      "value": "excluded",
+      "value": 4,
+      "label": "Alleen met hulp of een lening",
       "marker": "4",
-      "label": "Zeer beperkte digitale toegang of ondersteuning",
-      "description": "Online-only processen sluiten mij regelmatig uit.",
-      "score": 20
+      "score": 25
     },
     {
-      "value": "prefer-not",
-      "marker": "—",
-      "label": "Zeg ik liever niet",
-      "description": "Deze positie wordt niet in de score opgenomen.",
-      "score": null
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "dependency": [
+    {
+      "value": 1,
+      "label": "Volledig",
+      "marker": "1",
+      "score": 0
+    },
+    {
+      "value": 2,
+      "label": "Grotendeels",
+      "marker": "2",
+      "score": 25
+    },
+    {
+      "value": 3,
+      "label": "Gedeeltelijk",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Nauwelijks",
+      "marker": "4",
+      "score": 75
+    },
+    {
+      "value": 5,
+      "label": "Helemaal niet",
+      "marker": "5",
+      "score": 100
+    }
+  ],
+  "worldRegion": [
+    {
+      "value": "europe",
+      "label": "Europa",
+      "score": 80,
+      "marker": "1"
+    },
+    {
+      "value": "africa",
+      "label": "Afrika",
+      "score": 35,
+      "marker": "2"
+    },
+    {
+      "value": "asia",
+      "label": "Azië",
+      "score": 50,
+      "marker": "3"
+    },
+    {
+      "value": "north-america",
+      "label": "Noord-Amerika",
+      "score": 75,
+      "marker": "4"
+    },
+    {
+      "value": "latin-caribbean",
+      "label": "Latijns-Amerika en het Caribisch gebied",
+      "score": 45,
+      "marker": "5"
+    },
+    {
+      "value": "oceania",
+      "label": "Oceanië",
+      "score": 65,
+      "marker": "6"
+    },
+    {
+      "value": "multiple",
+      "label": "In meerdere wereldregio’s",
+      "score": 55,
+      "marker": "7"
+    }
+  ],
+  "perception": [
+    {
+      "value": 1,
+      "label": "Zeer positief",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Positief",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Neutraal",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Negatief",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Zeer negatief",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "socialDevelopments": [
+    {
+      "value": "digital-ai",
+      "label": "Digitalisering en artificiële intelligentie",
+      "score": 50,
+      "marker": "1"
+    },
+    {
+      "value": "economy-work",
+      "label": "Economie en arbeidsmarkt",
+      "score": 50,
+      "marker": "2"
+    },
+    {
+      "value": "politics-migration",
+      "label": "Politiek, migratie en internationale spanningen",
+      "score": 50,
+      "marker": "3"
+    },
+    {
+      "value": "climate-energy",
+      "label": "Klimaat en energie",
+      "score": 50,
+      "marker": "4"
+    },
+    {
+      "value": "education-health-social",
+      "label": "Onderwijs, gezondheidszorg en sociale bescherming",
+      "score": 50,
+      "marker": "5"
+    }
+  ],
+  "changeImpact": [
+    {
+      "value": 1,
+      "label": "Sterk verbeterd",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Verbeterd",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Nauwelijks veranderd",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Verslechterd",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Sterk verslechterd",
+      "marker": "5",
+      "score": 0
+    }
+  ],
+  "adaptation": [
+    {
+      "value": 1,
+      "label": "Zeer veel",
+      "marker": "1",
+      "score": 100
+    },
+    {
+      "value": 2,
+      "label": "Veel",
+      "marker": "2",
+      "score": 75
+    },
+    {
+      "value": 3,
+      "label": "Gemiddeld",
+      "marker": "3",
+      "score": 50
+    },
+    {
+      "value": 4,
+      "label": "Weinig",
+      "marker": "4",
+      "score": 25
+    },
+    {
+      "value": 5,
+      "label": "Zeer weinig",
+      "marker": "5",
+      "score": 0
     }
   ]
 };
 
+window.IDENTITY_INTERSECTIONALITY_CHOICE_SETS.nationalityCountries = [
+  ...(window.IDENTITY_INTERSECTIONALITY_COUNTRY_OPTIONS || []),
+  { value: "STATELESS", label: "Staatloos", score: 5, marker: "" },
+  { value: "UNDETERMINED", label: "Nationaliteit nog niet officieel vastgesteld", score: 10, marker: "" }
+];
+
+window.IDENTITY_INTERSECTIONALITY_CHOICE_SETS.birthCountries = [
+  ...(window.IDENTITY_INTERSECTIONALITY_COUNTRY_OPTIONS || []),
+  { value: "STATELESS", label: "Staatloos geboren", score: 15, marker: "" },
+  { value: "HISTORIC", label: "Mijn geboorteland bestaat niet meer of heeft een andere naam", score: 45, marker: "" }
+];
+
 window.IDENTITY_INTERSECTIONALITY_QUESTIONS = [
   {
-    "id": "identity-intersectionality-01",
+    "id": "identity-intersectionality-v2-01",
     "number": 1,
     "axisId": "gender",
-    "questionType": "position",
     "category": "Gender",
-    "choiceSet": "position-gender",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je huidige maatschappelijke positie rond genderidentiteit en genderexpressie?"
+    "choiceSet": "genderIdentity",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe identificeer jij je qua gender?"
   },
   {
-    "id": "identity-intersectionality-02",
+    "id": "identity-intersectionality-v2-02",
     "number": 2,
     "axisId": "gender",
-    "questionType": "access",
     "category": "Gender",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan mijn genderidentiteit en genderexpressie tonen zonder voortdurend rekening te houden met afwijzing, onveiligheid of professionele gevolgen."
+    "choiceSet": "alignment",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Komt jouw genderidentiteit overeen met het geslacht dat je bij je geboorte kreeg toegewezen?"
   },
   {
-    "id": "identity-intersectionality-03",
+    "id": "identity-intersectionality-v2-03",
     "number": 3,
     "axisId": "gender",
-    "questionType": "barrier",
     "category": "Gender",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben minder serieus genomen, uitgesloten of anders behandeld vanwege mijn gender, genderidentiteit of genderexpressie."
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak merk je dat anderen verwachtingen hebben over hoe iemand met jouw gender zich hoort te gedragen?"
   },
   {
-    "id": "identity-intersectionality-04",
+    "id": "identity-intersectionality-v2-04",
     "number": 4,
-    "axisId": "ethnicity",
-    "questionType": "position",
-    "category": "Afkomst",
-    "choiceSet": "position-ethnicity",
-    "weight": 0.4,
-    "text": "Hoe word je in België doorgaans maatschappelijk gelezen op basis van afkomst, naam, huidskleur of andere zichtbare kenmerken?"
+    "axisId": "sexualOrientation",
+    "category": "Oriëntatie",
+    "choiceSet": "orientation",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Hoe omschrijf jij je seksuele of romantische oriëntatie?"
   },
   {
-    "id": "identity-intersectionality-05",
+    "id": "identity-intersectionality-v2-05",
     "number": 5,
-    "axisId": "ethnicity",
-    "questionType": "access",
-    "category": "Afkomst",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik verwacht bij solliciteren, wonen, winkelen, onderwijs en publieke diensten dezelfde eerste behandeling als iemand uit de dominante meerderheid."
+    "axisId": "sexualOrientation",
+    "category": "Oriëntatie",
+    "choiceSet": "commonness",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe gebruikelijk is jouw oriëntatie in de omgeving waarin je leeft?"
   },
   {
-    "id": "identity-intersectionality-06",
+    "id": "identity-intersectionality-v2-06",
     "number": 6,
-    "axisId": "ethnicity",
-    "questionType": "barrier",
-    "category": "Afkomst",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben benadeeld, gewantrouwd of anders behandeld vanwege mijn afkomst, naam, huidskleur of vermeende etniciteit."
+    "axisId": "sexualOrientation",
+    "category": "Oriëntatie",
+    "choiceSet": "openness",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre kun jij open zijn over je seksuele of romantische oriëntatie?"
   },
   {
-    "id": "identity-intersectionality-07",
+    "id": "identity-intersectionality-v2-07",
     "number": 7,
-    "axisId": "socioeconomic",
-    "questionType": "position",
-    "category": "Socio-economisch",
-    "choiceSet": "position-socioeconomic",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je huidige financiële zekerheid en beschikbare vangnetten?"
+    "axisId": "skinColor",
+    "category": "Huidskleur",
+    "choiceSet": "skinTone",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe zou jij je huidskleur omschrijven?"
   },
   {
-    "id": "identity-intersectionality-08",
+    "id": "identity-intersectionality-v2-08",
     "number": 8,
-    "axisId": "socioeconomic",
-    "questionType": "access",
-    "category": "Socio-economisch",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan belangrijke kansen benutten, zoals opleiding, mobiliteit, zorg of een onverwachte uitgave, zonder dat geld meestal de doorslaggevende beperking vormt."
+    "axisId": "skinColor",
+    "category": "Huidskleur",
+    "choiceSet": "majorityPerception",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Word jij op basis van je huidskleur meestal gezien als deel van de meerderheid in je omgeving?"
   },
   {
-    "id": "identity-intersectionality-09",
+    "id": "identity-intersectionality-v2-09",
     "number": 9,
-    "axisId": "socioeconomic",
-    "questionType": "barrier",
-    "category": "Socio-economisch",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik heb kansen moeten laten liggen of deelname moeten beperken door geldgebrek, schulden, woononzekerheid of het ontbreken van een financieel netwerk."
+    "axisId": "skinColor",
+    "category": "Huidskleur",
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak merk je dat mensen aannames over jou maken op basis van je huidskleur?"
   },
   {
-    "id": "identity-intersectionality-10",
+    "id": "identity-intersectionality-v2-10",
     "number": 10,
-    "axisId": "education",
-    "questionType": "position",
-    "category": "Onderwijs",
-    "choiceSet": "position-education",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je huidige onderwijspositie en de erkenning van je kwalificaties?"
+    "axisId": "ethnicity",
+    "category": "Herkomst",
+    "choiceSet": "ethnicity",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Met welke culturele of etnische herkomst identificeer jij je het meest?"
   },
   {
-    "id": "identity-intersectionality-11",
+    "id": "identity-intersectionality-v2-11",
     "number": 11,
-    "axisId": "education",
-    "questionType": "access",
-    "category": "Onderwijs",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Mijn diploma’s, opleiding of aantoonbare ervaring geven mij toegang tot de functies en trajecten waarvoor ik inhoudelijk geschikt ben."
+    "axisId": "ethnicity",
+    "category": "Herkomst",
+    "choiceSet": "belonging",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre voel jij je thuis in de cultuur van je huidige woonomgeving?"
   },
   {
-    "id": "identity-intersectionality-12",
+    "id": "identity-intersectionality-v2-12",
     "number": 12,
-    "axisId": "education",
-    "questionType": "barrier",
-    "category": "Onderwijs",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben onderschat of uitgesloten doordat mijn opleiding praktisch is, mijn diploma ontbreekt, of mijn kwalificatie niet werd erkend."
+    "axisId": "ethnicity",
+    "category": "Herkomst",
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak word jij door je naam, afkomst, taal, gewoonten of familiegeschiedenis als buitenstaander gezien?"
   },
   {
-    "id": "identity-intersectionality-13",
+    "id": "identity-intersectionality-v2-13",
     "number": 13,
-    "axisId": "age",
-    "questionType": "position",
-    "category": "Leeftijd",
-    "choiceSet": "position-age",
-    "weight": 0.4,
-    "text": "In welke leeftijdsgroep bevind je je?"
+    "axisId": "nationality",
+    "category": "Nationaliteit",
+    "choiceSet": "nationalityCountries",
+    "inputType": "multi-select",
+    "weight": 0.3333333333333333,
+    "text": "Welke nationaliteit of nationaliteiten heb jij?",
+    "maxSelections": 3
   },
   {
-    "id": "identity-intersectionality-14",
+    "id": "identity-intersectionality-v2-14",
     "number": 14,
-    "axisId": "age",
-    "questionType": "access",
-    "category": "Leeftijd",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Mijn leeftijd wordt meestal als passend gezien voor de verantwoordelijkheden, kansen en zelfstandigheid die ik zoek."
+    "axisId": "nationality",
+    "category": "Nationaliteit",
+    "choiceSet": "mobility",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoeveel mogelijkheden geeft jouw nationaliteit je om internationaal te reizen, wonen of werken?"
   },
   {
-    "id": "identity-intersectionality-15",
+    "id": "identity-intersectionality-v2-15",
     "number": 15,
-    "axisId": "age",
-    "questionType": "barrier",
-    "category": "Leeftijd",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben vanwege mijn leeftijd als te jong, te oud, minder betrouwbaar of minder leerbaar behandeld."
+    "axisId": "nationality",
+    "category": "Nationaliteit",
+    "choiceSet": "politicalRights",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Welke politieke rechten heb jij in het land waar je woont?"
   },
   {
-    "id": "identity-intersectionality-16",
+    "id": "identity-intersectionality-v2-16",
     "number": 16,
-    "axisId": "sexualOrientation",
-    "questionType": "position",
-    "category": "Oriëntatie",
-    "choiceSet": "position-sexualOrientation",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je seksuele oriëntatie?"
+    "axisId": "socialClass",
+    "category": "Klasse",
+    "choiceSet": "education",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Wat is je hoogste voltooide opleidingsniveau?"
   },
   {
-    "id": "identity-intersectionality-17",
+    "id": "identity-intersectionality-v2-17",
     "number": 17,
-    "axisId": "sexualOrientation",
-    "questionType": "access",
-    "category": "Oriëntatie",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan open zijn over relaties of aantrekking zonder dat ik mijn veiligheid, werk, familiecontact of sociale acceptatie hoef af te wegen."
+    "axisId": "socialClass",
+    "category": "Klasse",
+    "choiceSet": "upbringingFinance",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe was de financiële situatie van het gezin waarin je bent opgegroeid?"
   },
   {
-    "id": "identity-intersectionality-18",
+    "id": "identity-intersectionality-v2-18",
     "number": 18,
-    "axisId": "sexualOrientation",
-    "questionType": "barrier",
-    "category": "Oriëntatie",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben uitgesloten, beledigd, bedreigd of anders behandeld vanwege mijn werkelijke of veronderstelde seksuele oriëntatie."
+    "axisId": "socialClass",
+    "category": "Klasse",
+    "choiceSet": "networkAccess",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoeveel toegang heb jij via familie, opleiding, werk of kennissen tot invloedrijke netwerken?"
   },
   {
-    "id": "identity-intersectionality-19",
+    "id": "identity-intersectionality-v2-19",
     "number": 19,
-    "axisId": "disability",
-    "questionType": "position",
-    "category": "Toegankelijkheid",
-    "choiceSet": "position-disability",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij de invloed van een lichamelijke, zintuiglijke, verstandelijke of langdurige gezondheidsbeperking op je dagelijks leven?"
+    "axisId": "culture",
+    "category": "Cultuur",
+    "choiceSet": "culturalFit",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre passen jouw gewoonten en omgangsvormen bij wat in je omgeving normaal wordt gevonden?"
   },
   {
-    "id": "identity-intersectionality-20",
+    "id": "identity-intersectionality-v2-20",
     "number": 20,
-    "axisId": "disability",
-    "questionType": "access",
-    "category": "Toegankelijkheid",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Gebouwen, vervoer, informatie, werktijden en digitale diensten zijn doorgaans bruikbaar zonder dat ik zelf telkens om aanpassingen moet vragen."
+    "axisId": "culture",
+    "category": "Cultuur",
+    "choiceSet": "culturalFit",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre wordt jouw manier van communiceren begrepen en aanvaard op school, op het werk of bij officiële diensten?"
   },
   {
-    "id": "identity-intersectionality-21",
+    "id": "identity-intersectionality-v2-21",
     "number": 21,
-    "axisId": "disability",
-    "questionType": "barrier",
-    "category": "Toegankelijkheid",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik heb niet kunnen deelnemen of ben minderwaardig behandeld omdat een omgeving niet toegankelijk was of mijn ondersteuningsbehoefte niet serieus werd genomen."
+    "axisId": "culture",
+    "category": "Cultuur",
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak pas jij je taalgebruik, gedrag of uitstraling bewust aan om erbij te horen?"
   },
   {
-    "id": "identity-intersectionality-22",
+    "id": "identity-intersectionality-v2-22",
     "number": 22,
-    "axisId": "mentalNeuro",
-    "questionType": "position",
-    "category": "Psychisch & neuro",
-    "choiceSet": "position-mentalNeuro",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij de invloed van psychische kwetsbaarheid of neurodivergentie op je dagelijks functioneren?"
+    "axisId": "religion",
+    "category": "Levensbeschouwing",
+    "choiceSet": "religion",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Welke religie of levensbeschouwing past het best bij jou?"
   },
   {
-    "id": "identity-intersectionality-23",
+    "id": "identity-intersectionality-v2-23",
     "number": 23,
-    "axisId": "mentalNeuro",
-    "questionType": "access",
-    "category": "Psychisch & neuro",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan passende ondersteuning, rust, uitleg of aanpassingen vragen zonder dat mijn betrouwbaarheid of competentie daardoor direct in twijfel wordt getrokken."
+    "axisId": "religion",
+    "category": "Levensbeschouwing",
+    "choiceSet": "alignment",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre sluiten officiële feestdagen en vrije dagen aan bij jouw religie of levensbeschouwing?"
   },
   {
-    "id": "identity-intersectionality-24",
+    "id": "identity-intersectionality-v2-24",
     "number": 24,
-    "axisId": "mentalNeuro",
-    "questionType": "barrier",
-    "category": "Psychisch & neuro",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik heb kansen, relaties of deelname verloren door stigma, onbegrip, prikkelbelasting of onvoldoende ondersteuning rond psychische gezondheid of neurodivergentie."
+    "axisId": "religion",
+    "category": "Levensbeschouwing",
+    "choiceSet": "openness",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre kun jij je religie of levensbeschouwing openlijk beleven?"
   },
   {
-    "id": "identity-intersectionality-25",
+    "id": "identity-intersectionality-v2-25",
     "number": 25,
-    "axisId": "religion",
-    "questionType": "position",
-    "category": "Levensbeschouwing",
-    "choiceSet": "position-religion",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je religieuze of levensbeschouwelijke positie in je dagelijkse omgeving?"
+    "axisId": "health",
+    "category": "Gezondheid",
+    "choiceSet": "healthGeneral",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe ervaar jij je gezondheid in het algemeen?"
   },
   {
-    "id": "identity-intersectionality-26",
+    "id": "identity-intersectionality-v2-26",
     "number": 26,
-    "axisId": "religion",
-    "questionType": "access",
-    "category": "Levensbeschouwing",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan mijn levensbeschouwing volgen, tonen of niet volgen zonder dat dit mijn toegang tot werk, onderwijs, dienstverlening of sociale veiligheid beperkt."
+    "axisId": "health",
+    "category": "Gezondheid",
+    "choiceSet": "healthSituation",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Welke situatie past het best bij jou?"
   },
   {
-    "id": "identity-intersectionality-27",
+    "id": "identity-intersectionality-v2-27",
     "number": 27,
-    "axisId": "religion",
-    "questionType": "barrier",
-    "category": "Levensbeschouwing",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben uitgesloten, bespot, verdacht gemaakt of benadeeld vanwege mijn religie, levensbeschouwing, kleding of veronderstelde overtuiging."
+    "axisId": "health",
+    "category": "Gezondheid",
+    "choiceSet": "alignment",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre zijn gebouwen, vervoer, informatie en digitale diensten toegankelijk voor jou?"
   },
   {
-    "id": "identity-intersectionality-28",
+    "id": "identity-intersectionality-v2-28",
     "number": 28,
-    "axisId": "citizenship",
-    "questionType": "position",
-    "category": "Verblijfsstatus",
-    "choiceSet": "position-citizenship",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je huidige verblijfsstatus of staatsburgerschap in België?"
+    "axisId": "age",
+    "category": "Leeftijd",
+    "choiceSet": "ageGroup",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In welke leeftijdsgroep val jij?"
   },
   {
-    "id": "identity-intersectionality-29",
+    "id": "identity-intersectionality-v2-29",
     "number": 29,
-    "axisId": "citizenship",
-    "questionType": "access",
-    "category": "Verblijfsstatus",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Mijn verblijfsstatus geeft mij voorspelbare toegang tot werk, huisvesting, zorg, onderwijs, reizen en administratieve procedures."
+    "axisId": "age",
+    "category": "Leeftijd",
+    "choiceSet": "alignment",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "In hoeverre worden jouw mening en ervaring serieus genomen, ongeacht je leeftijd?"
   },
   {
-    "id": "identity-intersectionality-30",
+    "id": "identity-intersectionality-v2-30",
     "number": 30,
-    "axisId": "citizenship",
-    "questionType": "barrier",
-    "category": "Verblijfsstatus",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik heb kansen, rechten of diensten misgelopen door mijn paspoort, verblijfsdocumenten, nationaliteit of een onzekere procedure."
+    "axisId": "age",
+    "category": "Leeftijd",
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak beperkt je leeftijd je kansen op werk, opleiding, diensten of maatschappelijke deelname?"
   },
   {
-    "id": "identity-intersectionality-31",
+    "id": "identity-intersectionality-v2-31",
     "number": 31,
-    "axisId": "language",
-    "questionType": "position",
-    "category": "Taal",
-    "choiceSet": "position-language",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je beheersing van de dominante taal in de omgevingen waarin je woont, studeert of werkt?"
+    "axisId": "residence",
+    "category": "Verblijfsstatuut",
+    "choiceSet": "residenceStatus",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "Wat is jouw verblijfsstatuut in het land waar je woont?"
   },
   {
-    "id": "identity-intersectionality-32",
+    "id": "identity-intersectionality-v2-32",
     "number": 32,
-    "axisId": "language",
-    "questionType": "access",
-    "category": "Taal",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan in gesprekken, formulieren, onderwijs en professionele situaties duidelijk overbrengen wat ik bedoel, zonder structureel afhankelijk te zijn van iemand anders."
+    "axisId": "residence",
+    "category": "Verblijfsstatuut",
+    "choiceSet": "certainty",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe zeker is jouw recht om in het land te blijven?"
   },
   {
-    "id": "identity-intersectionality-33",
+    "id": "identity-intersectionality-v2-33",
     "number": 33,
-    "axisId": "language",
-    "questionType": "barrier",
-    "category": "Taal",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Mijn accent, taalniveau, meertaligheid of communicatiewijze heeft ertoe geleid dat mensen mijn intelligentie, deskundigheid of betrouwbaarheid lager inschatten."
+    "axisId": "residence",
+    "category": "Verblijfsstatuut",
+    "choiceSet": "frequencyBarrier",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe vaak ervaar jij stress of onzekerheid over je verblijfsrecht?"
   },
   {
-    "id": "identity-intersectionality-34",
+    "id": "identity-intersectionality-v2-34",
     "number": 34,
-    "axisId": "geography",
-    "questionType": "position",
-    "category": "Woonomgeving",
-    "choiceSet": "position-geography",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je woonomgeving en de bereikbaarheid van dagelijkse voorzieningen?"
+    "axisId": "wealth",
+    "category": "Bezit",
+    "choiceSet": "wealthSituation",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Welke omschrijving past het best bij jouw huidige financiële situatie?"
   },
   {
-    "id": "identity-intersectionality-35",
+    "id": "identity-intersectionality-v2-35",
     "number": 35,
-    "axisId": "geography",
-    "questionType": "access",
-    "category": "Woonomgeving",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Werk, onderwijs, zorg, winkels, sociale contacten en overheidsdiensten zijn voor mij binnen redelijke tijd en kosten bereikbaar."
+    "axisId": "wealth",
+    "category": "Bezit",
+    "choiceSet": "unexpectedExpense",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Kun jij een grote onverwachte uitgave betalen zonder dat je basisbehoeften in gevaar komen?"
   },
   {
-    "id": "identity-intersectionality-36",
+    "id": "identity-intersectionality-v2-36",
     "number": 36,
-    "axisId": "geography",
-    "questionType": "barrier",
-    "category": "Woonomgeving",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Afstand, vervoersgebrek, beperkte lokale voorzieningen of woononzekerheid hebben mijn kansen of deelname merkbaar beperkt."
+    "axisId": "wealth",
+    "category": "Bezit",
+    "choiceSet": "dependency",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe afhankelijk ben jij van je maandelijkse inkomen om wonen, voeding en andere basisbehoeften te betalen?"
   },
   {
-    "id": "identity-intersectionality-37",
+    "id": "identity-intersectionality-v2-37",
     "number": 37,
-    "axisId": "appearance",
-    "questionType": "position",
-    "category": "Uiterlijk",
-    "choiceSet": "position-appearance",
-    "weight": 0.4,
-    "text": "Hoe verhoudt je uiterlijk of lichaamsbouw zich volgens jou tot dominante normen in de omgevingen waarin je meestal komt?"
+    "axisId": "geopolitics",
+    "category": "Geopolitieke herkomst",
+    "choiceSet": "birthCountries",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "In welk land ben jij geboren?"
   },
   {
-    "id": "identity-intersectionality-38",
+    "id": "identity-intersectionality-v2-38",
     "number": 38,
-    "axisId": "appearance",
-    "questionType": "access",
-    "category": "Uiterlijk",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan rekenen op respectvolle behandeling zonder dat gewicht, lichaamsvorm, littekens, huidaandoeningen of andere zichtbare kenmerken veel invloed hebben."
+    "axisId": "geopolitics",
+    "category": "Geopolitieke herkomst",
+    "choiceSet": "worldRegion",
+    "inputType": "select",
+    "weight": 0.3333333333333333,
+    "text": "In welke wereldregio ben jij hoofdzakelijk opgegroeid?"
   },
   {
-    "id": "identity-intersectionality-39",
+    "id": "identity-intersectionality-v2-39",
     "number": 39,
-    "axisId": "appearance",
-    "questionType": "barrier",
-    "category": "Uiterlijk",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik ben uitgelachen, uitgesloten, geseksualiseerd of minder professioneel behandeld vanwege mijn uiterlijk of lichaamsbouw."
+    "axisId": "geopolitics",
+    "category": "Geopolitieke herkomst",
+    "choiceSet": "perception",
+    "inputType": "buttons",
+    "weight": 0.3333333333333333,
+    "text": "Hoe kijken mensen in jouw huidige omgeving volgens jou naar je geboorteland of herkomstregio?"
   },
   {
-    "id": "identity-intersectionality-40",
+    "id": "identity-intersectionality-v2-40",
     "number": 40,
-    "axisId": "digital",
-    "questionType": "position",
-    "category": "Digitaal",
-    "choiceSet": "position-digital",
-    "weight": 0.4,
-    "text": "Welke omschrijving past het best bij je digitale toegang en vaardigheden?"
+    "axisId": "socialChange",
+    "category": "Ontwikkeling",
+    "choiceSet": "socialDevelopments",
+    "inputType": "multi-buttons",
+    "weight": 0.15,
+    "text": "Welke maatschappelijke ontwikkelingen hebben momenteel de meeste invloed op jouw leven en kansen?",
+    "maxSelections": 2
   },
   {
-    "id": "identity-intersectionality-41",
+    "id": "identity-intersectionality-v2-41",
     "number": 41,
-    "axisId": "digital",
-    "questionType": "access",
-    "category": "Digitaal",
-    "choiceSet": "agreement",
-    "weight": 0.3,
-    "text": "Ik kan zelfstandig werken met digitale overheidsdiensten, online formulieren, beveiligde accounts en de apparaten die studie of werk vereisen."
+    "axisId": "socialChange",
+    "category": "Ontwikkeling",
+    "choiceSet": "changeImpact",
+    "inputType": "buttons",
+    "weight": 0.425,
+    "text": "Hoe hebben recente maatschappelijke veranderingen jouw kansen beïnvloed?"
   },
   {
-    "id": "identity-intersectionality-42",
+    "id": "identity-intersectionality-v2-42",
     "number": 42,
-    "axisId": "digital",
-    "questionType": "barrier",
-    "category": "Digitaal",
-    "choiceSet": "barrierFrequency",
-    "weight": 0.3,
-    "text": "Ik heb kansen, diensten of informatie gemist doordat een proces uitsluitend digitaal was of doordat geschikte apparatuur, verbinding of hulp ontbrak."
+    "axisId": "socialChange",
+    "category": "Ontwikkeling",
+    "choiceSet": "adaptation",
+    "inputType": "buttons",
+    "weight": 0.425,
+    "text": "Hoeveel mogelijkheden heb jij om je aan maatschappelijke veranderingen aan te passen? Denk bijvoorbeeld aan tijd, geld, opleiding, technologie of ondersteuning."
   }
 ];

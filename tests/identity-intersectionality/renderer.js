@@ -1,45 +1,22 @@
 "use strict";
 
-/*
-  Unfold Yourself — eigen resultaatweergave voor de kruispuntdenkentest.
-  Afhankelijkheden: scoring.js, sources.js, benchmarkbestanden en core/test-renderer.js.
-*/
+/* Beknopte resultaatweergave voor Deelidentiteiten- en kruispuntdenken v2. */
 
-function getIdentitySourceById(sourceId) {
-  return (window.IDENTITY_INTERSECTIONALITY_SOURCES || []).find(source => {
-    return source.id === sourceId;
-  }) || null;
-}
-
-function getIdentityBenchmarkSet(regionId) {
-  const sets = {
-    belgium: window.IDENTITY_INTERSECTIONALITY_BENCHMARK_BELGIUM || {},
-    europe: window.IDENTITY_INTERSECTIONALITY_BENCHMARK_EUROPE || {},
-    global: window.IDENTITY_INTERSECTIONALITY_BENCHMARK_GLOBAL || {}
-  };
-
-  return sets[regionId] || sets.belgium;
-}
-
-function createIdentityElement(tagName, className, textContent) {
+function createIdentityElement(tagName, className = "", textContent = "") {
   const element = document.createElement(tagName);
   if (className) {
     element.className = className;
   }
-  if (textContent !== undefined && textContent !== null) {
-    element.textContent = String(textContent);
+  if (textContent) {
+    element.textContent = textContent;
   }
   return element;
-}
-
-function formatIdentityComponentScore(value) {
-  return typeof value === "number" ? `${value}%` : "Niet meegerekend";
 }
 
 function createIdentitySourceLinks(sourceIds) {
   const wrapper = createIdentityElement("div", "identity-source-links");
 
-  sourceIds
+  (sourceIds || [])
     .map(getIdentitySourceById)
     .filter(Boolean)
     .forEach(source => {
@@ -54,130 +31,95 @@ function createIdentitySourceLinks(sourceIds) {
   return wrapper;
 }
 
-function createIdentityAxisCard(axisResult, regionId) {
-  const benchmark = getIdentityBenchmarkSet(regionId)[axisResult.id] || {};
-  const card = createIdentityElement("article", "identity-axis-card");
-  card.dataset.axisId = axisResult.id;
+function createIdentityPowerAxis(axisResult) {
+  const details = createIdentityElement("details", "identity-axis-card");
+  details.dataset.axisId = axisResult.id;
+  details.dataset.printExpand = "true";
 
-  const header = createIdentityElement("div", "identity-axis-header");
-  const titleGroup = createIdentityElement("div", "identity-axis-title-group");
-  titleGroup.append(
-    createIdentityElement("span", "identity-axis-kicker", axisResult.shortLabel),
-    createIdentityElement("h4", "", axisResult.label)
+  const summary = createIdentityElement("summary", "identity-axis-summary");
+  const heading = createIdentityElement("div", "identity-axis-heading");
+  heading.append(
+    createIdentityElement("h4", "", axisResult.label),
+    createIdentityElement("span", `identity-axis-band identity-band-${axisResult.bandId}`, axisResult.bandLabel)
   );
 
-  const score = createIdentityElement(
-    "strong",
-    "identity-axis-score",
-    typeof axisResult.score === "number" ? `${axisResult.score}%` : "—"
+  const scale = createIdentityElement("div", "identity-scale");
+  scale.setAttribute("aria-label", `${axisResult.label}: ${axisResult.bandLabel}`);
+  const marker = createIdentityElement("span", "identity-scale-marker");
+  marker.style.left = `${Math.max(0, Math.min(100, axisResult.score || 0))}%`;
+  marker.setAttribute("aria-hidden", "true");
+  scale.appendChild(marker);
+
+  const labels = createIdentityElement("div", "identity-scale-labels");
+  labels.append(
+    createIdentityElement("span", "", "Zeer benadeeld"),
+    createIdentityElement("span", "", "Zeer bevoorrecht")
   );
 
-  header.append(titleGroup, score);
+  summary.append(heading, scale, labels);
 
-  const band = createIdentityElement("p", "identity-axis-band", axisResult.bandLabel);
-  const description = createIdentityElement("p", "identity-axis-description", axisResult.interpretation);
+  const content = createIdentityElement("div", "identity-axis-detail");
+  const benchmark = window.IDENTITY_INTERSECTIONALITY_BENCHMARK_BELGIUM?.[axisResult.id] || {};
+  const selectedLabels = axisResult.answers
+    .flatMap(answer => answer.labels || [])
+    .filter(Boolean)
+    .slice(0, 6);
 
-  const bar = createIdentityElement("div", "identity-power-bar");
-  const barValue = createIdentityElement("span", "identity-power-bar-value");
-  barValue.style.width = `${typeof axisResult.score === "number" ? axisResult.score : 0}%`;
-  bar.appendChild(barValue);
+  const position = createIdentityElement("div", "identity-detail-block");
+  position.append(
+    createIdentityElement("strong", "", "Jouw positie"),
+    createIdentityElement("p", "", axisResult.interpretation)
+  );
 
-  const components = createIdentityElement("dl", "identity-axis-components");
-  [
-    ["Maatschappelijke positie", axisResult.components.position],
-    ["Ervaren toegang", axisResult.components.access],
-    ["Weinig ervaren barrières", axisResult.components.barrier]
-  ].forEach(([label, value]) => {
-    components.append(
-      createIdentityElement("dt", "", label),
-      createIdentityElement("dd", "", formatIdentityComponentScore(value))
+  if (selectedLabels.length > 0) {
+    position.appendChild(
+      createIdentityElement("small", "identity-answer-summary", selectedLabels.join(" · "))
     );
-  });
-
-  const context = createIdentityElement("section", "identity-benchmark-context");
-  context.append(
-    createIdentityElement("span", "identity-benchmark-level", benchmark.level || "Contextinformatie"),
-    createIdentityElement("p", "identity-benchmark-fact", benchmark.fact || "Geen vergelijkbare benchmark beschikbaar."),
-    createIdentityElement("p", "identity-benchmark-explanation", benchmark.context || "De beschikbare data zijn beperkt."),
-    createIdentityElement("span", "identity-confidence", `Datakwaliteit: ${benchmark.confidence || "beperkt"}`)
-  );
-
-  if (Array.isArray(benchmark.sourceIds) && benchmark.sourceIds.length > 0) {
-    context.appendChild(createIdentitySourceLinks(benchmark.sourceIds));
   }
 
-  card.append(header, band, description, bar, components, context);
-  return card;
-}
+  const belgium = createIdentityElement("div", "identity-detail-block");
+  belgium.append(
+    createIdentityElement("strong", "", "Belgische context"),
+    createIdentityElement("p", "", benchmark.fact || "Deze as wordt vergeleken met de Belgische maatschappelijke context.")
+  );
 
-function renderIdentityAxisGrid(container, result, regionId) {
-  container.replaceChildren();
+  const awareness = createIdentityElement("div", "identity-detail-block");
+  awareness.append(
+    createIdentityElement("strong", "", "Awareness"),
+    createIdentityElement("p", "", getIdentityAxisAwareness(axisResult))
+  );
 
-  (result.axisResults || []).forEach(axisResult => {
-    container.appendChild(createIdentityAxisCard(axisResult, regionId));
-  });
-}
+  content.append(position, belgium, awareness);
 
-function createIdentityRegionSelector(onChange) {
-  const selector = createIdentityElement("div", "identity-region-selector");
-  selector.setAttribute("role", "group");
-  selector.setAttribute("aria-label", "Vergelijkingsregio");
+  if (Array.isArray(benchmark.sourceIds) && benchmark.sourceIds.length > 0) {
+    content.appendChild(createIdentitySourceLinks(benchmark.sourceIds));
+  }
 
-  [
-    ["belgium", "België"],
-    ["europe", "Europa"],
-    ["global", "Wereldwijd"]
-  ].forEach(([id, label], index) => {
-    const button = createIdentityElement("button", "identity-region-button", label);
-    button.type = "button";
-    button.dataset.regionId = id;
-    button.setAttribute("aria-pressed", String(index === 0));
-    if (index === 0) {
-      button.classList.add("is-active");
-    }
-
-    button.addEventListener("click", () => {
-      selector.querySelectorAll(".identity-region-button").forEach(candidate => {
-        const active = candidate === button;
-        candidate.classList.toggle("is-active", active);
-        candidate.setAttribute("aria-pressed", String(active));
-      });
-      onChange(id);
-    });
-
-    selector.appendChild(button);
-  });
-
-  return selector;
-}
-
-function getIdentityAdviceByAxis(result, axisId) {
-  return (result.axisAdvice || []).find(item => item.axisId === axisId) || null;
+  details.append(summary, content);
+  return details;
 }
 
 function renderIdentityIntersectionalityProfile(result) {
-  const regionCard = createIdentityElement("article", "result-content-card identity-overview-card");
-  regionCard.dataset.dynamicProfileCard = "true";
-  regionCard.style.gridColumn = "1 / -1";
+  const overview = createIdentityElement("article", "result-content-card identity-overview-card");
+  overview.dataset.dynamicProfileCard = "true";
+  overview.style.gridColumn = "1 / -1";
 
-  regionCard.append(
-    createIdentityElement("span", "result-card-label", "Regiocontext"),
-    createIdentityElement("h3", "", "Spiegel je 14 assen aan België, Europa of wereldwijd"),
+  overview.append(
+    createIdentityElement("span", "result-card-label", "Belgische context"),
+    createIdentityElement("h3", "", "Jouw positie op 14 maatschappelijke assen"),
     createIdentityElement(
       "p",
-      "result-card-text",
-      "De balk toont jouw eigen reflectie-index. De regioknop verandert de officiële contextinformatie, niet je persoonlijke antwoorden. Er wordt geen bevolkingspercentiel of totaalscore berekend."
+      "identity-overview-intro",
+      "Links betekent meer structurele benadeling; rechts meer structureel voordeel. Open een as voor een korte uitleg, Belgische context en awarenessboodschap."
     )
   );
 
   const grid = createIdentityElement("div", "identity-axis-grid");
-  const selector = createIdentityRegionSelector(regionId => {
-    renderIdentityAxisGrid(grid, result, regionId);
+  (result.axisResults || []).forEach(axisResult => {
+    grid.appendChild(createIdentityPowerAxis(axisResult));
   });
-
-  regionCard.append(selector, grid);
-  renderIdentityAxisGrid(grid, result, "belgium");
-  resultContentGrid.appendChild(regionCard);
+  overview.appendChild(grid);
+  resultContentGrid.appendChild(overview);
 
   const intersectionItems = (result.intersections || []).map(item => {
     return `${item.title}: ${item.explanation}`;
@@ -187,14 +129,14 @@ function renderIdentityIntersectionalityProfile(result) {
     createDynamicProfileCard({
       label: "Kruispunten",
       title: intersectionItems.length > 0
-        ? "Waar identiteitsassen elkaar mogelijk versterken"
-        : "Geen uitgesproken kruispunt van barrières gevonden",
+        ? "Waar assen elkaar kunnen versterken"
+        : "Geen sterk uitgesproken kruispunt gevonden",
       summary: intersectionItems.length > 0
-        ? "Deze combinaties zijn geselecteerd via expliciete regels omdat meerdere betrokken assen relatief laag of contextafhankelijk scoorden. Ze zijn aandachtspunten, geen voorspellingen."
-        : "Ook zonder lage combinaties blijven identiteiten contextueel samenwerken. De tool toont alleen kruispunten waarvoor een voorzichtige, vooraf vastgelegde interpretatie bestaat.",
+        ? "Deze combinaties verdienen extra aandacht. Ze zijn geen voorspelling of diagnose."
+        : "Je assen blijven elkaar beïnvloeden, maar geen vooraf vastgelegde combinatie kwam sterk naar voren.",
       sections: [
         {
-          title: "Relevante combinaties",
+          title: "Belangrijkste combinaties",
           items: intersectionItems
         }
       ],
@@ -202,91 +144,18 @@ function renderIdentityIntersectionalityProfile(result) {
     })
   );
 
-  const allyItems = (result.axisResults || [])
-    .filter(axis => typeof axis.score === "number" && axis.score >= 65)
-    .slice(0, 5)
-    .map(axis => {
-      const advice = getIdentityAdviceByAxis(result, axis.id);
-      return `${axis.shortLabel}: ${advice?.text || "Gebruik je relatief sterke toegang bewust om ruimte en toegankelijkheid voor anderen te vergroten."}`;
-    });
-
-  const supportItems = (result.axisResults || [])
-    .filter(axis => typeof axis.score === "number" && axis.score <= 49)
-    .slice(0, 5)
-    .map(axis => {
-      const advice = getIdentityAdviceByAxis(result, axis.id);
-      return `${axis.shortLabel}: ${advice?.text || "Erken de barrière, documenteer concrete situaties en zoek passende steun."}`;
-    });
-
-  resultContentGrid.appendChild(
-    createDynamicProfileCard({
-      label: "Bewustwording en allyship",
-      title: "Gebruik toegang zonder schuld, maar met verantwoordelijkheid",
-      summary: "Een relatief gunstige positie betekent niet dat je leven gemakkelijk is. Het betekent alleen dat deze specifieke as waarschijnlijk minder extra drempels toevoegt.",
-      sections: [
-        {
-          title: "Praktische acties",
-          items: allyItems.length > 0
-            ? allyItems
-            : window.IDENTITY_INTERSECTIONALITY_CONTENT?.allyship || []
-        }
-      ]
-    })
-  );
-
-  resultContentGrid.appendChild(
-    createDynamicProfileCard({
-      label: "Erkenning en weerbaarheid",
-      title: "Barrières erkennen zonder je identiteit tot een probleem te maken",
-      summary: "Een lage score is geen oordeel over je veerkracht. Terugkerende drempels kunnen voortkomen uit systemen, normen of ontoegankelijke processen.",
-      sections: [
-        {
-          title: "Praktische acties",
-          items: supportItems.length > 0
-            ? supportItems
-            : window.IDENTITY_INTERSECTIONALITY_CONTENT?.resilience || []
-        }
-      ]
-    })
-  );
-
-  const supportSources = ["unia-help", "igvm-help", "myria-help", "cavaria-help", "vaph-help"]
-    .map(getIdentitySourceById)
-    .filter(Boolean)
-    .map(source => `${source.citation} ${source.note}`);
-
-  resultContentGrid.appendChild(
-    createDynamicProfileCard({
-      label: "Steun en meldpunten",
-      title: "Belgische organisaties die verder kunnen helpen",
-      summary: "Gebruik deze organisaties alleen wanneer ze passen bij je concrete vraag. De tool vervangt geen juridisch, medisch of psychosociaal advies.",
-      sections: [
-        {
-          title: "Mogelijke aanspreekpunten",
-          items: supportSources
-        }
-      ],
-      fullWidth: true
-    })
-  );
-
-  const limitations = window.IDENTITY_INTERSECTIONALITY_CONTENT?.limitations || [];
   const theorySources = (window.IDENTITY_INTERSECTIONALITY_SOURCES || [])
-    .filter(source => source.type === "theory" || source.type === "method")
+    .filter(source => source.type === "theory")
     .map(source => source.citation);
 
   resultContentGrid.appendChild(
     createDynamicProfileCard({
-      label: "Methodiek en grenzen",
-      title: "Hoe je deze uitkomst verantwoord leest",
-      summary: "De tool verbindt intersectionele theorie met actuele equality data. Waar datasets niet vergelijkbaar zijn, wordt dat expliciet aangegeven en wordt geen kunstmatige norm berekend.",
+      label: "Methodiek",
+      title: "Awareness, geen oordeel",
+      summary: "Elke as weegt even zwaar in het overzicht. De stip wordt intern uit je drie antwoorden berekend; er is bewust geen algemene privilegescore.",
       sections: [
         {
-          title: "Belangrijke beperkingen",
-          items: limitations
-        },
-        {
-          title: "Theoretische en methodische basis",
+          title: "Theoretische basis",
           items: theorySources
         }
       ],
