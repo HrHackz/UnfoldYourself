@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v7";
+const CACHE_VERSION = "v8";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -29,6 +29,7 @@ const CORE_APP_FILES = [
   "./tests/hexaco-engine.js",
   "./tests/sixteen-personalities-engine.js",
   "./tests/disc-engine.js",
+  "./tests/self-values-drives-engine.js",
   "./core/test-registry.js",
   "./core/storage.js",
   "./core/profile-ui.js",
@@ -61,7 +62,9 @@ const TEST_DATA_FILES = [
   "./sixteen-personalities-questions.js",
   "./sixteen-personalities-results.js",
   "./disc-questions.js",
-  "./disc-results.js"
+  "./disc-results.js",
+  "./self-values-drives-questions.js",
+  "./self-values-drives-results.js"
 ];
 
 

@@ -1298,6 +1298,9 @@ const DISC_TEST_DEFINITION = {
     calculateResult:
       calculateDiscResult,
 
+    renderResultDetails:
+      renderDiscProfile,
+
     resultCardContent:
       DISC_RESULT_CARD_CONTENT,
 
@@ -1334,3 +1337,13 @@ const DISC_TEST_DEFINITION = {
     questions:
       mappedDiscQuestions
 };
+
+
+window.UNFOLD_TEST_DEFINITIONS =
+  Array.isArray(window.UNFOLD_TEST_DEFINITIONS)
+    ? window.UNFOLD_TEST_DEFINITIONS
+    : [];
+
+window.UNFOLD_TEST_DEFINITIONS.push(
+  DISC_TEST_DEFINITION
+);

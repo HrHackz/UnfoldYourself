@@ -1288,6 +1288,9 @@ const SIXTEEN_PERSONALITIES_TEST_DEFINITION = {
     calculateResult:
       calculateSixteenPersonalitiesResult,
 
+    renderResultDetails:
+      renderSixteenPersonalityProfile,
+
     getAdditionalQuestions:
       createSixteenPersonalitiesTieBreakQuestions,
 
@@ -1305,3 +1308,13 @@ const SIXTEEN_PERSONALITIES_TEST_DEFINITION = {
     questions:
       mappedSixteenPersonalitiesQuestions
 };
+
+
+window.UNFOLD_TEST_DEFINITIONS =
+  Array.isArray(window.UNFOLD_TEST_DEFINITIONS)
+    ? window.UNFOLD_TEST_DEFINITIONS
+    : [];
+
+window.UNFOLD_TEST_DEFINITIONS.push(
+  SIXTEEN_PERSONALITIES_TEST_DEFINITION
+);

@@ -405,3 +405,13 @@ const HEXACO_TEST_DEFINITION = {
 
   questions: mappedHexacoQuestions
 };
+
+
+window.UNFOLD_TEST_DEFINITIONS =
+  Array.isArray(window.UNFOLD_TEST_DEFINITIONS)
+    ? window.UNFOLD_TEST_DEFINITIONS
+    : [];
+
+window.UNFOLD_TEST_DEFINITIONS.push(
+  HEXACO_TEST_DEFINITION
+);

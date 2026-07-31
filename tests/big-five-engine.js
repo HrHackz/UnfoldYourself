@@ -1264,3 +1264,13 @@ const BIG_FIVE_TEST_DEFINITION = {
     questions:
       mappedBigFiveQuestions
 };
+
+
+window.UNFOLD_TEST_DEFINITIONS =
+  Array.isArray(window.UNFOLD_TEST_DEFINITIONS)
+    ? window.UNFOLD_TEST_DEFINITIONS
+    : [];
+
+window.UNFOLD_TEST_DEFINITIONS.push(
+  BIG_FIVE_TEST_DEFINITION
+);

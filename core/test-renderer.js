@@ -2,7 +2,7 @@
 
 /*
   Unfold Yourself — algemene resultaatweergave
-  Afhankelijkheden: core/test-registry.js, tests/big-five-engine.js, tests/sixteen-personalities-engine.js, tests/disc-engine.js.
+  Afhankelijkheden: core/test-registry.js en de generieke resultaatcontracten van testmodules.
   Klassiek script; laadvolgorde staat expliciet in index.html.
 */
 
@@ -181,6 +181,17 @@ function renderFacetReport(
         "facet-domain-score";
 
       if (
+        typeof facetConfig.getGroupScoreLabel ===
+          "function"
+      ) {
+        domainScore.textContent =
+          facetConfig.getGroupScoreLabel({
+            domainDefinition,
+            domainResult,
+            domainFacets,
+            result
+          });
+      } else if (
         domainResult &&
         typeof domainResult.score ===
           "number"
@@ -188,7 +199,8 @@ function renderFacetReport(
         domainScore.textContent =
           `${domainResult.score}% · ` +
           getBandLabel(
-            domainResult.score
+            domainResult.score,
+            domainResult
           );
       } else {
         domainScore.textContent =
@@ -268,7 +280,8 @@ function renderFacetReport(
 
           itemBand.textContent =
             getBandLabel(
-              facet.score
+              facet.score,
+              facet
             );
 
           const bar =
@@ -961,13 +974,17 @@ function renderTestResult(result) {
     result.advice
   );
 
-  renderSixteenPersonalityProfile(
-    result
-  );
+  removeDynamicProfileCards();
 
-  renderDiscProfile(
-    result
-  );
+  if (
+    typeof definition?.renderResultDetails ===
+      "function"
+  ) {
+    definition.renderResultDetails(
+      result,
+      definition
+    );
+  }
 
   const evidence =
     definition?.evidence || {};
