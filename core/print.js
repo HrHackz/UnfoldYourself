@@ -1,0 +1,107 @@
+"use strict";
+
+/*
+  Unfold Yourself — afdruk- en PDF-logica
+  Afhankelijkheden: core/test-renderer.js.
+  Klassiek script; laadvolgorde staat expliciet in index.html.
+*/
+
+/* =========================================================
+   RESULTAAT VOORBEREIDEN VOOR AFDRUKKEN EN PDF
+
+   Voor het afdrukken worden:
+   - alle facetgroepen zichtbaar gemaakt;
+   - alle afzonderlijke facetinterpretaties geopend;
+   - de oorspronkelijke schermstatus tijdelijk onthouden.
+========================================================= */
+
+let resultPrintState = null;
+
+
+function prepareResultForPrint() {
+  const facetItems =
+    Array.from(
+      document.querySelectorAll(
+        ".facet-item"
+      )
+    );
+
+  resultPrintState = {
+    facetReportWasHidden:
+      facetReport.hidden,
+
+    facetReportWasCollapsed:
+      facetReport.classList.contains(
+        "is-collapsed"
+      ),
+
+    facetItems:
+      facetItems.map(item => {
+        return {
+          element: item,
+          wasOpen: item.open
+        };
+      })
+  };
+
+  if (!facetReport.hidden) {
+    facetReport.classList.remove(
+      "is-collapsed"
+    );
+
+    facetItems.forEach(item => {
+      item.open = true;
+    });
+  }
+
+  document.body.classList.add(
+    "printing-result"
+  );
+}
+
+
+function restoreResultAfterPrint() {
+  if (!resultPrintState) {
+    document.body.classList.remove(
+      "printing-result"
+    );
+
+    return;
+  }
+
+  facetReport.hidden =
+    resultPrintState
+      .facetReportWasHidden;
+
+  facetReport.classList.toggle(
+    "is-collapsed",
+    resultPrintState
+      .facetReportWasCollapsed
+  );
+
+  resultPrintState
+    .facetItems
+    .forEach(savedItem => {
+      savedItem.element.open =
+        savedItem.wasOpen;
+    });
+
+  document.body.classList.remove(
+    "printing-result"
+  );
+
+  resultPrintState = null;
+}
+
+
+function printActiveResult() {
+  window.print();
+}
+
+function finishActiveTest() {
+  renderDomains();
+  renderProgress();
+
+  closeTestWorkspace();
+}
+

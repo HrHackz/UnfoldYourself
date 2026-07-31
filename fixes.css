@@ -1,0 +1,58 @@
+/*
+  Unfold Yourself – gerichte correcties
+  Dit bestand wordt na styles.css geladen en overschrijft alleen wat nodig is.
+*/
+
+.brand-text strong {
+  white-space: nowrap;
+}
+
+.domain-node {
+  width: 210px;
+  min-height: 108px;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-content: center;
+}
+
+.domain-copy {
+  min-width: 0;
+}
+
+.domain-copy strong {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  white-space: normal;
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+.domain-copy small {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+.domain-percentage {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: -3px;
+}
+
+.mobile-domain-grid .domain-node {
+  width: auto;
+}
+
+.mobile-domain-grid .domain-copy strong {
+  font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+  .brand-text strong {
+    font-size: 0.92rem;
+  }
+
+  .mobile-domain-grid .domain-node {
+    min-height: 100px;
+  }
+}

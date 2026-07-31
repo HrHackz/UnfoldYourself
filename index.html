@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#6f5cff">
+
+  <meta
+    name="description"
+    content="Unfold Yourself helpt je om stap voor stap je persoonlijkheid, competenties, motivatie, loopbaanvoorkeuren en welzijn te ontdekken."
+  >
+
+  <title>Unfold Yourself | Ontdek wie je bent</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.webmanifest">
+
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./fixes.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#hoofdinhoud">
+    Ga naar de inhoud
+  </a>
+
+  <!-- =====================================================
+       BOVENSTE NAVIGATIE
+  ====================================================== -->
+
+  <header class="site-header" id="siteHeader">
+    <div class="shell header-inner">
+
+      <a
+        class="brand"
+        href="#start"
+        aria-label="Unfold Yourself – startpagina"
+      >
+        <span class="brand-mark" aria-hidden="true">
+          UY
+        </span>
+
+        <span class="brand-text">
+          <strong>Unfold Yourself</strong>
+          <small>Ontdek wie je bent en wat bij je past</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mainNavigation"
+      >
+        <span class="sr-only">Menu openen</span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav
+        class="main-nav"
+        id="mainNavigation"
+        aria-label="Hoofdnavigatie"
+      >
+        <a href="#start">Start</a>
+        <a href="#profiel">Mijn profiel</a>
+        <a href="#werkwijze">Hoe het werkt</a>
+
+        <button
+          class="button button-small button-secondary"
+          id="storageButton"
+          type="button"
+        >
+          Opslag & back-up
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- =====================================================
+       HOOFDINHOUD
+  ====================================================== -->
+
+  <main id="hoofdinhoud">
+
+    <!-- ===================================================
+         STARTPAGINA / HERO
+    ==================================================== -->
+
+    <section class="hero" id="start">
+      <div class="shell hero-grid">
+
+        <div class="hero-copy">
+          <p class="eyebrow">
+            Jouw profiel, stap voor stap
+          </p>
+
+          <h1>
+            Meer inzicht in wie je bent, hoe je werkt en wat bij je past.
+          </h1>
+
+          <p class="hero-intro">
+            Voltooi testen binnen negen duidelijke profielgebieden.
+            Je resultaten worden lokaal op je toestel bewaard en
+            groeien uit tot één persoonlijk totaalprofiel.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="#profiel"
+            >
+              Start mijn profiel
+            </a>
+
+            <a
+              class="button button-ghost"
+              href="#werkwijze"
+            >
+              Bekijk hoe het werkt
+            </a>
+          </div>
+
+          <div
+            class="trust-row"
+            aria-label="Belangrijke kenmerken"
+          >
+            <span>
+              <i aria-hidden="true">✓</i>
+              Geen account nodig
+            </span>
+
+            <span>
+              <i aria-hidden="true">✓</i>
+              Lokale opslag
+            </span>
+
+            <span>
+              <i aria-hidden="true">✓</i>
+              Werkt op mobiel en laptop
+            </span>
+          </div>
+        </div>
+
+        <div
+          class="hero-card"
+          aria-label="Voorbeeld van je profielvoortgang"
+        >
+          <div class="hero-card-top">
+            <span class="status-dot"></span>
+            <span>Mijn voortgang</span>
+            <strong id="heroProgressLabel">0%</strong>
+          </div>
+
+          <div
+            class="progress-ring"
+            id="heroProgressRing"
+            style="--progress: 0"
+          >
+            <div class="progress-ring-inner">
+              <strong id="heroCompletedCount">0</strong>
+              <span>van 38 testen</span>
+            </div>
+          </div>
+
+          <div class="mini-stats">
+            <div>
+              <strong>9</strong>
+              <span>profielgebieden</span>
+            </div>
+
+            <div>
+              <strong>38</strong>
+              <span>afzonderlijke testen</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PROFIELWIEL
+    ==================================================== -->
+
+    <section class="profile-section" id="profiel">
+      <div class="shell">
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              Modulair profielwiel
+            </p>
+
+            <h2>
+              Bouw je profiel op in je eigen tempo
+            </h2>
+          </div>
+
+          <p>
+            Kies een gebied om de beschikbare testen te bekijken.
+            Iedere test hoeft maar één keer te worden ingevuld,
+            maar kan meerdere onderdelen van je profiel aanvullen.
+          </p>
+        </div>
+
+        <div class="dashboard-toolbar">
+          <div>
+            <span class="toolbar-label">
+              Totale voortgang
+            </span>
+
+            <div
+              class="linear-progress"
+              aria-label="Totale voortgang"
+            >
+              <span
+                id="totalProgressBar"
+                style="width: 0%"
+              ></span>
+            </div>
+          </div>
+
+          <strong id="totalProgressText">
+            0 van 38 voltooid
+          </strong>
+        </div>
+
+        <!-- Desktopweergave -->
+
+        <div
+          class="profile-wheel"
+          id="profileWheel"
+          aria-label="Negen profielgebieden"
+        >
+          <div class="wheel-center">
+
+            <div class="avatar" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <p>Mijn profiel</p>
+
+            <strong id="centerProgress">
+              0%
+            </strong>
+
+            <button
+              class="text-button"
+              id="continueButton"
+              type="button"
+            >
+              Verder met mijn profiel
+            </button>
+
+          </div>
+
+          <div
+            class="domain-layer"
+            id="domainLayer"
+          ></div>
+        </div>
+
+        <!-- Mobiele weergave -->
+
+        <div
+          class="mobile-domain-grid"
+          id="mobileDomainGrid"
+        ></div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+         HOE HET WERKT
+    ==================================================== -->
+
+    <section class="how-section" id="werkwijze">
+      <div class="shell">
+
+        <div class="section-heading compact">
+          <div>
+            <p class="eyebrow">
+              Eenvoudige werkwijze
+            </p>
+
+            <h2>
+              Van losse test naar bruikbaar totaalbeeld
+            </h2>
+          </div>
+        </div>
+
+        <div class="steps-grid">
+
+          <article class="step-card">
+            <span>01</span>
+
+            <h3>
+              Kies een profielgebied
+            </h3>
+
+            <p>
+              Begin waar jij de meeste nieuwsgierigheid
+              of behoefte aan inzicht hebt.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span>02</span>
+
+            <h3>
+              Voltooi één test
+            </h3>
+
+            <p>
+              Je voortgang en antwoorden worden automatisch
+              lokaal bewaard.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span>03</span>
+
+            <h3>
+              Bekijk je resultaat
+            </h3>
+
+            <p>
+              Elke test levert een afzonderlijk,
+              begrijpelijk rapport op.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span>04</span>
+
+            <h3>
+              Bouw je totaalprofiel
+            </h3>
+
+            <p>
+              Resultaten komen samen in sterktes,
+              ontwikkelpunten, voorkeuren en jobmatch.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="privacy-card">
+          <div
+            class="privacy-icon"
+            aria-hidden="true"
+          >
+            ◎
+          </div>
+
+          <div>
+            <h3>
+              Privacy zonder account
+            </h3>
+
+            <p>
+              Je testresultaten en voortgang worden uitsluitend
+              in de browser van dit toestel opgeslagen.
+              Er worden geen persoonsgegevens naar een externe
+              server verzonden.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+         ECHTE TESTOMGEVING
+         Wordt pas zichtbaar wanneer een test wordt gestart.
+    ==================================================== -->
+
+    <section
+      class="test-workspace"
+      id="testWorkspace"
+      aria-labelledby="testWorkspaceTitle"
+      hidden
+    >
+      <div class="shell test-shell">
+
+        <!-- Bovenste werkbalk -->
+
+        <div class="test-topbar">
+
+          <button
+            class="back-button"
+            id="exitTestButton"
+            type="button"
+          >
+            <span aria-hidden="true">←</span>
+            Terug naar mijn profiel
+          </button>
+
+          <div class="test-topbar-progress">
+            <span id="testTopbarLabel">
+              Testvoorbereiding
+            </span>
+
+            <div
+              class="linear-progress"
+              aria-label="Voortgang binnen de test"
+            >
+              <span
+                id="testTopbarProgress"
+                style="width: 0%"
+              ></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Testintroductie -->
+
+        <article
+          class="test-screen test-intro-screen"
+          id="testIntroScreen"
+          data-test-screen="intro"
+        >
+          <div class="test-intro-grid">
+
+            <div class="test-intro-main">
+              <p
+                class="eyebrow"
+                id="testIntroDomain"
+              >
+                Profielgebied
+              </p>
+
+              <h2 id="testWorkspaceTitle">
+                Testnaam
+              </h2>
+
+              <p
+                class="test-description"
+                id="testIntroDescription"
+              >
+                Beschrijving van de geselecteerde test.
+              </p>
+
+              <div class="test-information-grid">
+
+                <div class="test-information-item">
+                  <span class="information-icon" aria-hidden="true">
+                    ?
+                  </span>
+
+                  <div>
+                    <strong id="testQuestionCount">
+                      10 vragen
+                    </strong>
+
+                    <span>
+                      Eén vraag per scherm
+                    </span>
+                  </div>
+                </div>
+
+                <div class="test-information-item">
+                  <span class="information-icon" aria-hidden="true">
+                    ◷
+                  </span>
+
+                  <div>
+                    <strong id="testEstimatedTime">
+                      Ongeveer 3 minuten
+                    </strong>
+
+                    <span>
+                      Je kunt rustig antwoorden
+                    </span>
+                  </div>
+                </div>
+
+                <div class="test-information-item">
+                  <span class="information-icon" aria-hidden="true">
+                    ✓
+                  </span>
+
+                  <div>
+                    <strong>
+                      Automatisch opgeslagen
+                    </strong>
+
+                    <span>
+                      Je voortgang blijft lokaal bewaard
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="test-guidance">
+                <h3>
+                  Voor je begint
+                </h3>
+
+                <ul>
+                  <li>
+                    Antwoord zo eerlijk mogelijk vanuit je normale gedrag.
+                  </li>
+
+                  <li>
+                    Kies niet wat sociaal wenselijk of professioneel ideaal klinkt.
+                  </li>
+
+                  <li>
+                    Denk aan hoe je meestal handelt, niet aan één uitzonderlijke situatie.
+                  </li>
+                </ul>
+              </div>
+<details class="test-evidence">
+  <summary>
+    Wetenschappelijke basis en gebruik
+  </summary>
+
+  <div class="test-evidence-content">
+
+    <div class="test-evidence-section">
+      <span class="test-evidence-label">
+        Wetenschappelijke basis
+      </span>
+
+      <p id="testEvidenceSummary">
+        Informatie over de wetenschappelijke basis van deze test.
+      </p>
+    </div>
+
+    <div class="test-evidence-section">
+      <span class="test-evidence-label">
+        Bron
+      </span>
+
+      <p id="testEvidenceSource">
+        Broninformatie wordt hier weergegeven.
+      </p>
+    </div>
+
+    <div class="test-evidence-section test-evidence-disclaimer">
+      <span class="test-evidence-label">
+        Belangrijk
+      </span>
+
+      <p id="testEvidenceDisclaimer">
+        Deze test is bedoeld voor zelfinzicht en persoonlijke ontwikkeling.
+      </p>
+    </div>
+
+  </div>
+</details>
+
+              <div class="test-intro-actions">
+                <button
+                  class="button button-primary"
+                  id="beginTestButton"
+                  type="button"
+                >
+                  Start deze test
+                </button>
+
+                <button
+                  class="button button-ghost"
+                  id="cancelTestButton"
+                  type="button"
+                >
+                  Annuleren
+                </button>
+              </div>
+            </div>
+
+            <aside class="test-preview-card">
+              <span class="test-preview-label">
+                Je ontvangt
+              </span>
+
+              <h3>
+                Een persoonlijk testresultaat
+              </h3>
+
+              <ul>
+                <li>Kernresultaat</li>
+                <li>Scores per onderdeel</li>
+                <li>Sterktes en ontwikkelpunten</li>
+                <li>Praktische betekenis</li>
+                <li>Persoonlijke ontwikkeltips</li>
+              </ul>
+
+              <p>
+                Het resultaat wordt toegevoegd aan je centrale profiel.
+              </p>
+            </aside>
+
+          </div>
+        </article>
+
+        <!-- Vragenscherm -->
+
+        <article
+          class="test-screen question-screen"
+          id="questionScreen"
+          data-test-screen="questions"
+          hidden
+        >
+          <div class="question-layout">
+
+            <aside class="question-sidebar">
+              <p class="eyebrow">
+                Huidige test
+              </p>
+
+              <h2 id="questionTestTitle">
+                Testnaam
+              </h2>
+
+              <div class="question-counter-block">
+                <span id="questionCounter">
+                  Vraag 1 van 10
+                </span>
+
+                <strong id="questionPercentage">
+                  10%
+                </strong>
+              </div>
+
+              <div
+                class="linear-progress question-progress"
+                aria-label="Vraagvoortgang"
+              >
+                <span
+                  id="questionProgressBar"
+                  style="width: 10%"
+                ></span>
+              </div>
+
+              <button
+                class="save-exit-button"
+                id="saveAndExitButton"
+                type="button"
+              >
+                Opslaan en later verdergaan
+              </button>
+            </aside>
+
+            <div class="question-card">
+
+              <p
+                class="question-category"
+                id="questionCategory"
+              >
+                Onderdeel
+              </p>
+
+              <h2 id="questionText">
+                Hier verschijnt de vraag.
+              </h2>
+
+              <p class="question-instruction">
+                Kies het antwoord dat het beste bij jou past.
+              </p>
+
+              <div
+                class="answer-options"
+                id="answerOptions"
+                role="radiogroup"
+                aria-labelledby="questionText"
+              ></div>
+
+              <p
+                class="answer-warning"
+                id="answerWarning"
+                role="alert"
+                hidden
+              >
+                Kies eerst een antwoord voordat je verdergaat.
+              </p>
+
+              <div class="question-navigation">
+
+                <button
+                  class="button button-secondary"
+                  id="previousQuestionButton"
+                  type="button"
+                >
+                  Vorige vraag
+                </button>
+
+                <button
+                  class="button button-primary"
+                  id="nextQuestionButton"
+                  type="button"
+                >
+                  Volgende vraag
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+        </article>
+
+        <!-- Resultaatscherm -->
+
+        <article
+          class="test-screen result-screen"
+          id="resultScreen"
+          data-test-screen="result"
+          data-result-layout="modular"
+          aria-labelledby="resultTestTitle"
+          hidden
+        >
+<!-- Alleen zichtbaar in de afdruk- en PDF-versie -->
+
+<header class="print-report-header">
+  <div class="print-report-brand">
+    <strong>Unfold Yourself</strong>
+    <span id="printReportSubtitle">
+      Persoonlijk testresultaat
+    </span>
+  </div>
+
+  <div class="print-report-meta">
+    <span id="printTestTitle">
+      Big Five-test
+    </span>
+
+    <span id="printCompletedDate">
+      Voltooiingsdatum
+    </span>
+  </div>
+</header>
+          <div class="result-hero">
+
+            <div>
+              <p
+                class="eyebrow"
+                id="resultEyebrow"
+              >
+                Test voltooid
+              </p>
+
+              <h2 id="resultTestTitle">
+                Jouw resultaat
+              </h2>
+
+              <p id="resultSummary">
+                Hier verschijnt een samenvatting van je resultaat.
+              </p>
+<p
+  class="result-completed-date"
+  id="resultCompletedDate"
+>
+  Voltooid op datum
+</p>
+            </div>
+
+            <div class="result-score-card">
+              <span id="resultMainScoreHeading">
+                Algemene score
+              </span>
+
+              <strong id="resultMainScore">
+                0%
+              </strong>
+
+              <small id="resultScoreLabel">
+                Resultaat
+              </small>
+            </div>
+
+          </div>
+
+          <div
+            class="result-dimensions"
+            id="resultDimensions"
+          ></div>
+<!-- ===================================================
+     OPTIONEEL VERDIEPEND RESULTAAT
+     Alleen zichtbaar bij testen met facetten of subscores.
+==================================================== -->
+
+<section
+  class="facet-report"
+  id="facetReport"
+  data-result-section="facets"
+  aria-labelledby="facetReportTitle"
+>
+  <div class="facet-report-header">
+
+    <div>
+      <p
+        class="eyebrow"
+        id="facetReportEyebrow"
+      >
+        Verdiepend profiel
+      </p>
+
+      <h3 id="facetReportTitle">
+        Bekijk je 30 facetscores
+      </h3>
+
+      <p id="facetReportDescription">
+        Elk Big Five-domein bestaat uit zes onderliggende
+        kenmerken. Deze facetscores geven meer detail over
+        waar je domeinscore precies vandaan komt.
+      </p>
+    </div>
+
+    <button
+      class="button button-secondary facet-toggle-button"
+      id="facetToggleButton"
+      type="button"
+      aria-expanded="true"
+      aria-controls="facetGroups"
+    >
+      Facetdetails verbergen
+    </button>
+
+  </div>
+
+  <div
+    class="facet-explanation"
+    id="facetExplanation"
+  >
+    <strong id="facetExplanationTitle">
+      Hoe lees je deze scores?
+    </strong>
+
+    <p id="facetExplanationText">
+      Een hogere score betekent dat het betreffende kenmerk
+      sterker in je antwoorden naar voren komt. Een hoge of lage
+      score is niet automatisch beter of slechter.
+    </p>
+  </div>
+
+  <div
+    class="facet-groups"
+    id="facetGroups"
+  ></div>
+</section>
+          <div class="result-content-grid">
+
+            <article
+              class="result-content-card"
+              id="resultStrengthsCard"
+              data-result-section="strengths"
+            >
+              <span class="result-card-label">
+                Sterkste onderdelen
+              </span>
+
+              <h3>
+                Wat valt positief op?
+              </h3>
+
+              <ul id="resultStrengths"></ul>
+            </article>
+
+            <article
+              class="result-content-card"
+              id="resultDevelopmentCard"
+              data-result-section="development"
+            >
+              <span class="result-card-label">
+                Ontwikkelpunten
+              </span>
+
+              <h3>
+                Waar ligt groeiruimte?
+              </h3>
+
+              <ul id="resultDevelopment"></ul>
+            </article>
+
+            <article
+              class="result-content-card"
+              id="resultMeaningCard"
+              data-result-section="meaning"
+            >
+              <span class="result-card-label">
+                Praktische betekenis
+              </span>
+
+              <h3>
+                Wat betekent dit voor jou?
+              </h3>
+
+              <p id="resultMeaning"></p>
+            </article>
+
+            <article
+              class="result-content-card"
+              id="resultAdviceCard"
+              data-result-section="advice"
+            >
+              <span class="result-card-label">
+                Volgende stap
+              </span>
+
+              <h3>
+                Hoe kun je verder?
+              </h3>
+
+              <p id="resultAdvice"></p>
+            </article>
+
+          </div>
+
+<section
+  class="result-method-note"
+  id="resultMethodNote"
+  data-result-section="method"
+>
+  <div>
+    <span class="result-method-label">
+      Wetenschappelijke basis
+    </span>
+
+    <p id="resultMethodSource">
+      Broninformatie van deze test.
+    </p>
+  </div>
+
+  <div>
+    <span class="result-method-label">
+      Interpretatie
+    </span>
+
+    <p id="resultMethodDisclaimer">
+      Toelichting over de betekenis en beperkingen van dit resultaat.
+    </p>
+  </div>
+</section>
+
+          <div class="result-actions">
+
+		<button
+ 		 class="button button-secondary"
+ 		 id="printResultButton"
+ 		 type="button"
+		>
+ 		 Afdrukken / opslaan als PDF
+		</button>
+
+            <button
+              class="button button-primary"
+              id="finishTestButton"
+              type="button"
+            >
+              Toevoegen aan mijn profiel
+            </button>
+
+            <button
+              class="button button-secondary"
+              id="restartTestButton"
+              type="button"
+            >
+              Test opnieuw uitvoeren
+            </button>
+
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="site-footer" id="siteFooter">
+    <div class="shell footer-inner">
+
+      <div>
+        <strong>Unfold Yourself</strong>
+        <p>Ontdek wie je bent en wat bij je past.</p>
+      </div>
+
+      <p>
+        Versie 0.6 · DISC-gedragsstijltest toegevoegd
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- =====================================================
+       DONKERE ACHTERGROND BIJ ZIJPANEEL
+  ====================================================== -->
+
+  <div
+    class="overlay"
+    id="overlay"
+    hidden
+  ></div>
+
+  <!-- =====================================================
+       ZIJPANEEL MET TESTCATALOGUS
+  ====================================================== -->
+
+  <aside
+    class="drawer"
+    id="domainDrawer"
+    aria-hidden="true"
+    aria-labelledby="drawerTitle"
+  >
+    <div class="drawer-header">
+
+      <div>
+        <p
+          class="eyebrow"
+          id="drawerEyebrow"
+        >
+          Profielgebied
+        </p>
+
+        <h2 id="drawerTitle">
+          Gebied
+        </h2>
+      </div>
+
+      <button
+        class="icon-button"
+        id="closeDrawerButton"
+        type="button"
+        aria-label="Venster sluiten"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div class="drawer-progress">
+
+      <div>
+        <span id="drawerProgressLabel">
+          0 van 0 testen voltooid
+        </span>
+
+        <strong id="drawerProgressPercent">
+          0%
+        </strong>
+      </div>
+
+      <div class="linear-progress">
+        <span
+          id="drawerProgressBar"
+          style="width: 0%"
+        ></span>
+      </div>
+
+    </div>
+
+    <div
+      class="test-list"
+      id="testList"
+    ></div>
+  </aside>
+
+  <!-- =====================================================
+       OPSLAG EN BACK-UP
+  ====================================================== -->
+
+  <dialog
+    class="storage-dialog"
+    id="storageDialog"
+  >
+    <form method="dialog">
+
+      <div class="dialog-header">
+
+        <div>
+          <p class="eyebrow">
+            Lokale gegevens
+          </p>
+
+          <h2>
+            Opslag & back-up
+          </h2>
+        </div>
+
+        <button
+          class="icon-button"
+          value="cancel"
+          aria-label="Venster sluiten"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <p class="dialog-intro">
+        Je voortgang en resultaten worden lokaal in deze browser
+        opgeslagen. Back-up downloaden en importeren voegen we
+        in een volgende bouwfase toe.
+      </p>
+
+      <div class="storage-summary">
+
+        <div>
+          <span>Voltooide testen</span>
+          <strong id="storageCompletedTests">0</strong>
+        </div>
+
+        <div>
+          <span>Testen in uitvoering</span>
+          <strong id="storageActiveTests">0</strong>
+        </div>
+
+      </div>
+
+      <div class="dialog-actions">
+
+        <button
+          class="button button-secondary"
+          id="resetProgressButton"
+          type="button"
+        >
+          Alle lokale gegevens wissen
+        </button>
+
+        <button
+          class="button button-primary"
+          value="confirm"
+        >
+          Sluiten
+        </button>
+
+      </div>
+
+    </form>
+  </dialog>
+
+  <!-- =====================================================
+       MELDING ONDERAAN HET SCHERM
+  ====================================================== -->
+
+  <div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+    hidden
+  >
+    <span id="toastMessage">
+      Opgeslagen
+    </span>
+  </div>
+
+  <!-- =====================================================
+       SJABLOON VOOR PROFIELGEBIEDEN
+  ====================================================== -->
+
+  <template id="domainButtonTemplate">
+
+    <button
+      class="domain-node"
+      type="button"
+    >
+      <span
+        class="domain-icon"
+        aria-hidden="true"
+      ></span>
+
+      <span class="domain-copy">
+        <strong></strong>
+        <small></small>
+      </span>
+
+      <span class="domain-percentage"></span>
+    </button>
+
+  </template>
+
+<!-- Testdata: uitsluitend gegevens, zonder uitvoeringslogica. -->
+<script src="./big-five-choices.js" defer></script>
+<script src="./big-five-questions.js" defer></script>
+<script src="./sixteen-personalities-questions.js" defer></script>
+<script src="./sixteen-personalities-results.js" defer></script>
+<script src="./disc-questions.js" defer></script>
+<script src="./disc-results.js" defer></script>
+
+<!-- Applicatiekern en testspecifieke modules; volgorde is bewust expliciet. -->
+<script src="./core/app-config.js" defer></script>
+<script src="./core/test-utils.js" defer></script>
+<script src="./tests/big-five-engine.js" defer></script>
+<script src="./tests/sixteen-personalities-engine.js" defer></script>
+<script src="./tests/disc-engine.js" defer></script>
+<script src="./core/test-registry.js" defer></script>
+<script src="./core/storage.js" defer></script>
+<script src="./core/profile-ui.js" defer></script>
+<script src="./core/test-engine.js" defer></script>
+<script src="./core/test-renderer.js" defer></script>
+<script src="./core/print.js" defer></script>
+<script src="./core/ui-feedback.js" defer></script>
+<script src="./app.js" defer></script>
+</body>
+</html>
