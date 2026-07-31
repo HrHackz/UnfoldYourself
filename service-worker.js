@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v9";
+const CACHE_VERSION = "v10";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -30,6 +30,11 @@ const CORE_APP_FILES = [
   "./tests/sixteen-personalities-engine.js",
   "./tests/disc-engine.js",
   "./tests/self-values-drives-engine.js",
+  "./tests/identity-intersectionality/intersections.js",
+  "./tests/identity-intersectionality/advice.js",
+  "./tests/identity-intersectionality/scoring.js",
+  "./tests/identity-intersectionality/renderer.js",
+  "./tests/identity-intersectionality/engine.js",
   "./core/test-registry.js",
   "./core/storage.js",
   "./core/backup.js",
@@ -65,7 +70,13 @@ const TEST_DATA_FILES = [
   "./disc-questions.js",
   "./disc-results.js",
   "./self-values-drives-questions.js",
-  "./self-values-drives-results.js"
+  "./self-values-drives-results.js",
+  "./data/identity-intersectionality/questions.js",
+  "./data/identity-intersectionality/sources.js",
+  "./data/identity-intersectionality/benchmarks-belgium.js",
+  "./data/identity-intersectionality/benchmarks-europe.js",
+  "./data/identity-intersectionality/benchmarks-global.js",
+  "./data/identity-intersectionality/interpretations.js"
 ];
 
 
