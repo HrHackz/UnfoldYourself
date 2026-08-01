@@ -44,6 +44,11 @@ function getQuestionsForSession(
   definition,
   session
 ) {
+  if (typeof definition?.getSessionQuestions === "function") {
+    const customQuestions = definition.getSessionQuestions({ definition, session });
+    return Array.isArray(customQuestions) ? customQuestions : [];
+  }
+
   const baseQuestions =
     Array.isArray(
       definition?.questions
@@ -187,7 +192,9 @@ function showTestIntroduction() {
     definition.description;
 
   testQuestionCount.textContent =
-    `${definition.questions.length} vragen`;
+    typeof definition.getIntroQuestionCountText === "function"
+      ? definition.getIntroQuestionCountText({ definition, activeSession })
+      : `${definition.questions.length} vragen`;
 
   testEstimatedTime.textContent =
     definition.estimatedTime;
@@ -342,19 +349,35 @@ function renderCurrentQuestion() {
           ) * 100
         );
 
+  const customProgress =
+    typeof definition.getProgress === "function"
+      ? definition.getProgress({
+          definition,
+          session,
+          question,
+          currentIndex: safeQuestionIndex,
+          totalQuestions
+        })
+      : null;
+
   questionTestTitle.textContent =
     definition.title;
 
   questionCounter.textContent =
-    isAdditionalQuestion
-      ? `Aanvullende vraag ${additionalQuestionNumber} van ${additionalQuestionCount}`
-      : `Vraag ${questionNumber} van ${baseQuestionCount}`;
+    customProgress?.counter || (
+      isAdditionalQuestion
+        ? `Aanvullende vraag ${additionalQuestionNumber} van ${additionalQuestionCount}`
+        : `Vraag ${questionNumber} van ${baseQuestionCount}`
+    );
+
+  const visibleProgress =
+    customProgress?.percentage ?? progressPercentage;
 
   questionPercentage.textContent =
-    `${progressPercentage}%`;
+    `${visibleProgress}%`;
 
   questionProgressBar.style.width =
-    `${progressPercentage}%`;
+    `${visibleProgress}%`;
 
   questionCategory.textContent =
     question.category || "";
@@ -367,10 +390,12 @@ function renderCurrentQuestion() {
     "Vraagtekst niet beschikbaar.";
 
   updateTestTopbar(
-    isAdditionalQuestion
-      ? `Aanvullende vraag ${additionalQuestionNumber} van ${additionalQuestionCount}`
-      : `Vraag ${questionNumber} van ${baseQuestionCount}`,
-    progressPercentage
+    customProgress?.label || (
+      isAdditionalQuestion
+        ? `Aanvullende vraag ${additionalQuestionNumber} van ${additionalQuestionCount}`
+        : `Vraag ${questionNumber} van ${baseQuestionCount}`
+    ),
+    visibleProgress
   );
 
   previousQuestionButton.disabled =
@@ -390,15 +415,17 @@ function renderCurrentQuestion() {
       "function";
 
   nextQuestionButton.textContent =
-    isLastSessionQuestion
-      ? (
-          mayNeedAdditionalQuestions
-            ? "Resultaat berekenen"
-            : "Bekijk mijn resultaat"
-        )
-      : isAdditionalQuestion
-        ? "Volgende aanvullende vraag"
-        : "Volgende vraag";
+    customProgress?.nextLabel || (
+      isLastSessionQuestion
+        ? (
+            mayNeedAdditionalQuestions
+              ? "Resultaat berekenen"
+              : "Bekijk mijn resultaat"
+          )
+        : isAdditionalQuestion
+          ? "Volgende aanvullende vraag"
+          : "Volgende vraag"
+    );
 
   answerWarning.hidden = true;
   answerOptions.replaceChildren();
@@ -654,6 +681,26 @@ function goToNextQuestion() {
   if (!hasValidCurrentAnswer) {
     answerWarning.hidden = false;
     return;
+  }
+
+  if (typeof definition.prepareNextQuestion === "function") {
+    const customAdvance = definition.prepareNextQuestion({
+      definition,
+      session,
+      currentQuestion
+    }) || {};
+
+    saveState();
+
+    if (customAdvance.complete === true) {
+      completeActiveTest();
+      return;
+    }
+
+    sessionQuestions = getQuestionsForSession(
+      definition,
+      session
+    );
   }
 
   const isLastQuestion =
