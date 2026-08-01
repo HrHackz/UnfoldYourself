@@ -365,7 +365,7 @@ function openPersonalityModelChooser() {
   backButton.className =
     "button button-ghost personality-model-back";
   backButton.textContent =
-    "← Terug naar Persoonlijkheid";
+    `← Terug naar ${domain.title}`;
 
   backButton.addEventListener(
     "click",

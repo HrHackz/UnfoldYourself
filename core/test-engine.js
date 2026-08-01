@@ -171,7 +171,13 @@ function showTestIntroduction() {
   const activeSession =
     getActiveTestSession(activeTestId);
 
+  const catalogDomain =
+    domains.find(domain => {
+      return domain.id === definition.domainId;
+    });
+
   testIntroDomain.textContent =
+    catalogDomain?.title ||
     definition.domainTitle;
 
   testWorkspaceTitle.textContent =
