@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v13";
+const CACHE_VERSION = "v14";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -38,6 +38,9 @@ const CORE_APP_FILES = [
   "./tests/career-interest/scoring.js",
   "./tests/career-interest/renderer.js",
   "./tests/career-interest/engine.js",
+  "./tests/work-values/scoring.js",
+  "./tests/work-values/renderer.js",
+  "./tests/work-values/engine.js",
   "./core/test-registry.js",
   "./core/storage.js",
   "./core/backup.js",
@@ -81,7 +84,10 @@ const TEST_DATA_FILES = [
   "./data/identity-intersectionality/interpretations.js",
   "./data/career-interest/questions.js",
   "./data/career-interest/skills.js",
-  "./data/career-interest/occupations.js"
+  "./data/career-interest/occupations.js",
+  "./data/work-values/questions.js",
+  "./data/work-values/interpretations.js",
+  "./data/work-values/sources.js"
 ];
 
 
