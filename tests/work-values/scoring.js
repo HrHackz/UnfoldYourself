@@ -1,22 +1,22 @@
 "use strict";
 
-const WORK_VALUES_HIGH_THRESHOLD = 67;
-const WORK_VALUES_PROFILE_THRESHOLD = 55;
+const WORK_VALUES_HIGH_THRESHOLD = 70;
+const WORK_VALUES_PROFILE_THRESHOLD = 58;
 
 function clampWorkValue(value, minimum = 0, maximum = 100) {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-function roundWorkValue(value) {
-  return Math.round(clampWorkValue(value));
+function scoreWorkValuesResponse(answer) {
+  const value = Number(answer);
+  if (!Number.isInteger(value) || value < 1 || value > 5) return null;
+  return ((value - 1) / 4) * 100;
 }
 
-function getWorkValueImpactScore(answer) {
-  return roundWorkValue(((Number(answer) + 3) / 6) * 100);
-}
-
-function getWorkValueDemotivatorSensitivity(answer) {
-  return roundWorkValue(((3 - Number(answer)) / 6) * 100);
+function averageWorkValues(scores) {
+  const valid = scores.filter(Number.isFinite);
+  if (valid.length === 0) return 0;
+  return Math.round(valid.reduce((sum, value) => sum + value, 0) / valid.length);
 }
 
 function classifyWorkValueMatrix(motivatorScore, sensitivityScore) {
@@ -30,66 +30,29 @@ function classifyWorkValueMatrix(motivatorScore, sensitivityScore) {
 }
 
 function calculateWorkValuesResult({ session, testId }) {
-  const dimensionMap = Object.fromEntries(
-    (window.WORK_VALUES_DIMENSIONS || []).map(dimension => [
-      dimension.id,
-      {
-        ...dimension,
-        priorityPoints: 0,
-        motivatorAnswer: null,
-        demotivatorAnswer: null
-      }
-    ])
-  );
+  const questions = window.WORK_VALUES_QUESTIONS || [];
+  const dimensions = window.WORK_VALUES_DIMENSIONS || [];
 
-  (window.WORK_VALUES_ALLOCATION_QUESTIONS || []).forEach(question => {
-    const answer = session.answers?.[question.id] || {};
+  const dimensionResults = dimensions.map(dimension => {
+    const dimensionQuestions = questions.filter(question => question.dimension === dimension.id);
+    const scoredItems = dimensionQuestions.map(question => ({
+      ...question,
+      score: scoreWorkValuesResponse(session.answers?.[question.id])
+    }));
 
-    question.items.forEach(item => {
-      const value = Number(answer[item.dimension]);
-      if (Number.isFinite(value)) {
-        dimensionMap[item.dimension].priorityPoints += value;
-      }
-    });
-  });
+    const valueScores = scoredItems.filter(item => item.facet === "value").map(item => item.score);
+    const motivatorScores = scoredItems.filter(item => item.facet === "motivator").map(item => item.score);
+    const demotivatorScores = scoredItems.filter(item => item.facet === "demotivator").map(item => item.score);
 
-  (window.WORK_VALUES_IMPACT_QUESTIONS || []).forEach(question => {
-    const answer = session.answers?.[question.id];
-    if (!Number.isFinite(Number(answer))) return;
-
-    if (question.polarity === "motivator") {
-      dimensionMap[question.dimension].motivatorAnswer = Number(answer);
-    } else {
-      dimensionMap[question.dimension].demotivatorAnswer = Number(answer);
-    }
-  });
-
-  const dimensionResults = (window.WORK_VALUES_DIMENSIONS || []).map(dimension => {
-    const values = dimensionMap[dimension.id];
-    const priorityScore = roundWorkValue((values.priorityPoints / 30) * 100);
-    const motivatorScore = getWorkValueImpactScore(values.motivatorAnswer);
-    const demotivatorSensitivity = getWorkValueDemotivatorSensitivity(values.demotivatorAnswer);
-    const totalScore = roundWorkValue(
-      0.60 * priorityScore +
-      0.20 * motivatorScore +
-      0.20 * demotivatorSensitivity
-    );
-    const matrixType = classifyWorkValueMatrix(
-      motivatorScore,
-      demotivatorSensitivity
-    );
+    const workValueScore = averageWorkValues(valueScores);
+    const motivatorScore = averageWorkValues(motivatorScores);
+    const demotivatorSensitivity = averageWorkValues(demotivatorScores);
+    const totalScore = averageWorkValues(scoredItems.map(item => item.score));
+    const matrixType = classifyWorkValueMatrix(motivatorScore, demotivatorSensitivity);
 
     return {
-      id: dimension.id,
-      title: dimension.title,
-      short: dimension.short,
-      description: dimension.description,
-      seeks: dimension.seeks,
-      supports: dimension.supports,
-      risk: dimension.risk,
-      vacancyQuestion: dimension.vacancyQuestion,
-      priorityPoints: values.priorityPoints,
-      priorityScore,
+      ...dimension,
+      workValueScore,
       motivatorScore,
       demotivatorSensitivity,
       totalScore,
@@ -101,11 +64,17 @@ function calculateWorkValuesResult({ session, testId }) {
 
   const ranking = [...dimensionResults].sort((a, b) =>
     b.totalScore - a.totalScore ||
-    b.priorityScore - a.priorityScore ||
+    b.workValueScore - a.workValueScore ||
     a.title.localeCompare(b.title, "nl-BE")
   );
 
-  const topDimensions = ranking.slice(0, 3);
+  const profileSpread = ranking.length > 1
+    ? ranking[0].totalScore - ranking[ranking.length - 1].totalScore
+    : 0;
+  const hasClearDifferences = profileSpread >= 10;
+  const topDimensions = hasClearDifferences
+    ? ranking.slice(0, 3)
+    : [];
   const minimumNeeds = [...dimensionResults]
     .filter(item => item.demotivatorSensitivity >= WORK_VALUES_HIGH_THRESHOLD)
     .sort((a, b) => b.demotivatorSensitivity - a.demotivatorSensitivity)
@@ -117,17 +86,13 @@ function calculateWorkValuesResult({ session, testId }) {
 
   const tensions = (window.WORK_VALUES_TENSIONS || [])
     .map(tension => {
-      const [firstId, secondId] = tension.ids;
-      const first = dimensionResults.find(item => item.id === firstId);
-      const second = dimensionResults.find(item => item.id === secondId);
+      const first = dimensionResults.find(item => item.id === tension.ids[0]);
+      const second = dimensionResults.find(item => item.id === tension.ids[1]);
       if (!first || !second) return null;
       const relevance = Math.min(first.totalScore, second.totalScore);
-      if (relevance < WORK_VALUES_PROFILE_THRESHOLD) return null;
-      return {
-        ...tension,
-        relevance,
-        dimensions: [first.title, second.title]
-      };
+      return relevance >= WORK_VALUES_PROFILE_THRESHOLD
+        ? { ...tension, relevance }
+        : null;
     })
     .filter(Boolean)
     .sort((a, b) => b.relevance - a.relevance)
@@ -139,28 +104,27 @@ function calculateWorkValuesResult({ session, testId }) {
 
   const vacancyQuestions = [];
   [...topDimensions, ...minimumNeeds].forEach(item => {
-    if (
-      item?.vacancyQuestion &&
-      !vacancyQuestions.includes(item.vacancyQuestion)
-    ) {
+    if (item?.vacancyQuestion && !vacancyQuestions.includes(item.vacancyQuestion)) {
       vacancyQuestions.push(item.vacancyQuestion);
     }
   });
 
-  const mainDisplay = topDimensions.map(item => item.short).join(" · ");
-  const summary = topDimensions.length === 3
-    ? `Je werkwaardenprofiel wordt vooral gekenmerkt door ${topDimensions[0].title.toLowerCase()}, ${topDimensions[1].title.toLowerCase()} en ${topDimensions[2].title.toLowerCase()}.`
-    : "Je werkwaardenprofiel is berekend.";
+  const mainDisplay = hasClearDifferences
+    ? topDimensions.map(item => item.short).join(" · ")
+    : "Evenwichtig profiel";
+  const summary = hasClearDifferences && topDimensions.length === 3
+    ? `Je profiel wordt vooral gekenmerkt door ${topDimensions[0].title.toLowerCase()}, ${topDimensions[1].title.toLowerCase()} en ${topDimensions[2].title.toLowerCase()}.`
+    : "Je scores liggen dicht bij elkaar. Er is daarom geen kunstmatig scherpe topdrie opgelegd.";
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     testId,
     testTitle: "Werkwaarden- en werkmotivatietest",
     completedAt: new Date().toISOString(),
     resultType: "work-values-motivation-profile",
     mainScoreDisplay: mainDisplay,
     mainScoreHeading: "Jouw belangrijkste werkdrijfveren",
-    mainLabel: "wat je in werk zoekt en nodig hebt",
+    mainLabel: "wat je in werk zoekt, waardeert en nodig hebt",
     summary,
     dimensions: dimensionResults.map(item => ({
       id: item.id,
@@ -169,17 +133,17 @@ function calculateWorkValuesResult({ session, testId }) {
       description: item.description
     })),
     dimensionResults,
+    profileSpread,
+    hasClearDifferences,
     topDimensions,
     minimumNeeds,
     extraMotivators,
     tensions,
     contextDimensions,
     vacancyQuestions: vacancyQuestions.slice(0, 7),
-    strengths: topDimensions.map(item =>
-      `${item.title}: je zoekt vooral ${item.seeks}.`
-    ),
+    strengths: topDimensions.map(item => `${item.title}: je zoekt vooral ${item.seeks}.`),
     development: [],
-    meaning: "De totaalscore combineert je relatieve prioriteiten met situaties die je waarschijnlijk motiveren of juist demotiveren. De drie deelscores blijven afzonderlijk zichtbaar in het rapport.",
-    advice: "Gebruik dit profiel om functies en werkgevers gerichter te vergelijken. Let daarbij niet alleen op functietitels, maar vooral op werkafspraken, verantwoordelijkheden, samenwerking en dagelijkse werkomstandigheden."
+    meaning: "Iedere dimensie is gemeten met vijf korte stellingen: twee over wat je belangrijk vindt, één over wat je motiveert en twee over wat je kan demotiveren.",
+    advice: "Gebruik dit profiel om functies en werkgevers te vergelijken op dagelijkse werkkenmerken, afspraken en verantwoordelijkheden."
   };
 }

@@ -35,13 +35,12 @@ function createWorkValuesDimensionDetail(item) {
 
   const metrics = createWorkValuesElement("div", "work-values-metric-grid");
   metrics.append(
-    createWorkValuesMetric("Prioriteit", item.priorityScore, "is-priority"),
+    createWorkValuesMetric("Werkwaarde", item.workValueScore, "is-priority"),
     createWorkValuesMetric("Motiverend effect", item.motivatorScore, "is-motivator"),
     createWorkValuesMetric("Demotivatorgevoeligheid", item.demotivatorSensitivity, "is-demotivator")
   );
 
-  const explanation = createWorkValuesElement("p", "work-values-matrix-copy", item.matrixDescription);
-  card.append(header, metrics, explanation);
+  card.append(header, metrics, createWorkValuesElement("p", "work-values-matrix-copy", item.matrixDescription));
   return card;
 }
 
@@ -67,12 +66,7 @@ function appendWorkValuesListCard({ label, title, intro, items, emptyText, itemB
 }
 
 function renderWorkValuesResult(result) {
-  [
-    "resultStrengthsCard",
-    "resultDevelopmentCard",
-    "resultMeaningCard",
-    "resultAdviceCard"
-  ].forEach(id => {
+  ["resultStrengthsCard", "resultDevelopmentCard", "resultMeaningCard", "resultAdviceCard"].forEach(id => {
     const element = document.getElementById(id);
     if (element) element.hidden = true;
   });
@@ -82,8 +76,8 @@ function renderWorkValuesResult(result) {
   overview.style.gridColumn = "1 / -1";
   overview.append(
     createWorkValuesElement("span", "result-card-label", "Volledig profiel"),
-    createWorkValuesElement("h3", "", "Hoe je negen werkdrijfveren zijn opgebouwd"),
-    createWorkValuesElement("p", "", "Per dimensie zie je drie verschillende signalen: relatieve prioriteit, het motiverende effect van een positieve werksituatie en de gevoeligheid voor een mogelijk demotiverende situatie.")
+    createWorkValuesElement("h3", "", "Jouw negen werkdrijfveren"),
+    createWorkValuesElement("p", "", "Per dimensie zie je wat je belangrijk vindt, welk kenmerk je actief motiveert en hoe gevoelig je bent voor het ontbreken ervan. Een hoge score is niet beter dan een lage score.")
   );
   const detailGrid = createWorkValuesElement("div", "work-values-dimension-grid");
   result.dimensionResults
@@ -95,8 +89,8 @@ function renderWorkValuesResult(result) {
 
   appendWorkValuesListCard({
     label: "Topdrijfveren",
-    title: "Jouw belangrijkste drijfveren",
-    intro: "Deze drie werkwaarden wegen het zwaarst in je totale profiel. Ze beschrijven wat je waarschijnlijk actief zoekt in werk.",
+    title: "Wat voor jou het zwaarst weegt",
+    intro: "Deze drie dimensies hebben de sterkste totale invloed op wat je in werk zoekt en hoe je motivatie reageert.",
     items: result.topDimensions,
     emptyText: "Er konden geen duidelijke topdrijfveren worden bepaald.",
     itemBuilder(item) {
@@ -105,12 +99,11 @@ function renderWorkValuesResult(result) {
         createWorkValuesElement("div", "work-values-highlight-score", `${item.totalScore}%`),
         createWorkValuesElement("div", "work-values-highlight-copy")
       );
-      const copy = block.lastElementChild;
-      copy.append(
+      block.lastElementChild.append(
         createWorkValuesElement("h4", "", item.title),
         createWorkValuesElement("p", "", `Je zoekt vooral ${item.seeks}.`),
         createWorkValuesElement("p", "", `Dit wordt ondersteund door ${item.supports}.`),
-        createWorkValuesElement("p", "work-values-risk-copy", `Let op voor ${item.risk}.`)
+        createWorkValuesElement("p", "work-values-risk-copy", `Mogelijk demotiverend: ${item.risk}.`)
       );
       return block;
     }
@@ -118,16 +111,16 @@ function renderWorkValuesResult(result) {
 
   appendWorkValuesListCard({
     label: "Randvoorwaarden",
-    title: "Wat je minimaal nodig hebt",
-    intro: "Deze werkwaarden hebben een hoge demotivatorgevoeligheid. Hun aanwezigheid geeft niet altijd extra energie, maar het ontbreken ervan kan wel duidelijk frustreren.",
+    title: "Wat je minimaal nodig kunt hebben",
+    intro: "Deze dimensies hebben een hoge demotivatorgevoeligheid. Het ontbreken ervan kan je motivatie duidelijk ondermijnen.",
     items: result.minimumNeeds,
-    emptyText: "Geen enkele dimensie kwam als sterke minimale randvoorwaarde naar voren.",
+    emptyText: "Geen dimensie kwam als uitgesproken minimale randvoorwaarde naar voren.",
     itemBuilder(item) {
       const row = createWorkValuesElement("section", "work-values-simple-row");
       row.append(
         createWorkValuesElement("strong", "", item.title),
         createWorkValuesElement("span", "work-values-row-score", `${item.demotivatorSensitivity}% gevoeligheid`),
-        createWorkValuesElement("p", "", `Waarschijnlijk werkt vooral ${item.risk} demotiverend.`)
+        createWorkValuesElement("p", "", `Let vooral op ${item.risk}.`)
       );
       return row;
     }
@@ -135,10 +128,10 @@ function renderWorkValuesResult(result) {
 
   appendWorkValuesListCard({
     label: "Energiebronnen",
-    title: "Wat je extra motiveert",
-    intro: "Deze situaties kunnen je motivatie actief versterken wanneer ze voldoende aanwezig zijn in het werk.",
+    title: "Wat je extra kan motiveren",
+    intro: "Deze werkkenmerken kunnen je energie en betrokkenheid actief versterken.",
     items: result.extraMotivators,
-    emptyText: "Geen enkele dimensie overschreed de drempel voor een uitgesproken extra motivator.",
+    emptyText: "Geen dimensie overschreed de drempel voor een uitgesproken extra motivator.",
     itemBuilder(item) {
       const row = createWorkValuesElement("section", "work-values-simple-row");
       row.append(
@@ -153,15 +146,12 @@ function renderWorkValuesResult(result) {
   appendWorkValuesListCard({
     label: "Combinaties",
     title: "Mogelijke spanningsvelden",
-    intro: "Sterke werkwaarden kunnen elkaar aanvullen, maar soms ook verschillende voorwaarden vragen. Deze combinaties helpen je genuanceerder naar functies en werkgevers te kijken.",
+    intro: "Sterke werkwaarden kunnen elkaar aanvullen, maar soms verschillende voorwaarden vragen.",
     items: result.tensions,
-    emptyText: "Er kwamen geen van de vooraf gedefinieerde spanningsvelden sterk genoeg naar voren.",
+    emptyText: "Er kwamen geen vooraf gedefinieerde spanningsvelden sterk genoeg naar voren.",
     itemBuilder(item) {
       const row = createWorkValuesElement("section", "work-values-simple-row");
-      row.append(
-        createWorkValuesElement("strong", "", item.title),
-        createWorkValuesElement("p", "", item.text)
-      );
+      row.append(createWorkValuesElement("strong", "", item.title), createWorkValuesElement("p", "", item.text));
       return row;
     }
   });
@@ -169,9 +159,9 @@ function renderWorkValuesResult(result) {
   appendWorkValuesListCard({
     label: "Werkcontext",
     title: "Kenmerken van een passende werkcontext",
-    intro: "Dit zijn geen specifieke beroepen en ook geen geschiktheidsoordelen. Het zijn kenmerken die waarschijnlijk bijdragen aan een betere aansluiting tussen jou en je werk.",
+    intro: "Dit zijn werkkenmerken, geen specifieke beroepen en geen geschiktheidsoordelen.",
     items: result.contextDimensions,
-    emptyText: "Er konden nog geen duidelijke kenmerken van een passende werkcontext worden samengevat.",
+    emptyText: "Er konden nog geen duidelijke werkcontextkenmerken worden samengevat.",
     itemBuilder(item) {
       const row = createWorkValuesElement("section", "work-values-simple-row");
       row.append(
@@ -185,15 +175,12 @@ function renderWorkValuesResult(result) {
   appendWorkValuesListCard({
     label: "Praktische toepassing",
     title: "Vragen voor vacatures en gesprekken",
-    intro: "Gebruik deze vragen om vóór een keuze beter te onderzoeken hoe een functie en organisatie in de praktijk werken.",
+    intro: "Gebruik deze vragen om te onderzoeken hoe een functie en organisatie in de praktijk werken.",
     items: result.vacancyQuestions,
     emptyText: "Er konden geen gerichte vragen worden samengesteld.",
     itemBuilder(question) {
       const row = createWorkValuesElement("section", "work-values-question-row");
-      row.append(
-        createWorkValuesElement("span", "work-values-question-marker", "?"),
-        createWorkValuesElement("p", "", question)
-      );
+      row.append(createWorkValuesElement("span", "work-values-question-marker", "?"), createWorkValuesElement("p", "", question));
       return row;
     }
   });
@@ -203,8 +190,8 @@ function renderWorkValuesResult(result) {
   closing.style.gridColumn = "1 / -1";
   closing.append(
     createWorkValuesElement("span", "result-card-label", "Interpretatie"),
-    createWorkValuesElement("h3", "", "Gebruik het profiel als gesprek- en vergelijkingsinstrument"),
-    createWorkValuesElement("p", "", "Een hoge score is niet beter dan een lage score. Het profiel maakt zichtbaar welke kenmerken voor jou zwaarder wegen en welke situaties je motivatie waarschijnlijk versterken of ondermijnen. Vergelijk altijd de dagelijkse praktijk van een functie met het beeld in een vacaturetekst.")
+    createWorkValuesElement("h3", "", "Gebruik het profiel als vergelijkingsinstrument"),
+    createWorkValuesElement("p", "", "Vergelijk je profiel met de dagelijkse werkelijkheid van een functie. Kijk naar werkafspraken, verantwoordelijkheid, samenwerking, ontwikkelmogelijkheden en de concrete werkomgeving, niet alleen naar de functietitel.")
   );
   resultContentGrid.appendChild(closing);
 }
