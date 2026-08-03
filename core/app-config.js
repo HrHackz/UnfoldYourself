@@ -98,7 +98,7 @@ const domains = [
     "tests": [
       [
         "Leiderschapstest",
-        "Richting geven, ondersteunen, delegeren, besluiten, ontwikkelen, veranderen en ethisch inclusief leiden."
+        "Twaalf leiderschapsstijlen en de flexibiliteit waarmee je richting geeft, begeleidt, steunt en delegeert."
       ],
       [
         "Teamrol- en samenwerkingsstijltest",
