@@ -16,6 +16,143 @@ function getActiveTestSession(testId) {
 }
 
 
+/* =========================================================
+   INTERACTIEVE TESTTAKEN — VEILIGE LEVENSCYCLUS
+========================================================= */
+
+let activeQuestionCleanup = null;
+let testNavigationLocked = false;
+let testNavigationLockMessage = "Deze taak is nog bezig. Rond de huidige stap eerst af.";
+
+
+function registerActiveQuestionCleanup(cleanup) {
+  activeQuestionCleanup =
+    typeof cleanup === "function"
+      ? cleanup
+      : null;
+}
+
+
+function clearActiveQuestionResources(reason = "cleanup") {
+  const cleanup = activeQuestionCleanup;
+  activeQuestionCleanup = null;
+
+  if (typeof cleanup !== "function") {
+    return;
+  }
+
+  try {
+    cleanup(reason);
+  } catch (error) {
+    console.warn(
+      "Een interactieve testtaak kon niet volledig worden opgeruimd.",
+      error
+    );
+  }
+}
+
+
+function setTestNavigationLocked(locked, message) {
+  testNavigationLocked = Boolean(locked);
+
+  if (typeof message === "string" && message.trim()) {
+    testNavigationLockMessage = message.trim();
+  }
+
+  const session = activeTestId
+    ? getActiveTestSession(activeTestId)
+    : null;
+
+  previousQuestionButton.disabled =
+    testNavigationLocked ||
+    !session ||
+    Number(session.currentQuestionIndex || 0) === 0;
+
+  nextQuestionButton.disabled = testNavigationLocked;
+  saveAndExitButton.disabled = testNavigationLocked;
+}
+
+
+function configureQuestionNavigation(options = {}) {
+  if (typeof options.previousHidden === "boolean") {
+    previousQuestionButton.hidden = options.previousHidden;
+  }
+
+  if (typeof options.nextHidden === "boolean") {
+    nextQuestionButton.hidden = options.nextHidden;
+  }
+
+  if (typeof options.saveExitHidden === "boolean") {
+    saveAndExitButton.hidden = options.saveExitHidden;
+  }
+
+  if (typeof options.previousLabel === "string") {
+    previousQuestionButton.textContent = options.previousLabel;
+  }
+
+  if (typeof options.nextLabel === "string") {
+    nextQuestionButton.textContent = options.nextLabel;
+  }
+}
+
+
+function resetQuestionNavigationState() {
+  previousQuestionButton.hidden = false;
+  nextQuestionButton.hidden = false;
+  saveAndExitButton.hidden = false;
+  previousQuestionButton.textContent = "Vorige vraag";
+  testNavigationLocked = false;
+  testNavigationLockMessage =
+    "Deze taak is nog bezig. Rond de huidige stap eerst af.";
+  nextQuestionButton.disabled = false;
+  saveAndExitButton.disabled = false;
+}
+
+
+function createQuestionInteractionApi(definition, session, question) {
+  return {
+    definition,
+    session,
+    question,
+    state,
+    testId: activeTestId,
+    save() {
+      session.updatedAt = new Date().toISOString();
+      saveState();
+    },
+    rerender() {
+      renderCurrentQuestion();
+    },
+    close(message) {
+      session.updatedAt = new Date().toISOString();
+      saveState();
+      closeTestWorkspace();
+
+      if (typeof message === "string" && message.trim()) {
+        showToast(message.trim());
+      }
+    },
+    complete() {
+      session.updatedAt = new Date().toISOString();
+      saveState();
+      completeActiveTest();
+    },
+    setNavigationLocked(locked, message) {
+      setTestNavigationLocked(locked, message);
+    },
+    configureNavigation(options) {
+      configureQuestionNavigation(options);
+    },
+    registerCleanup(cleanup) {
+      registerActiveQuestionCleanup(cleanup);
+    },
+    updateTopbar(label, percentage) {
+      updateTestTopbar(label, percentage);
+    }
+  };
+}
+
+
 function createTestSession(
   definition
 ) {
@@ -91,6 +228,8 @@ function showTestWorkspace() {
 
 
 function closeTestWorkspace() {
+  clearActiveQuestionResources("workspace-closed");
+  resetQuestionNavigationState();
   testWorkspace.hidden = true;
 
   document.body.classList.remove("test-active");
@@ -124,6 +263,10 @@ function updateTestTopbar(label, percentage) {
 
 
 function openTestFlow(testId) {
+  if (activeTestId && activeTestId !== testId) {
+    clearActiveQuestionResources("test-changed");
+  }
+
   const definition = getTestDefinition(testId);
 
   if (!definition) {
@@ -214,6 +357,52 @@ testEvidenceDisclaimer.textContent =
   evidence.disclaimer ||
   "Dit resultaat is bedoeld voor zelfinzicht en persoonlijke ontwikkeling.";
 
+  const defaultGuidance = [
+    "Antwoord zo eerlijk mogelijk vanuit je normale gedrag.",
+    "Kies niet wat sociaal wenselijk of professioneel ideaal klinkt.",
+    "Denk aan hoe je meestal handelt, niet aan één uitzonderlijke situatie."
+  ];
+
+  const guidanceItems =
+    Array.isArray(definition.introGuidance) && definition.introGuidance.length > 0
+      ? definition.introGuidance
+      : defaultGuidance;
+
+  testGuidanceList.replaceChildren();
+  guidanceItems.forEach(itemText => {
+    const item = document.createElement("li");
+    item.textContent = String(itemText);
+    testGuidanceList.appendChild(item);
+  });
+
+  const defaultPreviewItems = [
+    "Kernresultaat",
+    "Scores per onderdeel",
+    "Sterktes en ontwikkelpunten",
+    "Praktische betekenis",
+    "Persoonlijke ontwikkeltips"
+  ];
+
+  const previewItems =
+    Array.isArray(definition.previewItems) && definition.previewItems.length > 0
+      ? definition.previewItems
+      : defaultPreviewItems;
+
+  testPreviewTitle.textContent =
+    definition.previewTitle ||
+    "Een persoonlijk testresultaat";
+
+  testPreviewList.replaceChildren();
+  previewItems.forEach(itemText => {
+    const item = document.createElement("li");
+    item.textContent = String(itemText);
+    testPreviewList.appendChild(item);
+  });
+
+  testPreviewText.textContent =
+    definition.previewText ||
+    "Het resultaat wordt toegevoegd aan je centrale profiel.";
+
   if (activeSession) {
     const answeredQuestions =
       Object.keys(activeSession.answers || {}).length;
@@ -288,6 +477,9 @@ function renderCurrentQuestion() {
   if (!definition || !session) {
     return;
   }
+
+  clearActiveQuestionResources("question-rendered");
+  resetQuestionNavigationState();
 
   const sessionQuestions =
     getQuestionsForSession(
@@ -389,6 +581,14 @@ function renderCurrentQuestion() {
     question.text ||
     "Vraagtekst niet beschikbaar.";
 
+  questionInstruction.textContent =
+    question.instruction ||
+    definition.questionInstruction ||
+    "Kies het antwoord dat het beste bij jou past.";
+
+  questionInstruction.hidden =
+    !questionInstruction.textContent;
+
   updateTestTopbar(
     customProgress?.label || (
       isAdditionalQuestion
@@ -449,10 +649,21 @@ if (currentChoices.length === 0) {
 
 if (typeof definition.renderQuestionInput === "function") {
   const handled = definition.renderQuestionInput({
+    definition,
+    session,
+    state,
+    testId: activeTestId,
+    currentIndex: safeQuestionIndex,
+    totalQuestions,
     question,
     choices: currentChoices,
     selectedAnswer,
     container: answerOptions,
+    interactionApi: createQuestionInteractionApi(
+      definition,
+      session,
+      question
+    ),
     onChange(value) {
       session.answers[question.id] = value;
       answerWarning.hidden = true;
@@ -651,6 +862,11 @@ function selectCurrentAnswer(
 
 
 function goToNextQuestion() {
+  if (testNavigationLocked) {
+    showToast(testNavigationLockMessage);
+    return;
+  }
+
   const definition =
     getTestDefinition(activeTestId);
 
@@ -682,6 +898,8 @@ function goToNextQuestion() {
     answerWarning.hidden = false;
     return;
   }
+
+  clearActiveQuestionResources("next-question");
 
   if (typeof definition.prepareNextQuestion === "function") {
     const customAdvance = definition.prepareNextQuestion({
@@ -770,6 +988,11 @@ function goToNextQuestion() {
 
 
 function goToPreviousQuestion() {
+  if (testNavigationLocked) {
+    showToast(testNavigationLockMessage);
+    return;
+  }
+
   const session =
     getActiveTestSession(activeTestId);
 
@@ -778,6 +1001,7 @@ function goToPreviousQuestion() {
   }
 
   if (session.currentQuestionIndex > 0) {
+    clearActiveQuestionResources("previous-question");
     session.currentQuestionIndex -= 1;
 
     saveState();
@@ -787,6 +1011,7 @@ function goToPreviousQuestion() {
 
 
 function saveAndExitTest() {
+  clearActiveQuestionResources("save-and-exit");
   saveState();
   closeTestWorkspace();
 
@@ -829,6 +1054,8 @@ function calculateActiveTestResult() {
 
 
 function completeActiveTest() {
+  clearActiveQuestionResources("test-completed");
+
   const result =
     calculateActiveTestResult();
 
@@ -866,6 +1093,8 @@ function completeActiveTest() {
 }
 
 function restartActiveTest() {
+  clearActiveQuestionResources("test-restarted");
+
   if (!activeTestId) {
     return;
   }

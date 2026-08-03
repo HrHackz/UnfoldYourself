@@ -40,6 +40,10 @@ const testEstimatedTime = document.querySelector("#testEstimatedTime");
 const testEvidenceSummary = document.querySelector("#testEvidenceSummary");
 const testEvidenceSource = document.querySelector("#testEvidenceSource");
 const testEvidenceDisclaimer = document.querySelector("#testEvidenceDisclaimer");
+const testGuidanceList = document.querySelector("#testGuidanceList");
+const testPreviewTitle = document.querySelector("#testPreviewTitle");
+const testPreviewList = document.querySelector("#testPreviewList");
+const testPreviewText = document.querySelector("#testPreviewText");
 
 const beginTestButton = document.querySelector("#beginTestButton");
 const cancelTestButton = document.querySelector("#cancelTestButton");
@@ -52,6 +56,7 @@ const questionPercentage = document.querySelector("#questionPercentage");
 const questionProgressBar = document.querySelector("#questionProgressBar");
 const questionCategory = document.querySelector("#questionCategory");
 const questionText = document.querySelector("#questionText");
+const questionInstruction = document.querySelector("#questionInstruction");
 const answerOptions = document.querySelector("#answerOptions");
 const answerWarning = document.querySelector("#answerWarning");
 

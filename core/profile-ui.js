@@ -113,6 +113,10 @@ function createCatalogTestCard(
       state.activeTests[testId]
     );
 
+  const isInDevelopment =
+    testDefinition?.developmentStatus ===
+      "in-development";
+
   const article =
     document.createElement(
       "article"
@@ -120,6 +124,11 @@ function createCatalogTestCard(
 
   article.className =
     "test-card";
+
+  article.classList.toggle(
+    "is-development",
+    isInDevelopment
+  );
 
   const copy =
     document.createElement(
@@ -157,6 +166,9 @@ function createCatalogTestCard(
   } else if (isActive) {
     status.textContent =
       "IN UITVOERING";
+  } else if (isInDevelopment) {
+    status.textContent =
+      "IN OPBOUW";
   } else if (testDefinition) {
     status.textContent =
       "BESCHIKBAAR";
@@ -197,6 +209,14 @@ function createCatalogTestCard(
   } else if (isActive) {
     actionButton.textContent =
       "Ga verder";
+
+    actionButton.addEventListener(
+      "click",
+      () => openTestFlow(testId)
+    );
+  } else if (isInDevelopment) {
+    actionButton.textContent =
+      "Bekijk testopbouw";
 
     actionButton.addEventListener(
       "click",

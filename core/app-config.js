@@ -80,25 +80,17 @@ const domains = [
   },
   {
     "id": "vaardigheden",
-    "short": "VP",
-    "title": "Vaardigheden & professioneel werkgedrag",
+    "short": "DV",
+    "title": "Digitale vaardigheden",
     "color": "#159b83",
     "tests": [
       [
-        "Softskillstest",
-        "Communicatie, samenwerking, probleemoplossing, aanpassingsvermogen, organisatie, zelfmanagement, professioneel handelen en feedback."
-      ],
-      [
         "Digitale basisvaardigheden- en AI-test",
-        "Digitale informatie, communicatie, gegevensbeheer, hulpmiddelen, AI, privacy, inclusie en probleemoplossing."
+        "Praktisch digitaal inzicht, informatievaardigheden en verantwoord gebruik van digitale hulpmiddelen en AI."
       ],
       [
         "Digitale werkplektest",
-        "Afzonderlijke niveaus voor Windows, Word, Excel en PowerPoint, samengebracht in één werkplekprofiel."
-      ],
-      [
-        "Computerbeveiligingstest",
-        "Phishing, wachtwoorden, privacy, updates, apparaten, gegevensdeling en veilig digitaal werken."
+        "Digitaal samenwerken, bestanden beheren en werken met gangbare kantoor- en communicatieomgevingen."
       ]
     ]
   },

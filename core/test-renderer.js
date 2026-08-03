@@ -772,6 +772,11 @@ function renderTestResult(result) {
   hideAllTestScreens();
   resultScreen.hidden = false;
 
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
+
   updateTestTopbar(
     "Test voltooid",
     100

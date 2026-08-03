@@ -23,6 +23,7 @@
 
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./fixes.css">
+  <link rel="stylesheet" href="./tests/cognitive-battery/styles.css">
 </head>
 
 <body>
@@ -109,9 +110,9 @@
           </h1>
 
           <p class="hero-intro">
-            Kies uit zeventien testen binnen zeven duidelijke profielgebieden.
-            Zeven testen zijn beschikbaar en tien aanvullende testen staan
-            klaar in de roadmap. Je resultaten worden lokaal bewaard.
+            Kies uit zestien testen binnen zeven duidelijke profielgebieden.
+            Negen testen zijn beschikbaar en zeven aanvullende testen staan
+            in de roadmap. Je resultaten worden lokaal bewaard.
           </p>
 
           <div class="hero-actions">
@@ -168,7 +169,7 @@
           >
             <div class="progress-ring-inner">
               <strong id="heroCompletedCount">0</strong>
-              <span>van 17 testen</span>
+              <span>van 15 testen</span>
             </div>
           </div>
 
@@ -179,7 +180,7 @@
             </div>
 
             <div>
-              <strong>17</strong>
+              <strong>16</strong>
               <span>testen in de roadmap</span>
             </div>
           </div>
@@ -231,7 +232,7 @@
           </div>
 
           <strong id="totalProgressText">
-            0 van 17 voltooid
+            0 van 16 voltooid
           </strong>
         </div>
 
@@ -509,7 +510,7 @@
                   Voor je begint
                 </h3>
 
-                <ul>
+                <ul id="testGuidanceList">
                   <li>
                     Antwoord zo eerlijk mogelijk vanuit je normale gedrag.
                   </li>
@@ -587,11 +588,11 @@
                 Je ontvangt
               </span>
 
-              <h3>
+              <h3 id="testPreviewTitle">
                 Een persoonlijk testresultaat
               </h3>
 
-              <ul>
+              <ul id="testPreviewList">
                 <li>Kernresultaat</li>
                 <li>Scores per onderdeel</li>
                 <li>Sterktes en ontwikkelpunten</li>
@@ -599,7 +600,7 @@
                 <li>Persoonlijke ontwikkeltips</li>
               </ul>
 
-              <p>
+              <p id="testPreviewText">
                 Het resultaat wordt toegevoegd aan je centrale profiel.
               </p>
             </aside>
@@ -668,7 +669,7 @@
                 Hier verschijnt de vraag.
               </h2>
 
-              <p class="question-instruction">
+              <p class="question-instruction" id="questionInstruction">
                 Kies het antwoord dat het beste bij jou past.
               </p>
 
@@ -1266,6 +1267,15 @@
 <script src="./data/work-values/questions.js" defer></script>
 <script src="./data/work-values/interpretations.js" defer></script>
 <script src="./data/work-values/sources.js" defer></script>
+<script src="./data/cognitive-battery/numerical.js" defer></script>
+<script src="./data/cognitive-battery/verbal.js" defer></script>
+<script src="./data/cognitive-battery/abstract-logical.js" defer></script>
+<script src="./data/cognitive-battery/spatial.js" defer></script>
+<script src="./data/cognitive-battery/attention.js" defer></script>
+<script src="./data/cognitive-battery/working-memory.js" defer></script>
+<script src="./data/cognitive-battery/critical-data.js" defer></script>
+<script src="./data/cognitive-battery/interpretations.js" defer></script>
+<script src="./data/cognitive-battery/sources.js" defer></script>
 
 
 <!-- Applicatiekern en testspecifieke modules; volgorde is bewust expliciet. -->
@@ -1288,6 +1298,14 @@
 <script src="./tests/work-values/scoring.js" defer></script>
 <script src="./tests/work-values/renderer.js" defer></script>
 <script src="./tests/work-values/engine.js" defer></script>
+<script src="./tests/cognitive-battery/session.js" defer></script>
+<script src="./tests/cognitive-battery/scoring.js" defer></script>
+<script src="./tests/cognitive-battery/visual-renderer.js" defer></script>
+<script src="./tests/cognitive-battery/attention-task.js" defer></script>
+<script src="./tests/cognitive-battery/working-memory-task.js" defer></script>
+<script src="./tests/cognitive-battery/reasoning-task.js" defer></script>
+<script src="./tests/cognitive-battery/renderer.js" defer></script>
+<script src="./tests/cognitive-battery/engine.js" defer></script>
 
 <script src="./core/test-registry.js" defer></script>
 <script src="./core/storage.js" defer></script>

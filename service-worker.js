@@ -8,22 +8,48 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v15";
+const CACHE_VERSION = "v27";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
 
 /* =========================================================
-   BESTANDEN DIE ALTIJD OFFLINE BESCHIKBAAR MOETEN ZIJN
+   VERPLICHTE APP-SHELL
+
+   Wanneer een van deze kernbestanden ontbreekt, wordt de nieuwe
+   serviceworker niet geactiveerd. Zo wordt geen onvolledige
+   basisapplicatie offline aangeboden.
 ========================================================= */
 
-const CORE_APP_FILES = [
+const ESSENTIAL_APP_FILES = [
   "./",
   "./index.html",
   "./styles.css",
   "./fixes.css",
   "./core/app-config.js",
   "./core/test-utils.js",
+  "./core/test-registry.js",
+  "./core/storage.js",
+  "./core/backup.js",
+  "./core/profile-ui.js",
+  "./core/test-engine.js",
+  "./core/test-renderer.js",
+  "./core/print.js",
+  "./core/ui-feedback.js",
+  "./app.js",
+  "./manifest.webmanifest",
+  "./favicon.svg"
+];
+
+
+/* =========================================================
+   AANVULLENDE OFFLINE BESTANDEN
+
+   Deze bestanden worden afzonderlijk gecachet. Eén fout pad
+   blokkeert daardoor niet langer de volledige installatie.
+========================================================= */
+
+const OPTIONAL_APP_FILES = [
   "./core/personality-answer-bank.js",
   "./tests/big-five-engine.js",
   "./tests/hexaco-engine.js",
@@ -41,31 +67,15 @@ const CORE_APP_FILES = [
   "./tests/work-values/scoring.js",
   "./tests/work-values/renderer.js",
   "./tests/work-values/engine.js",
-  "./core/test-registry.js",
-  "./core/storage.js",
-  "./core/backup.js",
-  "./core/profile-ui.js",
-  "./core/test-engine.js",
-  "./core/test-renderer.js",
-  "./core/print.js",
-  "./core/ui-feedback.js",
-  "./app.js",
-  "./manifest.webmanifest",
-  "./favicon.svg",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/apple-touch-icon.png"
-];
-
-
-/* =========================================================
-   TESTDATA
-
-   Voeg toekomstige losse testbestanden hier toe en controleer
-   ieder pad voordat de cacheversie wordt gepubliceerd.
-========================================================= */
-
-const TEST_DATA_FILES = [
+  "./tests/cognitive-battery/styles.css",
+  "./tests/cognitive-battery/session.js",
+  "./tests/cognitive-battery/scoring.js",
+  "./tests/cognitive-battery/visual-renderer.js",
+  "./tests/cognitive-battery/attention-task.js",
+  "./tests/cognitive-battery/working-memory-task.js",
+  "./tests/cognitive-battery/reasoning-task.js",
+  "./tests/cognitive-battery/renderer.js",
+  "./tests/cognitive-battery/engine.js",
   "./big-five-choices.js",
   "./big-five-questions.js",
   "./hexaco-answer-bank-map.js",
@@ -87,14 +97,86 @@ const TEST_DATA_FILES = [
   "./data/career-interest/occupations.js",
   "./data/work-values/questions.js",
   "./data/work-values/interpretations.js",
-  "./data/work-values/sources.js"
+  "./data/work-values/sources.js",
+  "./data/cognitive-battery/numerical.js",
+  "./data/cognitive-battery/verbal.js",
+  "./data/cognitive-battery/abstract-logical.js",
+  "./data/cognitive-battery/spatial.js",
+  "./data/cognitive-battery/attention.js",
+  "./data/cognitive-battery/working-memory.js",
+  "./data/cognitive-battery/critical-data.js",
+  "./data/cognitive-battery/interpretations.js",
+  "./data/cognitive-battery/sources.js",
+  "./icons/icon-192.png",
+  "./icons/icon-512.png",
+  "./icons/apple-touch-icon.png"
 ];
 
 
-const APP_FILES = [
-  ...CORE_APP_FILES,
-  ...TEST_DATA_FILES
-];
+/* =========================================================
+   INSTALLATIEHULPFUNCTIES
+========================================================= */
+
+async function fetchForInstall(path) {
+  const response = await fetch(path, {
+    cache: "reload"
+  });
+
+  if (!response || !response.ok) {
+    throw new Error(
+      `Offlinebestand kon niet worden geladen: ${path}`
+    );
+  }
+
+  return response;
+}
+
+
+async function cacheRequiredFiles(cache, paths) {
+  const failures = [];
+
+  await Promise.all(
+    paths.map(async path => {
+      try {
+        const response = await fetchForInstall(path);
+        await cache.put(path, response);
+      } catch (error) {
+        failures.push(path);
+        console.error(error);
+      }
+    })
+  );
+
+  if (failures.length > 0) {
+    throw new Error(
+      `Verplichte app-shell onvolledig: ${failures.join(", ")}`
+    );
+  }
+}
+
+
+async function cacheOptionalFiles(cache, paths) {
+  const results = await Promise.all(
+    paths.map(async path => {
+      try {
+        const response = await fetchForInstall(path);
+        await cache.put(path, response);
+        return true;
+      } catch (error) {
+        console.warn(
+          `Optioneel offlinebestand overgeslagen: ${path}`,
+          error
+        );
+        return false;
+      }
+    })
+  );
+
+  const cachedCount = results.filter(Boolean).length;
+  console.info(
+    `${cachedCount} van ${paths.length} aanvullende offlinebestanden gecachet.`
+  );
+}
 
 
 /* =========================================================
@@ -105,7 +187,17 @@ self.addEventListener("install", event => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
-      .then(cache => cache.addAll(APP_FILES))
+      .then(async cache => {
+        await cacheRequiredFiles(
+          cache,
+          ESSENTIAL_APP_FILES
+        );
+
+        await cacheOptionalFiles(
+          cache,
+          OPTIONAL_APP_FILES
+        );
+      })
       .then(() => self.skipWaiting())
   );
 });
@@ -265,11 +357,6 @@ self.addEventListener("fetch", event => {
 
   const requestUrl =
     new URL(request.url);
-
-  /*
-    Alleen bestanden van deze eigen website cachen.
-    Externe bronnen en browserextensies worden genegeerd.
-  */
 
   if (
     requestUrl.origin !==
