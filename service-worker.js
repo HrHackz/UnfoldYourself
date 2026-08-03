@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v27";
+const CACHE_VERSION = "v28";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -76,6 +76,12 @@ const OPTIONAL_APP_FILES = [
   "./tests/cognitive-battery/reasoning-task.js",
   "./tests/cognitive-battery/renderer.js",
   "./tests/cognitive-battery/engine.js",
+  "./tests/digital-skills/styles.css",
+  "./tests/digital-skills/session.js",
+  "./tests/digital-skills/scoring.js",
+  "./tests/digital-skills/renderer.js",
+  "./tests/digital-skills/report.js",
+  "./tests/digital-skills/engine.js",
   "./big-five-choices.js",
   "./big-five-questions.js",
   "./hexaco-answer-bank-map.js",
@@ -107,6 +113,10 @@ const OPTIONAL_APP_FILES = [
   "./data/cognitive-battery/critical-data.js",
   "./data/cognitive-battery/interpretations.js",
   "./data/cognitive-battery/sources.js",
+  "./data/digital-skills/answer-scales.js",
+  "./data/digital-skills/areas.js",
+  "./data/digital-skills/questions.js",
+  "./data/digital-skills/sources.js",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"

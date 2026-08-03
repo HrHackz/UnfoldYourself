@@ -413,15 +413,20 @@ testEvidenceDisclaimer.textContent =
         activeSession
       );
 
-    const savedPercentage = Math.round(
-      (
-        answeredQuestions /
-        Math.max(
-          1,
-          sessionQuestions.length
-        )
-      ) * 100
-    );
+    const savedPercentage =
+      typeof definition.getSavedProgressPercentage === "function"
+        ? Math.max(0, Math.min(100, Number(definition.getSavedProgressPercentage({
+            definition,
+            activeSession,
+            answeredQuestions,
+            sessionQuestions
+          })) || 0))
+        : Math.round(
+            (
+              answeredQuestions /
+              Math.max(1, sessionQuestions.length)
+            ) * 100
+          );
 
     beginTestButton.textContent =
       "Verdergaan met deze test";

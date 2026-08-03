@@ -1,0 +1,314 @@
+/* Digitale skills — DigCompSAT */
+
+.digital-skills-dashboard,
+.digital-skills-question,
+.digital-skills-area-result {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.digital-skills-dashboard-intro {
+  margin: 0;
+  color: var(--text-muted, #5f6672);
+  line-height: 1.65;
+}
+
+.digital-skills-area-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.digital-skills-area-card {
+  display: grid;
+  align-content: start;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(21, 155, 131, 0.2);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.digital-skills-area-card h3,
+.digital-skills-area-card p,
+.digital-skills-area-card small {
+  margin: 0;
+}
+
+.digital-skills-area-card p {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.55;
+}
+
+.digital-skills-area-card small {
+  color: #54606b;
+  font-weight: 700;
+}
+
+.digital-skills-area-card .button {
+  justify-self: start;
+  margin-top: auto;
+}
+
+.digital-skills-area-card.is-completed {
+  border-color: rgba(21, 155, 131, 0.55);
+  background: rgba(21, 155, 131, 0.055);
+}
+
+.digital-skills-area-card.is-progress {
+  border-color: rgba(217, 109, 75, 0.45);
+}
+
+.digital-skills-area-status {
+  justify-self: start;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(21, 155, 131, 0.1);
+  color: #0d6e5d;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.digital-skills-dashboard-actions,
+.digital-skills-question-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.digital-skills-answer-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.digital-skills-answer-button {
+  width: 100%;
+  min-height: 58px;
+  padding: 0.95rem 1rem;
+  border: 1px solid rgba(18, 31, 44, 0.16);
+  border-radius: 14px;
+  background: #fff;
+  color: #1f2933;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+}
+
+.digital-skills-answer-button:hover,
+.digital-skills-answer-button:focus-visible {
+  border-color: #159b83;
+  background: rgba(21, 155, 131, 0.05);
+}
+
+.digital-skills-answer-button:active {
+  transform: translateY(1px);
+}
+
+.digital-skills-answer-button.is-selected {
+  border-color: #159b83;
+  background: rgba(21, 155, 131, 0.11);
+  box-shadow: 0 0 0 2px rgba(21, 155, 131, 0.12);
+}
+
+.digital-skills-area-score-card {
+  display: grid;
+  justify-items: start;
+  gap: 0.3rem;
+  padding: 1.15rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0f7f6d, #159b83);
+  color: #fff;
+}
+
+.digital-skills-area-score-card strong {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  line-height: 1;
+}
+
+.digital-skills-area-score-card span {
+  font-weight: 800;
+}
+
+.digital-skills-area-score-card p {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.digital-skills-competence-list,
+.digital-skills-report-competences {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.digital-skills-competence-row {
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(18, 31, 44, 0.12);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.digital-skills-competence-row strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.digital-skills-competence-row p {
+  margin: 0;
+  color: var(--text-muted, #5f6672);
+  line-height: 1.5;
+}
+
+.digital-skills-competence-row.needs-development {
+  border-color: rgba(217, 109, 75, 0.4);
+  background: rgba(217, 109, 75, 0.045);
+}
+
+.digital-skills-development-note {
+  margin-top: 0.55rem !important;
+  color: #7b3d29 !important;
+  font-weight: 700;
+}
+
+.digital-skills-full-report {
+  display: grid;
+  gap: 1rem;
+}
+
+.digital-skills-report-area-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.digital-skills-report-area {
+  border: 1px solid rgba(21, 155, 131, 0.22);
+  border-radius: 16px;
+  background: #fff;
+  overflow: clip;
+}
+
+.digital-skills-report-area > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.digital-skills-report-area > summary::-webkit-details-marker {
+  display: none;
+}
+
+.digital-skills-report-area > summary span:first-child {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.digital-skills-report-area > summary small {
+  color: var(--text-muted, #5f6672);
+  font-weight: 500;
+}
+
+.digital-skills-report-score {
+  flex: 0 0 auto;
+  color: #0d6e5d;
+  font-weight: 800;
+  text-align: right;
+}
+
+.digital-skills-report-area-body {
+  display: grid;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.digital-skills-report-bar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(21, 155, 131, 0.12);
+  overflow: hidden;
+}
+
+.digital-skills-report-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #159b83;
+}
+
+.digital-skills-report-retry {
+  justify-self: start;
+}
+
+.digital-skills-profile-card ul {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.digital-skills-profile-card li {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.digital-skills-profile-card li span {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.45;
+}
+
+@media (max-width: 760px) {
+  .digital-skills-area-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .digital-skills-dashboard-actions,
+  .digital-skills-question-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .digital-skills-dashboard-actions .button,
+  .digital-skills-question-actions .button {
+    width: 100%;
+  }
+
+  .digital-skills-report-area > summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .digital-skills-report-score {
+    text-align: left;
+  }
+}
+
+@media print {
+  .digital-skills-report-area > summary {
+    cursor: default;
+  }
+
+  .digital-skills-report-area-body {
+    display: grid !important;
+  }
+
+  .digital-skills-report-retry {
+    display: none !important;
+  }
+}
+
+@media print {
+  details.digital-skills-report-area:not([open]) > .digital-skills-report-area-body {
+    display: grid !important;
+  }
+}

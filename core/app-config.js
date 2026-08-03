@@ -85,12 +85,8 @@ const domains = [
     "color": "#159b83",
     "tests": [
       [
-        "Digitale basisvaardigheden- en AI-test",
-        "Praktisch digitaal inzicht, informatievaardigheden en verantwoord gebruik van digitale hulpmiddelen en AI."
-      ],
-      [
-        "Digitale werkplektest",
-        "Digitaal samenwerken, bestanden beheren en werken met gangbare kantoor- en communicatieomgevingen."
+        "Digitale skills",
+        "Zelfreflectie over informatie, communicatie, digitale inhoud, veiligheid en probleemoplossing op basis van DigCompSAT."
       ]
     ]
   },
