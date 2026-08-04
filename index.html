@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="./tests/work-environment-culture/styles.css">
   <link rel="stylesheet" href="./tests/work-wellbeing/styles.css">
   <link rel="stylesheet" href="./report-uniformity.css">
+  <link rel="stylesheet" href="./total-report.css">
 </head>
 
 <body>
@@ -79,6 +80,7 @@
       >
         <a href="#start">Start</a>
         <a href="#profiel">Mijn profiel</a>
+        <a href="#totaalrapport">Totaalrapport</a>
         <a href="#werkwijze">Hoe het werkt</a>
 
         <button
@@ -117,8 +119,8 @@
 
           <p class="hero-intro">
             Kies uit veertien testen binnen zeven duidelijke profielgebieden.
-            Elf testen zijn beschikbaar en drie aanvullende testen staan
-            in de roadmap. Je resultaten worden lokaal bewaard.
+            Alle testen zijn beschikbaar en je resultaten worden uitsluitend
+            lokaal in deze browser bewaard.
           </p>
 
           <div class="hero-actions">
@@ -283,6 +285,97 @@
           class="mobile-domain-grid"
           id="mobileDomainGrid"
         ></div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================
+         GEÏNTEGREERD TOTAALRAPPORT
+    ==================================================== -->
+
+    <section class="total-report-section" id="totaalrapport">
+      <div class="shell">
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Jouw volledige profiel</p>
+            <h2>Breng al je resultaten samen in één persoonlijk rapport</h2>
+          </div>
+
+          <p>
+            Kies een compact overzicht, een volledig thematisch rapport of een
+            ultiem rapport met extra verbanden tussen je resultaten. Alleen
+            voltooide testen worden gebruikt en alle verwerking blijft lokaal.
+          </p>
+        </div>
+
+        <div class="total-report-launcher">
+          <article class="total-report-launcher-summary">
+            <div class="total-report-coverage-row">
+              <div>
+                <span class="toolbar-label">Beschikbare resultaten</span>
+                <p id="totalReportLauncherCoverageText">
+                  0 van 14 testen beschikbaar voor je totaalrapport
+                </p>
+              </div>
+
+              <div class="total-report-coverage-number">
+                <strong id="totalReportLauncherCount">0</strong>
+                <span>resultaten</span>
+              </div>
+            </div>
+
+            <div class="linear-progress" aria-label="Dekking van het totaalrapport">
+              <span id="totalReportLauncherProgress" style="width: 0%"></span>
+            </div>
+
+            <div class="total-report-domain-coverage" id="totalReportDomainCoverage"></div>
+          </article>
+
+          <div class="total-report-modes">
+            <article class="total-report-mode-card">
+              <span class="total-report-mode-kicker">Kort en deelbaar</span>
+              <h3>Compact overzicht</h3>
+              <p>De kern van je volledige profiel in een bondige en overzichtelijke vorm.</p>
+              <ul>
+                <li>belangrijkste patronen;</li>
+                <li>sterktes en aandachtspunten;</li>
+                <li>werkfit en persoonlijk kompas.</li>
+              </ul>
+              <button class="button button-secondary" type="button" data-open-total-report="compact">
+                Open compact rapport
+              </button>
+            </article>
+
+            <article class="total-report-mode-card">
+              <span class="total-report-mode-kicker">Alle informatie</span>
+              <h3>Volledig rapport</h3>
+              <p>Alle beschikbare testinformatie, logisch samengebracht per hoofdthema.</p>
+              <ul>
+                <li>alle resultaten en scores;</li>
+                <li>thematisch geordend;</li>
+                <li>zonder losse rapporten te stapelen.</li>
+              </ul>
+              <button class="button button-secondary" type="button" data-open-total-report="full">
+                Open volledig rapport
+              </button>
+            </article>
+
+            <article class="total-report-mode-card is-featured">
+              <span class="total-report-mode-kicker">Meeste meerwaarde</span>
+              <h3>Ultiem geïntegreerd rapport</h3>
+              <p>Het volledige profiel met extra verbindingen, spanningsvelden en afgeleide inzichten.</p>
+              <ul>
+                <li>verbanden tussen testen;</li>
+                <li>contextafhankelijke sterktes;</li>
+                <li>onderbouwde ontwikkelrichting.</li>
+              </ul>
+              <button class="button button-primary" type="button" data-open-total-report="ultimate">
+                Open ultiem rapport
+              </button>
+            </article>
+          </div>
+        </div>
 
       </div>
     </section>
@@ -997,6 +1090,63 @@
   </main>
 
   <!-- =====================================================
+       GEÏNTEGREERD TOTAALRAPPORT — VOLLEDIGE WERKRUIMTE
+  ====================================================== -->
+
+  <section
+    class="total-report-workspace"
+    id="totalReportWorkspace"
+    aria-hidden="true"
+    aria-labelledby="totalReportTopbarTitle"
+    hidden
+  >
+    <header class="total-report-topbar">
+      <div class="total-report-topbar-inner">
+        <div class="total-report-topbar-copy">
+          <span>Unfold Yourself · persoonlijk totaalprofiel</span>
+          <strong id="totalReportTopbarTitle">Compact persoonlijk overzicht</strong>
+        </div>
+
+        <div class="total-report-toolbar">
+          <button class="button button-secondary" id="printTotalReportButton" type="button">
+            Afdrukken / opslaan als PDF
+          </button>
+          <button class="button button-primary" id="closeTotalReportButton" type="button">
+            Rapport sluiten
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="total-report-mode-tabs" role="tablist" aria-label="Versie van het totaalrapport">
+      <button class="total-report-mode-tab" type="button" role="tab" aria-selected="true" data-total-report-tab="compact">
+        Compact
+      </button>
+      <button class="total-report-mode-tab" type="button" role="tab" aria-selected="false" data-total-report-tab="full">
+        Volledig
+      </button>
+      <button class="total-report-mode-tab" type="button" role="tab" aria-selected="false" data-total-report-tab="ultimate">
+        Ultiem
+      </button>
+    </div>
+
+    <main class="total-report-document">
+      <header class="total-report-print-header">
+        <div>
+          <strong>Unfold Yourself</strong>
+          <span>Persoonlijk geïntegreerd totaalprofiel</span>
+        </div>
+        <div>
+          <strong id="totalReportPrintTitle">Compact persoonlijk overzicht</strong>
+          <span id="totalReportPrintDate">Gegenereerd op datum</span>
+        </div>
+      </header>
+
+      <div id="totalReportDocument"></div>
+    </main>
+  </section>
+
+  <!-- =====================================================
        FOOTER
   ====================================================== -->
 
@@ -1360,5 +1510,6 @@
 <script src="./core/print.js" defer></script>
 <script src="./core/ui-feedback.js" defer></script>
 <script src="./app.js" defer></script>
+<script src="./total-report.js" defer></script>
 </body>
 </html>
