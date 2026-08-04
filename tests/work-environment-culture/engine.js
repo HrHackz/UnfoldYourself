@@ -1,6 +1,6 @@
 "use strict";
 
-const WEC_SCHEMA_VERSION = 1;
+const WEC_SCHEMA_VERSION = 2;
 
 function validateWecData() {
   const questions = window.WEC_QUESTIONS || [];
@@ -10,15 +10,15 @@ function validateWecData() {
     if (!question?.id || ids.has(question.id)) problems.push(`ongeldig of dubbel vraag-ID: ${question?.id || "ontbreekt"}`);
     ids.add(question?.id);
   });
-  const cultureCount = questions.filter(question => question.type === "culture-distribution").length;
-  const sliderCount = questions.filter(question => question.type === "bipolar-slider").length;
+  const cultureCount = questions.filter(question => question.type === "culture-ranking").length;
+  const axisChoiceCount = questions.filter(question => question.type === "axis-choice").length;
   const visualCount = questions.filter(question => question.type === "visual-cards").length;
   const choiceCount = questions.filter(question => question.type === "choice-cards").length;
   if (questions.length !== 11) problems.push(`verwacht 11 onderdelen, geladen: ${questions.length}`);
   if (cultureCount !== 6) problems.push(`verwacht 6 cultuurblokken, geladen: ${cultureCount}`);
-  if (sliderCount !== 3) problems.push(`verwacht 3 omgevingssliders, geladen: ${sliderCount}`);
+  if (axisChoiceCount !== 3) problems.push(`verwacht 3 klikbare omgevingskeuzes, geladen: ${axisChoiceCount}`);
   if (visualCount !== 1 || choiceCount !== 1) problems.push("verwacht één interieurkeuze en één werkritmekeuze");
-  questions.filter(question => question.type === "culture-distribution").forEach(question => {
+  questions.filter(question => question.type === "culture-ranking").forEach(question => {
     const optionIds = Object.keys(question.options || {});
     if ((window.WEC_CULTURE_ORDER || []).some(id => !optionIds.includes(id))) problems.push(`${question.id}: cultuurtekst ontbreekt`);
   });
@@ -53,7 +53,7 @@ function prepareWecStoredState({ state, testId }) {
 }
 
 function getWecProgress({ currentIndex, question }) {
-  if (question.type === "culture-distribution") {
+  if (question.type === "culture-ranking") {
     return {
       counter: `Cultuurblok ${question.sectionIndex} van 6`,
       percentage: Math.round(((currentIndex + 1) / 11) * 100),
@@ -82,7 +82,7 @@ const WEC_TEST_DEFINITION = {
   printReportSubtitle: "Werkomgeving- en cultuurvoorkeurprofiel",
   schemaVersion: WEC_SCHEMA_VERSION,
   questions: window.WEC_QUESTIONS || [],
-  choices: [{ value: "custom", label: "Interactieve invoer" }],
+  choices: [{ value: "custom", label: "Klikbare keuzes" }],
   createSession: createWecSession,
   prepareStoredState: prepareWecStoredState,
   calculateResult: calculateWecResult,
@@ -94,7 +94,7 @@ const WEC_TEST_DEFINITION = {
     return "6 cultuurblokken en 5 voorkeuren voor je concrete werkomgeving";
   },
   introGuidance: [
-    "Verdeel in het cultuurdeel per onderwerp exact 100 punten. Meer nadruk op één beschrijving betekent automatisch minder nadruk op andere beschrijvingen.",
+    "Rangschik in het cultuurdeel telkens vier beschrijvingen van ‘Past het meest’ tot ‘Past het minst’. Iedere positie wordt één keer gebruikt.",
     "Denk aan wat werkelijk bij je past, niet aan wat professioneel, modern of sociaal wenselijk zou moeten klinken.",
     "Je beoordeelt je ideale werkomgeving. De test meet niet hoe je huidige werkgever werkelijk functioneert.",
     "Iedere keuze wordt automatisch lokaal opgeslagen; je kunt tussentijds stoppen en later hervatten."

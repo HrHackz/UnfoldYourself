@@ -5,7 +5,7 @@ function clampWecValue(value, min = 0, max = 100) {
 }
 
 function getWecCultureQuestions() {
-  return (window.WEC_QUESTIONS || []).filter(question => question.type === "culture-distribution");
+  return (window.WEC_QUESTIONS || []).filter(question => question.type === "culture-ranking");
 }
 
 function getWecEnvironmentQuestion(axisId) {
@@ -15,12 +15,11 @@ function getWecEnvironmentQuestion(axisId) {
 function isValidWecCultureAnswer(answer) {
   if (!answer || answer.touched !== true || typeof answer.points !== "object") return false;
   const values = (window.WEC_CULTURE_ORDER || []).map(id => Number(answer.points[id]));
-  return values.every(value => Number.isFinite(value) && value >= 0 && value <= 100 && value % 5 === 0) &&
-    values.reduce((sum, value) => sum + value, 0) === 100;
-}
-
-function isValidWecSliderAnswer(answer) {
-  return Boolean(answer && answer.touched === true && Number.isFinite(Number(answer.value)) && Number(answer.value) >= 0 && Number(answer.value) <= 100);
+  const expected = (window.WEC_CULTURE_RANKS || []).map(rank => rank.points).sort((a, b) => a - b);
+  const actual = [...values].sort((a, b) => a - b);
+  return values.every(Number.isFinite) &&
+    actual.length === expected.length &&
+    actual.every((value, index) => value === expected[index]);
 }
 
 function isValidWecChoiceAnswer(question, answer) {
@@ -29,9 +28,10 @@ function isValidWecChoiceAnswer(question, answer) {
 
 function isValidWecAnswer(question, answer) {
   if (!question) return false;
-  if (question.type === "culture-distribution") return isValidWecCultureAnswer(answer);
-  if (question.type === "bipolar-slider") return isValidWecSliderAnswer(answer);
-  if (question.type === "visual-cards" || question.type === "choice-cards") return isValidWecChoiceAnswer(question, answer);
+  if (question.type === "culture-ranking") return isValidWecCultureAnswer(answer);
+  if (question.type === "axis-choice" || question.type === "visual-cards" || question.type === "choice-cards") {
+    return isValidWecChoiceAnswer(question, answer);
+  }
   return false;
 }
 
@@ -89,14 +89,14 @@ function getWecCultureProfileMode(rankedCultures) {
   return { id: "clear", label: "Duidelijke primaire voorkeur" };
 }
 
-function getWecSliderSide(value) {
+function getWecAxisSide(value) {
   const score = clampWecValue(value);
   if (score <= 35) return "left";
   if (score >= 66) return "right";
   return "middle";
 }
 
-function getWecSliderIntensity(value) {
+function getWecAxisIntensity(value) {
   const score = clampWecValue(value);
   if (score <= 15 || score >= 85) return "zeer duidelijk";
   if (score <= 35 || score >= 66) return "duidelijk";
@@ -104,15 +104,19 @@ function getWecSliderIntensity(value) {
 }
 
 function buildWecEnvironmentResult(axisId, answer) {
+  const question = getWecEnvironmentQuestion(axisId);
+  const selectedOption = question?.options?.find(option => option.id === answer);
   const profiles = window.WEC_ENVIRONMENT_PROFILES?.[axisId];
-  const value = clampWecValue(answer?.value);
-  const side = getWecSliderSide(value);
+  const value = clampWecValue(selectedOption?.value ?? 50);
+  const side = getWecAxisSide(value);
   const profile = profiles?.[side] || {};
   return {
     axisId,
+    choiceId: selectedOption?.id || "",
+    choiceTitle: selectedOption?.title || "",
     value,
     side,
-    intensity: getWecSliderIntensity(value),
+    intensity: getWecAxisIntensity(value),
     ...profile
   };
 }
@@ -141,12 +145,11 @@ function getWecCombination(rankedCultures, mode) {
 function detectWecResponseQuality(session) {
   const questions = getWecCultureQuestions();
   const answers = session?.answers || {};
-  const distributions = questions.map(question => {
+  const rankings = questions.map(question => {
     const points = answers[question.id]?.points || {};
     return (window.WEC_CULTURE_ORDER || []).map(id => Number(points[id]) || 0);
   });
-  const flatCount = distributions.filter(values => values.every(value => value === 25)).length;
-  const signatures = distributions.map(values => values.join("-"));
+  const signatures = rankings.map(values => values.join("-"));
   const frequencyMap = signatures.reduce((map, signature) => {
     map[signature] = (map[signature] || 0) + 1;
     return map;
@@ -162,18 +165,15 @@ function detectWecResponseQuality(session) {
     : null;
 
   return {
-    flatProfile: flatCount === questions.length,
+    flatProfile: false,
     repeatedPattern: repeatedCount >= 5,
     veryFast: Number.isFinite(rapidSeconds) && rapidSeconds < 45,
-    flatCount,
+    flatCount: 0,
     repeatedCount,
     cultureDurationSeconds: rapidSeconds,
     messages: [
-      flatCount === questions.length
-        ? "Je hebt de vier cultuurbeschrijvingen in alle blokken gelijk beoordeeld. Daardoor ontstaat een breed profiel zonder duidelijke primaire voorkeur."
-        : "",
-      repeatedCount >= 5 && flatCount !== questions.length
-        ? "Je hebt meerdere cultuuronderwerpen op exact dezelfde manier verdeeld. Controleer of jouw voorkeur werkelijk op ieder onderdeel even sterk is."
+      repeatedCount >= 5
+        ? "Je hebt meerdere cultuuronderwerpen in exact dezelfde volgorde gerangschikt. Controleer of die vaste volgorde werkelijk op ieder onderdeel past."
         : "",
       Number.isFinite(rapidSeconds) && rapidSeconds < 45
         ? "Het cultuurdeel werd zeer snel ingevuld. Daardoor kan het resultaat minder zorgvuldig aansluiten op je werkelijke voorkeuren."
@@ -198,13 +198,13 @@ function buildWecSummary(rankedCultures, mode, environment, frictionCulture) {
   const location = environment.location;
   const rhythm = environment.rhythm;
   const cultureSentence = mode.id === "broad"
-    ? "Je verdeelde je voorkeuren relatief gelijk over samenwerken, vernieuwen, presteren en structureren."
+    ? "Je rangschikte samenwerken, vernieuwen, presteren en structureren relatief evenwichtig."
     : mode.id === "shared"
       ? `Je profiel combineert ${first.profile.name.toLowerCase()} en ${second.profile.name.toLowerCase()} vrijwel even sterk.`
       : `Je profiel legt de meeste nadruk op ${first.profile.name.toLowerCase()}, met ${second.profile.name.toLowerCase()} als belangrijke aanvulling.`;
   const environmentSentence = `Je omgevingsvoorkeur wijst op ${scale.badge.toLowerCase()}, ${location.badge.toLowerCase()} en een ${rhythm.badge.replace("Werkritme: ", "").toLowerCase()} werkritme.`;
   const frictionSentence = frictionCulture
-    ? `${frictionCulture.profile.name} vraagt volgens je verdeling waarschijnlijk de meeste aanpassing.`
+    ? `${frictionCulture.profile.name} vraagt volgens je rangschikking waarschijnlijk de meeste aanpassing.`
     : "Geen van de vier culturen vormt een duidelijke frictiezone.";
   return `${cultureSentence} ${environmentSentence} ${frictionSentence}`;
 }
@@ -284,7 +284,7 @@ function calculateWecResult({ session, testId }) {
   const completedAt = new Date().toISOString();
 
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     testId,
     testTitle: "Werkomgeving- en cultuurvoorkeurtest",
     completedAt,

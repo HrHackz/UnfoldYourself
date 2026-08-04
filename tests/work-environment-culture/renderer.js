@@ -21,269 +21,120 @@ function recordWecAnswer(context, value) {
   interactionApi.save();
 }
 
-function normalizeWecPoints(answer) {
+function getWecCultureRankByPoints(points) {
+  return (window.WEC_CULTURE_RANKS || []).find(rank => rank.points === Number(points)) || null;
+}
+
+function normalizeWecRanking(answer) {
+  const allowed = new Set((window.WEC_CULTURE_RANKS || []).map(rank => rank.points));
   const points = {};
-  (window.WEC_CULTURE_ORDER || []).forEach(id => {
-    points[id] = Math.max(0, Math.min(100, Math.round((Number(answer?.points?.[id]) || 0) / 5) * 5));
+  const used = new Set();
+  (window.WEC_CULTURE_ORDER || []).forEach(cultureId => {
+    const value = Number(answer?.points?.[cultureId]);
+    if (allowed.has(value) && !used.has(value)) {
+      points[cultureId] = value;
+      used.add(value);
+    }
   });
-  const total = Object.values(points).reduce((sum, value) => sum + value, 0);
-  if (total !== 100) {
-    return Object.fromEntries((window.WEC_CULTURE_ORDER || []).map(id => [id, 25]));
-  }
   return points;
 }
 
-function renderWecCultureDistributor(context) {
+function renderWecCultureRanking(context) {
   const { container, question, selectedAnswer, interactionApi } = context;
   interactionApi.configureNavigation({ previousHidden: false, nextHidden: false, saveExitHidden: false });
 
   const order = Array.isArray(question.displayOrder) ? question.displayOrder : [...window.WEC_CULTURE_ORDER];
-  let points = normalizeWecPoints(selectedAnswer);
-  let touched = selectedAnswer?.touched === true;
+  const ranks = window.WEC_CULTURE_RANKS || [];
+  let points = normalizeWecRanking(selectedAnswer);
 
-  const wrapper = createWecElement("div", "wec-culture-input");
-  const status = createWecElement("div", "wec-distribution-status");
-  const statusText = createWecElement("span", "", touched ? "Verdeling opgeslagen" : "Pas de verdeling aan of bevestig bewust 25–25–25–25");
-  const totalText = createWecElement("strong", "", "Totaal: 100 punten");
-  status.append(statusText, totalText);
-
-  const track = createWecElement("div", "wec-distribution-track");
-  track.setAttribute("aria-label", "Verdeling van 100 punten over vier cultuurbeschrijvingen");
-  const segmentLayer = createWecElement("div", "wec-segment-layer");
-  const handleLayer = createWecElement("div", "wec-handle-layer");
-  track.append(segmentLayer, handleLayer);
+  const wrapper = createWecElement("div", "wec-culture-ranking");
+  const status = createWecElement("div", "wec-ranking-status");
+  const statusText = createWecElement("span");
+  const statusCount = createWecElement("strong");
+  status.append(statusText, statusCount);
 
   const cards = createWecElement("div", "wec-culture-option-grid");
-  const segmentElements = new Map();
-  const scoreElements = new Map();
   const cardElements = new Map();
-  const handles = [];
-
-  order.forEach((cultureId, index) => {
-    const segment = createWecElement("span", `wec-track-segment is-${index + 1}`);
-    segmentElements.set(cultureId, segment);
-    segmentLayer.appendChild(segment);
-
-    const card = createWecElement("article", `wec-culture-option is-${index + 1}`);
-    const header = createWecElement("div", "wec-culture-option-header");
-    const label = createWecElement("span", "wec-option-number", String(index + 1));
-    const score = createWecElement("strong", "wec-option-score", `${points[cultureId]} punten`);
-    scoreElements.set(cultureId, score);
-    header.append(label, score);
-    const text = createWecElement("p", "", question.options[cultureId]);
-
-    const controls = createWecElement("div", "wec-point-controls");
-    const minus = createWecElement("button", "wec-point-button", "−5");
-    minus.type = "button";
-    minus.setAttribute("aria-label", `Vijf punten minder voor beschrijving ${index + 1}`);
-    const plus = createWecElement("button", "wec-point-button", "+5");
-    plus.type = "button";
-    plus.setAttribute("aria-label", `Vijf punten meer voor beschrijving ${index + 1}`);
-    controls.append(minus, plus);
-    card.append(header, text, controls);
-    cards.appendChild(card);
-    cardElements.set(cultureId, card);
-
-    minus.addEventListener("click", () => adjustSegment(index, -5));
-    plus.addEventListener("click", () => adjustSegment(index, 5));
-  });
-
-  for (let index = 0; index < 3; index += 1) {
-    const handle = createWecElement("button", "wec-distribution-handle");
-    handle.type = "button";
-    handle.setAttribute("aria-label", `Scheidingspunt ${index + 1}. Gebruik de pijltjestoetsen of sleep om de punten te verdelen.`);
-    handle.dataset.boundaryIndex = String(index);
-    handleLayer.appendChild(handle);
-    handles.push(handle);
-  }
-
-  const confirmRow = createWecElement("div", "wec-equal-confirm");
-  const confirmButton = createWecElement("button", "button button-secondary", "Deze gelijke verdeling past bij mij");
-  confirmButton.type = "button";
-  confirmButton.hidden = touched || !order.every(id => points[id] === 25);
-  confirmButton.addEventListener("click", () => commit(points));
-  confirmRow.appendChild(confirmButton);
-
-  function getBoundaries() {
-    let cumulative = 0;
-    return order.slice(0, 3).map(id => {
-      cumulative += points[id];
-      return cumulative;
-    });
-  }
+  const scoreElements = new Map();
 
   function commit(nextPoints) {
     points = { ...nextPoints };
-    touched = true;
     recordWecAnswer(context, { touched: true, points: { ...points } });
     updateUi();
   }
 
-  function adjustBoundary(index, delta) {
-    const leftId = order[index];
-    const rightId = order[index + 1];
-    if (delta > 0 && points[rightId] < delta) return;
-    if (delta < 0 && points[leftId] < Math.abs(delta)) return;
+  function assignRank(cultureId, pointsValue) {
     const next = { ...points };
-    next[leftId] += delta;
-    next[rightId] -= delta;
-    commit(next);
-  }
+    const currentValue = next[cultureId];
+    const previousCulture = Object.keys(next).find(id => id !== cultureId && next[id] === pointsValue);
 
-  function adjustBoundaryTo(index, desiredBoundary) {
-    const previousBoundary = order.slice(0, index).reduce((sum, id) => sum + points[id], 0);
-    const nextBoundary = order.slice(0, index + 2).reduce((sum, id) => sum + points[id], 0);
-    const desired = Math.max(previousBoundary, Math.min(nextBoundary, Math.round(desiredBoundary / 5) * 5));
-    const current = previousBoundary + points[order[index]];
-    adjustBoundary(index, desired - current);
-  }
-
-  function adjustSegment(index, delta) {
-    const targetId = order[index];
-    if (delta < 0) {
-      if (points[targetId] < 5) return;
-      const receiverId = order[(index + 1) % order.length];
-      const next = { ...points };
-      next[targetId] -= 5;
-      next[receiverId] += 5;
-      commit(next);
-      return;
+    if (previousCulture) {
+      if (Number.isFinite(currentValue)) next[previousCulture] = currentValue;
+      else delete next[previousCulture];
     }
 
-    const donorOffsets = [1, -1, 2, -2, 3];
-    const donorIndex = donorOffsets
-      .map(offset => (index + offset + order.length) % order.length)
-      .find(candidate => candidate !== index && points[order[candidate]] >= 5);
-    if (donorIndex === undefined) return;
-    const next = { ...points };
-    next[targetId] += 5;
-    next[order[donorIndex]] -= 5;
+    next[cultureId] = pointsValue;
     commit(next);
   }
 
+  order.forEach((cultureId, index) => {
+    const card = createWecElement("article", "wec-culture-option");
+    card.dataset.cultureId = cultureId;
+
+    const header = createWecElement("div", "wec-culture-option-header");
+    const label = createWecElement("span", "wec-option-number", String(index + 1));
+    const score = createWecElement("strong", "wec-option-score", "Nog kiezen");
+    scoreElements.set(cultureId, score);
+    header.append(label, score);
+
+    const text = createWecElement("p", "", question.options[cultureId]);
+    const controls = createWecElement("div", "wec-rank-controls");
+
+    ranks.forEach(rank => {
+      const button = createWecElement("button", "wec-rank-button", rank.label);
+      button.type = "button";
+      button.dataset.points = String(rank.points);
+      button.setAttribute("aria-label", `${rank.label} voor beschrijving ${index + 1}`);
+      button.addEventListener("click", () => assignRank(cultureId, rank.points));
+      controls.appendChild(button);
+    });
+
+    card.append(header, text, controls);
+    cards.appendChild(card);
+    cardElements.set(cultureId, card);
+  });
+
   function updateUi() {
-    order.forEach((cultureId, index) => {
-      const value = points[cultureId];
-      const segment = segmentElements.get(cultureId);
-      const score = scoreElements.get(cultureId);
+    const assignedCount = Object.keys(points).length;
+    statusText.textContent = assignedCount === order.length
+      ? "Rangschikking compleet"
+      : "Gebruik elke positie precies één keer";
+    statusCount.textContent = `${assignedCount} van ${order.length} gekozen`;
+
+    order.forEach(cultureId => {
       const card = cardElements.get(cultureId);
-      segment.style.width = `${value}%`;
-      score.textContent = `${value} punten`;
-      card.classList.toggle("is-dominant", value === Math.max(...order.map(id => points[id])) && value > 25);
-      card.classList.toggle("is-zero", value === 0);
-      card.querySelectorAll(".wec-point-button")[0].disabled = value < 5;
-      card.querySelectorAll(".wec-point-button")[1].disabled = order.every(id => id === cultureId || points[id] < 5);
-      segment.setAttribute("aria-label", `Beschrijving ${index + 1}: ${value} punten`);
+      const selectedValue = points[cultureId];
+      const selectedRank = getWecCultureRankByPoints(selectedValue);
+      scoreElements.get(cultureId).textContent = selectedRank?.label || "Nog kiezen";
+      card.classList.toggle("is-ranked", Boolean(selectedRank));
+      card.classList.toggle("is-top-ranked", selectedValue === 40);
+
+      card.querySelectorAll(".wec-rank-button").forEach(button => {
+        const buttonValue = Number(button.dataset.points);
+        const selected = selectedValue === buttonValue;
+        const usedByOther = Object.entries(points).some(([id, value]) => id !== cultureId && value === buttonValue);
+        button.classList.toggle("is-selected", selected);
+        button.classList.toggle("is-used", usedByOther && !selected);
+        button.setAttribute("aria-pressed", String(selected));
+        button.title = usedByOther && !selected
+          ? "Deze positie is al gebruikt. Klik om de posities om te wisselen."
+          : "";
+      });
     });
-    getBoundaries().forEach((boundary, index) => {
-      handles[index].style.left = `${boundary}%`;
-      handles[index].setAttribute("aria-valuenow", String(boundary));
-    });
-    statusText.textContent = touched ? "Verdeling opgeslagen" : "Pas de verdeling aan of bevestig bewust 25–25–25–25";
-    confirmButton.hidden = touched || !order.every(id => points[id] === 25);
   }
-
-  handles.forEach((handle, index) => {
-    handle.addEventListener("keydown", event => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        adjustBoundary(index, -5);
-      }
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        adjustBoundary(index, 5);
-      }
-    });
-
-    const startDrag = event => {
-      event.preventDefault();
-      handle.classList.add("is-dragging");
-      const pointerMove = moveEvent => {
-        const rect = track.getBoundingClientRect();
-        if (!rect.width) return;
-        const relative = ((moveEvent.clientX - rect.left) / rect.width) * 100;
-        adjustBoundaryTo(index, relative);
-      };
-      const pointerUp = () => {
-        handle.classList.remove("is-dragging");
-        window.removeEventListener("pointermove", pointerMove);
-        window.removeEventListener("pointerup", pointerUp);
-      };
-      window.addEventListener("pointermove", pointerMove);
-      window.addEventListener("pointerup", pointerUp, { once: true });
-      interactionApi.registerCleanup(pointerUp);
-    };
-    handle.addEventListener("pointerdown", startDrag);
-  });
 
   updateUi();
-  wrapper.append(status, track, cards, confirmRow);
-  container.appendChild(wrapper);
-  return true;
-}
-
-function getWecSliderDisplay(question, value) {
-  const score = clampWecValue(value);
-  if (score <= 35) return { title: question.left.title, side: "left" };
-  if (score >= 66) return { title: question.right.title, side: "right" };
-  return { title: question.middle.title, side: "middle" };
-}
-
-function renderWecBipolarSlider(context) {
-  const { container, question, selectedAnswer, interactionApi } = context;
-  interactionApi.configureNavigation({ previousHidden: false, nextHidden: false, saveExitHidden: false });
-  let value = Number.isFinite(Number(selectedAnswer?.value)) ? clampWecValue(selectedAnswer.value) : 50;
-  let touched = selectedAnswer?.touched === true;
-
-  const wrapper = createWecElement("div", "wec-slider-input");
-  const current = createWecElement("div", "wec-slider-current");
-  const currentLabel = createWecElement("span", "", "Jouw positie");
-  const currentValue = createWecElement("strong");
-  current.append(currentLabel, currentValue);
-
-  const range = document.createElement("input");
-  range.type = "range";
-  range.min = "0";
-  range.max = "100";
-  range.step = "1";
-  range.value = String(value);
-  range.className = "wec-bipolar-range";
-  range.setAttribute("aria-label", question.text);
-
-  const anchorGrid = createWecElement("div", "wec-slider-anchors");
-  [question.left, question.middle, question.right].forEach((anchor, index) => {
-    const card = createWecElement("article", `wec-slider-anchor is-${index === 0 ? "left" : index === 1 ? "middle" : "right"}`);
-    card.append(
-      createWecElement("strong", "", anchor.title),
-      createWecElement("p", "", anchor.description)
-    );
-    anchorGrid.appendChild(card);
-  });
-
-  const confirmButton = createWecElement("button", "button button-secondary", "Deze middenpositie past bij mij");
-  confirmButton.type = "button";
-  confirmButton.hidden = touched || value !== 50;
-
-  function updateUi() {
-    const display = getWecSliderDisplay(question, value);
-    currentValue.textContent = `${display.title} · ${Math.round(value)}/100`;
-    current.dataset.side = display.side;
-    range.value = String(value);
-    confirmButton.hidden = touched || value !== 50;
-  }
-
-  function commit(nextValue) {
-    value = clampWecValue(nextValue);
-    touched = true;
-    recordWecAnswer(context, { touched: true, value });
-    updateUi();
-  }
-
-  range.addEventListener("input", () => commit(Number(range.value)));
-  confirmButton.addEventListener("click", () => commit(value));
-
-  updateUi();
-  wrapper.append(current, range, anchorGrid, confirmButton);
+  wrapper.append(status, cards);
   container.appendChild(wrapper);
   return true;
 }
@@ -297,10 +148,16 @@ function createWecVisualScene(visual) {
   return scene;
 }
 
+function getWecChoiceGridClass(question) {
+  if (question.type === "visual-cards") return "wec-visual-card-grid";
+  if (question.type === "axis-choice") return "wec-axis-choice-grid";
+  return "wec-choice-card-grid";
+}
+
 function renderWecChoiceCards(context) {
   const { container, question, selectedAnswer, interactionApi } = context;
   interactionApi.configureNavigation({ previousHidden: false, nextHidden: false, saveExitHidden: false });
-  const grid = createWecElement("div", question.type === "visual-cards" ? "wec-visual-card-grid" : "wec-choice-card-grid");
+  const grid = createWecElement("div", getWecChoiceGridClass(question));
 
   question.options.forEach(option => {
     const button = createWecElement("button", "wec-selection-card");
@@ -338,8 +195,9 @@ function renderWecChoiceCards(context) {
 
 function renderWecQuestionInput(context) {
   const { question } = context;
-  if (question.type === "culture-distribution") return renderWecCultureDistributor(context);
-  if (question.type === "bipolar-slider") return renderWecBipolarSlider(context);
-  if (question.type === "visual-cards" || question.type === "choice-cards") return renderWecChoiceCards(context);
+  if (question.type === "culture-ranking") return renderWecCultureRanking(context);
+  if (question.type === "axis-choice" || question.type === "visual-cards" || question.type === "choice-cards") {
+    return renderWecChoiceCards(context);
+  }
   return false;
 }
