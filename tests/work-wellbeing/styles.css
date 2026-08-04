@@ -1,0 +1,426 @@
+/* =========================================================
+   WERKBELEVINGS- EN WELZIJNSTEST
+========================================================= */
+
+.ww-status-options,
+.ww-frequency-options {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.ww-status-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ww-frequency-options {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.ww-answer-option {
+  min-height: 4.5rem;
+  align-items: center;
+}
+
+.ww-status-options .ww-answer-option {
+  min-height: 7rem;
+}
+
+.ww-frequency-options .ww-answer-option {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 0.9rem 0.55rem;
+}
+
+.ww-frequency-options .answer-option-copy {
+  align-items: center;
+}
+
+.ww-frequency-options .answer-option-marker {
+  margin: 0 0 0.4rem;
+}
+
+.ww-report-card {
+  grid-column: 1 / -1;
+}
+
+.ww-report-card h3,
+.ww-report-card h4,
+.ww-report-card h5,
+.ww-report-card p {
+  overflow-wrap: anywhere;
+}
+
+.ww-overview-card {
+  border-top: 4px solid #2f855f;
+}
+
+.ww-overview-card[data-tone="risk"] {
+  border-top-color: #b83232;
+}
+
+.ww-overview-card[data-tone="watch"] {
+  border-top-color: #b7791f;
+}
+
+.ww-overview-header {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 0.28fr) minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: stretch;
+  margin-top: 1rem;
+}
+
+.ww-balance-score {
+  display: flex;
+  min-height: 10rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.15rem;
+  background: linear-gradient(145deg, rgba(47, 133, 95, 0.12), rgba(47, 133, 95, 0.03));
+  border: 1px solid rgba(47, 133, 95, 0.22);
+  text-align: center;
+}
+
+.ww-balance-score strong {
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.ww-balance-score span,
+.ww-balance-score small {
+  margin-top: 0.35rem;
+}
+
+.ww-balance-score small {
+  max-width: 11rem;
+  font-weight: 700;
+}
+
+.ww-overview-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ww-status-badge,
+.ww-tone-badge {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: rgba(47, 133, 95, 0.11);
+  color: #236b4b;
+}
+
+.ww-norm-note,
+.ww-report-intro {
+  color: var(--muted, #5f6672);
+}
+
+.ww-norm-note {
+  font-size: 0.9rem;
+}
+
+.ww-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.ww-highlight,
+.ww-combination-item,
+.ww-dimension-panel,
+.ww-support-note {
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(25, 35, 50, 0.1);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.ww-highlight h4,
+.ww-combination-item h4,
+.ww-support-note h4 {
+  margin: 0.25rem 0 0.4rem;
+}
+
+.ww-highlight p,
+.ww-combination-item p,
+.ww-support-note p {
+  margin: 0;
+}
+
+.ww-highlight-label {
+  display: block;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted, #5f6672);
+  font-weight: 800;
+}
+
+.ww-highlight.is-positive,
+.ww-combination-item[data-tone="positive"],
+.ww-snapshot-item[data-tone="positive"] {
+  border-color: rgba(47, 133, 95, 0.28);
+  background: rgba(47, 133, 95, 0.07);
+}
+
+.ww-highlight.is-watch,
+.ww-combination-item[data-tone="watch"],
+.ww-snapshot-item[data-tone="watch"] {
+  border-color: rgba(183, 121, 31, 0.3);
+  background: rgba(246, 173, 85, 0.09);
+}
+
+.ww-highlight.is-risk,
+.ww-combination-item[data-tone="risk"],
+.ww-snapshot-item[data-tone="risk"] {
+  border-color: rgba(184, 50, 50, 0.3);
+  background: rgba(229, 62, 62, 0.07);
+}
+
+.ww-combination-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.ww-combination-item[data-tone="risk"] .ww-tone-badge,
+.ww-dimension-details[data-tone="risk"] .ww-tone-badge {
+  color: #8f2424;
+  background: rgba(229, 62, 62, 0.12);
+}
+
+.ww-combination-item[data-tone="watch"] .ww-tone-badge,
+.ww-dimension-details[data-tone="watch"] .ww-tone-badge {
+  color: #8a5a0a;
+  background: rgba(246, 173, 85, 0.16);
+}
+
+.ww-cluster-card {
+  break-inside: avoid;
+}
+
+.ww-cluster-snapshot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.ww-snapshot-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.2rem 0.7rem;
+  align-items: center;
+  padding: 0.8rem;
+  border: 1px solid rgba(25, 35, 50, 0.1);
+  border-radius: 0.85rem;
+}
+
+.ww-snapshot-item span {
+  font-weight: 700;
+}
+
+.ww-snapshot-item strong {
+  font-size: 1.25rem;
+}
+
+.ww-snapshot-item small {
+  grid-column: 1 / -1;
+  color: var(--muted, #5f6672);
+}
+
+.ww-dimension-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.ww-dimension-details {
+  border: 1px solid rgba(25, 35, 50, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  overflow: hidden;
+}
+
+.ww-dimension-details[open] {
+  box-shadow: 0 0.45rem 1.3rem rgba(20, 31, 48, 0.07);
+}
+
+.ww-dimension-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.55rem 1rem;
+  align-items: center;
+  cursor: pointer;
+  padding: 1rem;
+  list-style: none;
+}
+
+.ww-dimension-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ww-dimension-heading {
+  min-width: 0;
+}
+
+.ww-dimension-heading h4 {
+  margin: 0 0 0.35rem;
+}
+
+.ww-dimension-score {
+  font-size: 1.18rem;
+  white-space: nowrap;
+}
+
+.ww-dimension-toggle {
+  grid-column: 1 / -1;
+  color: #2f6f5b;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.ww-dimension-body {
+  padding: 0 1rem 1.1rem;
+}
+
+.ww-dimension-core {
+  font-weight: 700;
+}
+
+.ww-dimension-interpretation {
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  background: rgba(47, 133, 95, 0.06);
+}
+
+.ww-dimension-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.ww-dimension-panel h5,
+.ww-dimension-advice h5 {
+  margin: 0 0 0.45rem;
+}
+
+.ww-dimension-panel p {
+  margin: 0;
+}
+
+.ww-dimension-advice {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(25, 35, 50, 0.1);
+}
+
+.ww-report-list,
+.ww-action-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.15rem;
+}
+
+.ww-report-list li + li,
+.ww-action-list li + li {
+  margin-top: 0.45rem;
+}
+
+.ww-action-card {
+  border-left: 4px solid #2f855f;
+}
+
+.ww-support-note {
+  margin-top: 1rem;
+  background: rgba(47, 133, 95, 0.06);
+}
+
+.ww-quality-card {
+  border-left: 4px solid #b7791f;
+}
+
+.ww-method-card {
+  background: rgba(30, 41, 59, 0.035);
+}
+
+.ww-disclaimer {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(184, 50, 50, 0.2);
+  background: rgba(229, 62, 62, 0.05);
+  font-weight: 650;
+}
+
+@media (max-width: 760px) {
+  .ww-status-options,
+  .ww-frequency-options {
+    grid-template-columns: 1fr;
+  }
+
+  .ww-frequency-options .ww-answer-option {
+    min-height: 3.7rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .ww-frequency-options .answer-option-copy {
+    align-items: flex-start;
+  }
+
+  .ww-frequency-options .answer-option-marker {
+    margin: 0 0.75rem 0 0;
+  }
+
+  .ww-overview-header,
+  .ww-highlight-grid,
+  .ww-dimension-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .ww-balance-score {
+    min-height: 8rem;
+  }
+
+  .ww-dimension-summary {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media print {
+  .ww-report-card {
+    break-inside: auto;
+  }
+
+  .ww-dimension-details,
+  .ww-dimension-details[open] {
+    break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .ww-dimension-details > .ww-dimension-body {
+    display: block !important;
+  }
+
+  .ww-dimension-toggle {
+    display: none !important;
+  }
+
+  .ww-overview-header,
+  .ww-highlight-grid,
+  .ww-dimension-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
