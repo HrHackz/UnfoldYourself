@@ -1002,6 +1002,16 @@ function renderTestResult(result) {
     evidence.disclaimer ||
     "Dit resultaat is bedoeld voor zelfinzicht en persoonlijke ontwikkeling.";
 
+  if (
+    typeof applyUniformReportPresentation ===
+      "function"
+  ) {
+    applyUniformReportPresentation(
+      result,
+      definition
+    );
+  }
+
   configurePersonalityCrossTestButton(
     result
   );

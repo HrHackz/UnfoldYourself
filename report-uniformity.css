@@ -1,0 +1,299 @@
+/* =========================================================
+   UNFOLD YOURSELF — UNIFORME RAPPORTPRESENTATIE
+
+   Visuele referentie: Teamrol- en samenwerkingsstijltest,
+   Werkomgeving- en cultuurvoorkeurtest en
+   Werkbelevings- en welzijnstest.
+
+   De drie referentierapporten behouden hun eigen vormgeving.
+   De overige rapporten krijgen dezelfde visuele grammatica.
+========================================================= */
+
+.uy-report-uniform {
+  --uy-report-accent: var(--primary, #6f5cff);
+  --uy-report-accent-dark: var(--primary-dark, #5140dc);
+  --uy-report-border: rgba(24, 32, 51, 0.12);
+  --uy-report-shadow: 0 14px 36px rgba(29, 38, 65, 0.065);
+}
+
+.uy-report-uniform[data-report-reference="false"] {
+  gap: 1.35rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-hero {
+  border-radius: 1.6rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-grid {
+  align-items: start;
+  gap: 1rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card,
+.uy-report-uniform[data-report-reference="false"] .facet-report,
+.uy-report-uniform[data-report-reference="false"] .result-method-note {
+  min-width: 0;
+  border-radius: 1.25rem;
+  box-shadow: var(--uy-report-shadow);
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card {
+  min-height: 0;
+  padding: clamp(1.15rem, 2.4vw, 1.65rem);
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="overview"] {
+  border-top: 4px solid var(--uy-report-accent);
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="interpretation"] {
+  border-left: 4px solid #7a5ea6;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="strengths"] {
+  border-top: 4px solid #2f855f;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="development"] {
+  border-top: 4px solid #b7791f;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="action"] {
+  border-left: 4px solid #2f855f;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="quality"] {
+  border-left: 4px solid #b7791f;
+  background: rgba(246, 173, 85, 0.055);
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card[data-report-block="method"] {
+  background: rgba(30, 41, 59, 0.035);
+}
+
+.uy-report-uniform[data-report-reference="false"] .uy-report-card-full {
+  grid-column: 1 / -1;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-card-label,
+.uy-report-uniform[data-report-reference="false"] .result-method-label,
+.uy-report-uniform[data-report-reference="false"] .facet-interpretation-label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 1.75rem;
+  padding: 0.3rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(111, 92, 255, 0.09);
+  color: var(--uy-report-accent-dark);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.07em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card > h3 {
+  margin: 0.7rem 0 0.85rem;
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.25;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-content-card > p,
+.uy-report-uniform[data-report-reference="false"] .result-content-card li {
+  font-size: 0.88rem;
+  line-height: 1.62;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-dimensions {
+  gap: 0.8rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .dimension-card {
+  min-width: 0;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-color: var(--uy-report-border);
+  box-shadow: 0 10px 24px rgba(29, 38, 65, 0.055);
+}
+
+.uy-report-uniform[data-report-reference="false"] .dimension-card h3 {
+  font-size: 0.82rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .dimension-card strong {
+  color: var(--uy-report-accent-dark);
+  font-size: 0.9rem;
+}
+
+.uy-report-uniform[data-report-reference="false"] .dimension-bar,
+.uy-report-uniform[data-report-reference="false"] .facet-bar {
+  height: 8px;
+}
+
+.uy-report-uniform[data-report-reference="false"] .facet-report {
+  padding: clamp(1.15rem, 2.4vw, 1.65rem);
+}
+
+.uy-report-uniform[data-report-reference="false"] .facet-domain-group,
+.uy-report-uniform[data-report-reference="false"] .facet-item {
+  border-radius: 1rem;
+}
+
+/* Andere rapporten nemen de detailkaarten van de referentierapporten over. */
+.uy-report-uniform[data-report-reference="false"] details.uy-report-details {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(24, 32, 51, 0.12);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.78);
+  transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.uy-report-uniform[data-report-reference="false"] details.uy-report-details[open] {
+  border-color: rgba(111, 92, 255, 0.34);
+  background: rgba(111, 92, 255, 0.025);
+  box-shadow: 0 0.45rem 1.3rem rgba(20, 31, 48, 0.065);
+}
+
+.uy-report-uniform .uy-report-details-summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.uy-report-uniform .uy-report-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Deze toggle is bewust voor alle rapporten identiek. */
+.uy-report-uniform .uy-report-toggle-label,
+.uy-report-uniform .uy-report-section-toggle {
+  color: var(--uy-report-accent-dark);
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+.uy-report-uniform .uy-report-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  white-space: nowrap;
+}
+
+.uy-report-uniform .uy-report-toggle-label::before,
+.uy-report-uniform .uy-report-section-toggle::before {
+  content: "⌄";
+  display: inline-grid;
+  place-items: center;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: rgba(111, 92, 255, 0.1);
+  color: var(--uy-report-accent-dark);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.uy-report-uniform details[open] > summary .uy-report-toggle-label::before,
+.uy-report-uniform .uy-report-section-toggle[aria-expanded="true"]::before {
+  content: "⌃";
+}
+
+.uy-report-uniform .uy-report-section-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.uy-report-uniform .digital-skills-report-area > summary .uy-report-toggle-label,
+.uy-report-uniform .identity-axis-summary .uy-report-toggle-label,
+.uy-report-uniform .cognitive-dimension-details > summary .uy-report-toggle-label {
+  margin-left: auto;
+}
+
+.uy-report-uniform .identity-axis-summary .uy-report-toggle-label {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 0.55rem;
+}
+
+.uy-report-uniform .cognitive-dimension-details > summary {
+  display: inline-flex;
+  align-items: center;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-method-note {
+  padding: clamp(1.1rem, 2vw, 1.4rem);
+  background: rgba(30, 41, 59, 0.035);
+  box-shadow: none;
+}
+
+.uy-report-uniform[data-report-reference="false"] .result-actions {
+  padding-top: 0.25rem;
+  gap: 0.75rem;
+}
+
+@media (max-width: 760px) {
+  .uy-report-uniform[data-report-reference="false"] {
+    gap: 1rem;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-hero {
+    padding: 1.4rem;
+    border-radius: 1.25rem;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-content-card,
+  .uy-report-uniform[data-report-reference="false"] .facet-report,
+  .uy-report-uniform[data-report-reference="false"] .result-method-note {
+    border-radius: 1rem;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-content-card {
+    padding: 1.1rem;
+  }
+
+  .uy-report-uniform .uy-report-toggle-label {
+    white-space: normal;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-actions .button {
+    width: 100%;
+  }
+}
+
+@media print {
+  .uy-report-uniform[data-report-reference="false"] .result-content-card,
+  .uy-report-uniform[data-report-reference="false"] .facet-report,
+  .uy-report-uniform[data-report-reference="false"] .result-method-note,
+  .uy-report-uniform[data-report-reference="false"] details.uy-report-details {
+    box-shadow: none !important;
+  }
+
+  .uy-report-uniform .uy-report-toggle-label,
+  .uy-report-uniform .uy-report-section-toggle {
+    display: none !important;
+  }
+
+  .uy-report-uniform details.uy-report-details:not([open]) > *:not(summary) {
+    display: block !important;
+  }
+
+  .uy-report-uniform[data-report-reference="false"] .result-content-card,
+  .uy-report-uniform[data-report-reference="false"] .dimension-card,
+  .uy-report-uniform[data-report-reference="false"] details.uy-report-details {
+    break-inside: avoid;
+  }
+}
