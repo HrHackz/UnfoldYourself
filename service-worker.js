@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v30";
+const CACHE_VERSION = "v31";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -92,6 +92,11 @@ const OPTIONAL_APP_FILES = [
   "./tests/team-roles/scoring.js",
   "./tests/team-roles/report.js",
   "./tests/team-roles/engine.js",
+  "./tests/work-environment-culture/styles.css",
+  "./tests/work-environment-culture/scoring.js",
+  "./tests/work-environment-culture/renderer.js",
+  "./tests/work-environment-culture/report.js",
+  "./tests/work-environment-culture/engine.js",
   "./big-five-choices.js",
   "./big-five-questions.js",
   "./hexaco-answer-bank-map.js",
@@ -133,6 +138,9 @@ const OPTIONAL_APP_FILES = [
   "./data/team-roles/questions.js",
   "./data/team-roles/roles.js",
   "./data/team-roles/sources.js",
+  "./data/work-environment-culture/questions.js",
+  "./data/work-environment-culture/profiles.js",
+  "./data/work-environment-culture/sources.js",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png"
