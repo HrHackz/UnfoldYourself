@@ -1,0 +1,369 @@
+/* Teamrol- en samenwerkingsstijltest */
+
+.team-role-top-overview,
+.team-role-combination-card,
+.team-role-profiles-card,
+.team-role-lower-card,
+.team-role-method-card,
+.team-role-quality-note {
+  display: grid;
+  gap: 1rem;
+}
+
+.team-role-top-overview > p,
+.team-role-combination-card > p,
+.team-role-profiles-card > p,
+.team-role-lower-card > p,
+.team-role-method-card > p,
+.team-role-quality-note > p {
+  margin: 0;
+  color: var(--text-muted, #5f6672);
+  line-height: 1.62;
+}
+
+.team-role-quality-note {
+  border-color: rgba(217, 109, 75, 0.42);
+  background: rgba(217, 109, 75, 0.045);
+}
+
+.team-role-top-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.team-role-top-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid rgba(122, 94, 166, 0.25);
+  border-radius: 16px;
+  background: rgba(122, 94, 166, 0.045);
+}
+
+.team-role-top-card h4,
+.team-role-top-card p {
+  margin: 0;
+}
+
+.team-role-top-card h4 {
+  padding-right: 3.3rem;
+  font-size: 1.08rem;
+}
+
+.team-role-top-card p {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.5;
+}
+
+.team-role-rank {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #7a5ea6;
+  color: #fff;
+  font-weight: 900;
+}
+
+.team-role-top-card > .team-role-rank {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+}
+
+.team-role-top-score {
+  color: #5a3f85;
+  font-size: 1.7rem;
+  line-height: 1;
+}
+
+.team-role-fit,
+.team-role-summary-copy small {
+  justify-self: start;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.team-role-fit {
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(122, 94, 166, 0.1);
+  color: #5a3f85;
+}
+
+.team-role-combination-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.team-role-combination-item {
+  min-width: 0;
+  padding: 0.9rem;
+  border-radius: 14px;
+  background: rgba(18, 31, 44, 0.035);
+}
+
+.team-role-combination-item h4,
+.team-role-combination-item p {
+  margin: 0;
+}
+
+.team-role-combination-item h4 {
+  margin-bottom: 0.45rem;
+  color: #3f2d61;
+}
+
+.team-role-combination-item p {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.5;
+}
+
+.team-role-combination-item .team-role-tension {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(18, 31, 44, 0.09);
+}
+
+.team-role-profile-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.team-role-profile {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(122, 94, 166, 0.21);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.team-role-profile[open] {
+  border-color: rgba(122, 94, 166, 0.5);
+  background: rgba(122, 94, 166, 0.025);
+}
+
+.team-role-profile > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.team-role-profile > summary::-webkit-details-marker {
+  display: none;
+}
+
+.team-role-summary-left,
+.team-role-summary-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.team-role-summary-copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.team-role-summary-copy strong {
+  min-width: 0;
+}
+
+.team-role-summary-copy small {
+  color: #5a3f85;
+}
+
+.team-role-summary-right > strong {
+  color: #5a3f85;
+  font-size: 1.15rem;
+}
+
+.team-role-toggle {
+  color: #5a3f85;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.team-role-profile-body {
+  display: grid;
+  gap: 0.9rem;
+  padding: 0 1rem 1rem;
+}
+
+.team-role-score-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.team-role-score-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-muted, #5f6672);
+  font-size: 0.86rem;
+}
+
+.team-role-score-header strong {
+  color: #5a3f85;
+}
+
+.team-role-score-bar {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(122, 94, 166, 0.12);
+}
+
+.team-role-score-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #7a5ea6;
+}
+
+.team-role-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.team-role-traits span {
+  padding: 0.3rem 0.58rem;
+  border-radius: 999px;
+  background: rgba(122, 94, 166, 0.1);
+  color: #5a3f85;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.team-role-profile-intro {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.9rem;
+  border-radius: 13px;
+  background: rgba(122, 94, 166, 0.055);
+}
+
+.team-role-profile-intro strong,
+.team-role-profile-intro p {
+  margin: 0;
+}
+
+.team-role-profile-intro strong {
+  color: #3f2d61;
+}
+
+.team-role-profile-intro p {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.55;
+}
+
+.team-role-section-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.team-role-section {
+  min-width: 0;
+  padding: 0.82rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(18, 31, 44, 0.035);
+}
+
+.team-role-section h4,
+.team-role-section p {
+  margin: 0;
+}
+
+.team-role-section h4 {
+  margin-bottom: 0.3rem;
+  color: #3f2d61;
+  font-size: 0.9rem;
+}
+
+.team-role-section p {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.52;
+}
+
+.team-role-lower-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team-role-lower-list li {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(18, 31, 44, 0.035);
+}
+
+.team-role-lower-list span {
+  color: var(--text-muted, #5f6672);
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .team-role-top-grid,
+  .team-role-combination-list,
+  .team-role-section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-role-profile > summary {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .team-role-summary-left {
+    width: 100%;
+  }
+
+  .team-role-summary-right {
+    width: 100%;
+    padding-left: 2.75rem;
+    justify-content: space-between;
+  }
+}
+
+@media print {
+  .team-role-top-card,
+  .team-role-combination-item,
+  .team-role-profile,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note {
+    break-inside: avoid;
+  }
+
+  .team-role-profile > summary {
+    cursor: default;
+  }
+
+  .team-role-profile-body,
+  details.team-role-profile:not([open]) > .team-role-profile-body {
+    display: grid !important;
+  }
+
+  .team-role-toggle {
+    display: none !important;
+  }
+}
