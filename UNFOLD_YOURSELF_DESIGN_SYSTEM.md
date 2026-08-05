@@ -804,3 +804,20 @@ Het vaste Unfold Yourself-merkicoon gebruikt een 3×3-mozaïek van negen stippen
 ## Versie
 
 - De publieke footer toont vanaf deze release `Versie 1.0`.
+
+
+# 27. V45 — Eénlaagse uitklapbediening in scorekaarten
+
+Voor compacte scorekaarten met een knop **Toon uitleg / Verberg uitleg** geldt voortaan:
+
+- de `<summary>` zelf is het enige knopvlak;
+- er wordt geen tweede label, pill of rand in de knop geplaatst;
+- het omringende `<details>`-element heeft geen eigen kader of achtergrond;
+- geopende uitleg staat rechtstreeks in de bestaande scorekaart, zonder extra kaart-in-kaart;
+- knoptekst gebruikt steeds de actieve profielgebiedkleur;
+- het pijlicoon wordt via één pseudo-element gecentreerd;
+- gesloten en geopende toestand behouden dezelfde knopgeometrie;
+- de korte labels `Toon uitleg` en `Verberg uitleg` worden gebruikt om afkapping in smalle kaarten te vermijden;
+- deze componentregel wordt via `core/report-uniformity.js` structureel toegekend en niet door opeenvolgende visuele wrappers.
+
+Deze regel voorkomt dubbele kaders, verschillende afrondingen, losgeraakte toggleteksten en geneste uitlegpanelen.

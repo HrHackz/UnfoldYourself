@@ -135,6 +135,21 @@ function setUniformReportCardPresentation(card, testId) {
   }
 }
 
+function isUniformInlineToggle(summary) {
+  const text = (summary.textContent || "").trim();
+  const hasMeaningfulChild = Array.from(summary.children).some(child => {
+    return !child.matches(
+      ".uy-report-toggle-label, .facet-item-toggle, .team-role-toggle, .leadership-style-toggle, .wec-culture-toggle, .ww-dimension-toggle"
+    );
+  });
+
+  return !hasMeaningfulChild && /^(toon|verberg).*(uitleg|details)/i.test(text);
+}
+
+function updateUniformInlineToggle(details, summary) {
+  summary.textContent = details.open ? "Verberg uitleg" : "Toon uitleg";
+}
+
 function getUniformReportToggle(details, summary) {
   const existing = summary.querySelector(
     ".uy-report-toggle-label, .facet-item-toggle, .team-role-toggle, .leadership-style-toggle, .wec-culture-toggle, .ww-dimension-toggle"
@@ -143,18 +158,6 @@ function getUniformReportToggle(details, summary) {
   if (existing) {
     existing.classList.add("uy-report-toggle-label");
     return existing;
-  }
-
-  const visibleTextNodes = Array.from(summary.childNodes).filter(node => {
-    return node.nodeType === Node.TEXT_NODE && node.textContent.trim();
-  });
-
-  if (
-    summary.children.length === 0 &&
-    visibleTextNodes.length > 0 &&
-    /^(toon|verberg).*(uitleg|details)/i.test(summary.textContent.trim())
-  ) {
-    summary.replaceChildren();
   }
 
   const toggle = document.createElement("span");
@@ -174,6 +177,29 @@ function normalizeUniformReportDetails(root) {
     const summary = details.querySelector(":scope > summary");
     if (!summary) return;
 
+    if (isUniformInlineToggle(summary)) {
+      details.classList.remove("uy-report-details");
+      details.classList.add("uy-report-inline-details");
+      summary.classList.remove("uy-report-details-summary");
+      summary.classList.add("uy-report-inline-summary");
+
+      summary.querySelectorAll(
+        ".uy-report-toggle-label, .facet-item-toggle, .team-role-toggle, .leadership-style-toggle, .wec-culture-toggle, .ww-dimension-toggle"
+      ).forEach(element => element.remove());
+
+      updateUniformInlineToggle(details, summary);
+
+      if (details.dataset.uniformInlineToggleBound !== "true") {
+        details.dataset.uniformInlineToggleBound = "true";
+        details.addEventListener("toggle", () => {
+          updateUniformInlineToggle(details, summary);
+        });
+      }
+      return;
+    }
+
+    details.classList.remove("uy-report-inline-details");
+    summary.classList.remove("uy-report-inline-summary");
     details.classList.add("uy-report-details");
     summary.classList.add("uy-report-details-summary");
 
