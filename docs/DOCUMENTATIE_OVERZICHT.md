@@ -1,0 +1,39 @@
+# Documentatie-overzicht
+
+De Release 1.0-documentatieset bevat:
+
+- `README.md`
+- `CHANGELOG.md`
+- `CONTRIBUTING.md`
+- `SECURITY.md`
+- `PRIVACY.md`
+- `DISCLAIMER.md`
+- `SUPPORT.md`
+- `CODE_OF_CONDUCT.md`
+- `COPYRIGHT.md`
+- `.gitignore`
+- `.github/CODEOWNERS`
+- `.github/PULL_REQUEST_TEMPLATE.md`
+- `.github/ISSUE_TEMPLATE/bug_report.yml`
+- `.github/ISSUE_TEMPLATE/feature_request.yml`
+- `.github/ISSUE_TEMPLATE/documentation.yml`
+- `.github/ISSUE_TEMPLATE/config.yml`
+- `docs/ARCHITECTUUR.md`
+- `docs/TESTCATALOGUS.md`
+- `docs/DATA_EN_OPSLAG.md`
+- `docs/LOKAAL_ONTWIKKELEN.md`
+- `docs/TESTCHECKLIST.md`
+- `docs/RELEASEPROCES.md`
+- `docs/RELEASE_NOTES_1.0.0.md`
+- `docs/REPOSITORY_INSTELLINGEN.md`
+- `docs/LICENTIEKEUZE.md`
+- `docs/TOEGANKELIJKHEID.md`
+- `docs/ROADMAP.md`
+- `wiki/README.md`
+- `wiki/Home.md`
+- `wiki/_Sidebar.md`
+- `wiki/Gebruik-en-installatie.md`
+- `wiki/Testen-en-rapporten.md`
+- `wiki/Privacy-en-back-ups.md`
+- `wiki/Technische-architectuur.md`
+- `wiki/Onderhoud-en-releases.md`
