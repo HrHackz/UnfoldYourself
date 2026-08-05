@@ -1429,3 +1429,84 @@ html[data-theme="dark"] .toast {
     border-color: var(--accent-magenta) !important;
   }
 }
+
+/* =========================================================
+   15. MERKGRADIENT EN RAPPORTKEUZEACCENTEN v39
+========================================================= */
+
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --brand-gradient: linear-gradient(
+    135deg,
+    var(--barbie-pink) 0%,
+    var(--bubblegum-pink) 34%,
+    var(--royal-gold) 80%
+  );
+}
+
+@media screen {
+  /* De vaste Unfold Yourself-merkgradient wordt uitsluitend op
+     het merkicoon, de centrale profielavatar en de actieve
+     voortgangsboog gebruikt. */
+  .brand-mark,
+  .avatar {
+    background: var(--brand-gradient) !important;
+  }
+
+  .brand-mark {
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--barbie-pink) 20%, transparent);
+  }
+
+  .progress-ring {
+    background: conic-gradient(
+      from 0deg,
+      var(--barbie-pink) 0%,
+      var(--bubblegum-pink) calc(var(--progress) * 0.34%),
+      var(--royal-gold) calc(var(--progress) * 0.80%),
+      var(--royal-gold) calc(var(--progress) * 1%),
+      color-mix(in srgb, var(--border-soft) 72%, transparent) calc(var(--progress) * 1%)
+    ) !important;
+  }
+
+  /* Eén vaste accentkleur per rapportkeuze. */
+  .total-report-mode-card.is-compact {
+    --report-mode-accent: var(--bubblegum-pink);
+  }
+
+  .total-report-mode-card.is-full {
+    --report-mode-accent: var(--royal-gold);
+  }
+
+  .total-report-mode-card.is-ultimate {
+    --report-mode-accent: var(--mint-leaf);
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate) {
+    border-color: var(--report-mode-accent) !important;
+    background-color: var(--surface-1) !important;
+    box-shadow: 0 12px 30px color-mix(in srgb, var(--report-mode-accent) 10%, transparent);
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate)
+    .total-report-mode-kicker {
+    color: #181b2c !important;
+    background: var(--report-mode-accent) !important;
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate)
+    .button {
+    border-color: var(--report-mode-accent) !important;
+    color: #181b2c !important;
+    background: var(--report-mode-accent) !important;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--report-mode-accent) 22%, transparent) !important;
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate)
+    .button:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--report-mode-accent) 84%, #181b2c) !important;
+    background: color-mix(in srgb, var(--report-mode-accent) 88%, #ffffff) !important;
+    box-shadow: 0 14px 30px color-mix(in srgb, var(--report-mode-accent) 28%, transparent) !important;
+  }
+}
+

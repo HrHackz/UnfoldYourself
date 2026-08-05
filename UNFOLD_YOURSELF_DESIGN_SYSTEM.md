@@ -5,7 +5,7 @@
 **Stijlnaam:** Soft Editorial Tech  
 **Hoofdprincipes:** warm, modern, persoonlijk, premium, rustig, toegankelijk en professioneel.
 
-**Definitieve kleurenbasis v38:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients; alleen primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken.
+**Definitieve kleurenbasis v39:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients. De vaste merkgradient `#F90E8E → #F84F6C → #F9CE66` is alleen toegestaan op het Unfold Yourself-merkicoon, de centrale profielavatar en de actieve voortgangsboog. Algemene primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken; rapportkeuzeknoppen gebruiken hun eigen vaste accentkleur.
 
 ---
 
@@ -196,6 +196,35 @@ Dezelfde zeven accentkleuren worden in light en dark mode gebruikt. Per kaart of
 | `--blue-bell` | Blue Bell | `#0D93D1` | Samenwerking, leiderschap & cultuur |
 | `--dark-violet` | Dark Violet | `#AA0DD1` | Werkbeleving, welzijn & balans |
 
+## 6.2 Vaste merkgradient
+
+```css
+background: linear-gradient(
+  135deg,
+  #F90E8E 0%,
+  #F84F6C 34%,
+  #F9CE66 80%
+);
+```
+
+Gebruik deze gradient uitsluitend voor:
+
+- het Unfold Yourself-merkicoon;
+- de centrale profielavatar;
+- het actieve segment van de cirkel bij **Mijn voortgang**.
+
+Gebruik de merkgradient niet als achtergrond van kaarten, rapportblokken of grote inhoudsvlakken.
+
+## 6.3 Vaste accentkleur per rapportkeuze
+
+| Rapportkeuze | Accentkleur |
+|---|---|
+| Kort en deelbaar / Compact overzicht | Bubblegum Pink `#F84F6C` |
+| Alle informatie / Volledig rapport | Royal Gold `#F9CE66` |
+| Meeste meerwaarde / Ultiem geïntegreerd rapport | Mint Leaf `#0CD29F` |
+
+De accentkleur verschijnt consequent in de badge, kaartomranding en actieknop. De kaartachtergrond blijft effen en neutraal volgens het actieve thema.
+
 ## 6.1 Kleurgebruik
 
 De vaste profielgebiedkleur wordt consequent gebruikt voor:
@@ -210,7 +239,7 @@ Vaste regels:
 
 - één accentkleur per kaart;
 - geen decoratieve kleurvlekken of wazige glow-cirkels;
-- geen gradients in kaders, kaarten of rapportblokken;
+- geen gradients in kaders, kaarten of rapportblokken; de enige uitzondering is de hierboven vastgelegde merkgradient op drie kleine merkelementen;
 - primaire knoppen zijn effen donker in light mode;
 - primaire knoppen gebruiken uitsluitend in dark mode de gradient `#F90E8E → #F84F6C`;
 - kleur is nooit de enige informatiedrager.
