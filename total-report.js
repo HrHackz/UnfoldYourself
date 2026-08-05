@@ -93,12 +93,12 @@
 
   const DOMAIN_COLORS = Object.freeze({
     persoonlijkheid: "#F90E8E",
-    identiteit: "#AA0DD1",
+    identiteit: "#F84F6C",
     werkorientatie: "#F9CE66",
-    denken: "#0D93D1",
+    denken: "#0CD29F",
     vaardigheden: "#0DCED1",
-    samenwerking: "#F84F6C",
-    werkbeleving: "#0CD29F"
+    samenwerking: "#0D93D1",
+    werkbeleving: "#AA0DD1"
   });
 
   const workspace = document.getElementById("totalReportWorkspace");

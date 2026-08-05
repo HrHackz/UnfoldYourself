@@ -44,7 +44,7 @@ const domains = [
     "short": "IM",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"8.3\" cy=\"9\" r=\"3.2\"></circle><circle cx=\"15.7\" cy=\"9\" r=\"3.2\"></circle><path d=\"M3.5 20c.5-3.7 2.1-5.6 4.8-5.6 1.6 0 2.8.7 3.7 2\"></path><path d=\"M12 16.4c.9-1.3 2.1-2 3.7-2 2.7 0 4.3 1.9 4.8 5.6\"></path></svg>",
     "title": "Identiteit & maatschappelijke positie",
-    "color": "#AA0DD1",
+    "color": "#F84F6C",
     "tests": [
       [
         "Deelidentiteiten- en kruispuntdenkentest",
@@ -74,7 +74,7 @@ const domains = [
     "short": "DR",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9.2 4.2A3.5 3.5 0 0 0 6 9.1 3.4 3.4 0 0 0 6.7 15 3.3 3.3 0 0 0 11 19.5V5.4a2 2 0 0 0-1.8-1.2Z\"></path><path d=\"M14.8 4.2A3.5 3.5 0 0 1 18 9.1a3.4 3.4 0 0 1-.7 5.9 3.3 3.3 0 0 1-4.3 4.5V5.4a2 2 0 0 1 1.8-1.2Z\"></path><path d=\"M7.2 9.2h3.2M13.6 9.2h3.2M7.5 14.1h2.9M13.6 14.1h2.9\"></path></svg>",
     "title": "Denken & redeneervermogen",
-    "color": "#0D93D1",
+    "color": "#0CD29F",
     "tests": [
       [
         "Cognitieve vaardigheidsbatterij",
@@ -100,7 +100,7 @@ const domains = [
     "short": "SL",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"7.5\" r=\"3\"></circle><circle cx=\"5.5\" cy=\"10\" r=\"2.2\"></circle><circle cx=\"18.5\" cy=\"10\" r=\"2.2\"></circle><path d=\"M6.5 20c.5-3.8 2.3-5.8 5.5-5.8s5 2 5.5 5.8M1.8 19c.3-2.7 1.5-4.1 3.7-4.1 1.1 0 2 .4 2.7 1.2M22.2 19c-.3-2.7-1.5-4.1-3.7-4.1-1.1 0-2 .4-2.7 1.2\"></path></svg>",
     "title": "Samenwerking, leiderschap & cultuur",
-    "color": "#F84F6C",
+    "color": "#0D93D1",
     "tests": [
       [
         "Leiderschapstest",
@@ -121,7 +121,7 @@ const domains = [
     "short": "WW",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20.6 5.8c-2.2-2.3-5.8-1.6-7.2.7L12 8.6l-1.4-2.1C9.2 4.2 5.6 3.5 3.4 5.8 1 8.4 2.1 12 4.2 14.2L12 21l7.8-6.8c2.1-2.2 3.2-5.8.8-8.4Z\"></path><path d=\"M5.8 12h3l1.2-2.3 2.1 4.7 1.5-2.4h4.6\"></path></svg>",
     "title": "Werkbeleving, welzijn & balans",
-    "color": "#0CD29F",
+    "color": "#AA0DD1",
     "tests": [
       [
         "Werkbelevings- en welzijnstest",

@@ -5,7 +5,7 @@
 **Stijlnaam:** Soft Editorial Tech  
 **Hoofdprincipes:** warm, modern, persoonlijk, premium, rustig, toegankelijk en professioneel.
 
-**Definitieve kleurenbasis v37:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients; alleen primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken.
+**Definitieve kleurenbasis v38:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients; alleen primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken.
 
 ---
 
@@ -189,12 +189,12 @@ Dezelfde zeven accentkleuren worden in light en dark mode gebruikt. Per kaart of
 | Token | Naam | Hex | Vast profielgebied |
 |---|---|---|---|
 | `--barbie-pink` | Barbie Pink | `#F90E8E` | Persoonlijkheid & zelfbeeld |
-| `--dark-violet` | Dark Violet | `#AA0DD1` | Identiteit & maatschappelijke positie |
+| `--bubblegum-pink` | Bubblegum Pink | `#F84F6C` | Identiteit & maatschappelijke positie |
 | `--royal-gold` | Royal Gold | `#F9CE66` | Werkoriëntatie & beroepsrichting |
-| `--blue-bell` | Blue Bell | `#0D93D1` | Denken & redeneervermogen |
+| `--mint-leaf` | Mint Leaf | `#0CD29F` | Denken & redeneervermogen |
 | `--strong-cyan` | Strong Cyan | `#0DCED1` | Digitale vaardigheden |
-| `--bubblegum-pink` | Bubblegum Pink | `#F84F6C` | Samenwerking, leiderschap & cultuur |
-| `--mint-leaf` | Mint Leaf | `#0CD29F` | Werkbeleving, welzijn & balans |
+| `--blue-bell` | Blue Bell | `#0D93D1` | Samenwerking, leiderschap & cultuur |
+| `--dark-violet` | Dark Violet | `#AA0DD1` | Werkbeleving, welzijn & balans |
 
 ## 6.1 Kleurgebruik
 
