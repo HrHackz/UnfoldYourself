@@ -43,7 +43,7 @@ function createDomainButton(domain, index, forMobile = false) {
   button.style.setProperty("--domain-color", domain.color);
   button.setAttribute("aria-label", `${domain.title}: ${progress.completed} van ${progress.total} testen voltooid`);
 
-  icon.textContent = domain.short;
+  icon.innerHTML = domain.icon || "";
   title.textContent = domain.title;
   meta.textContent = `${progress.completed} van ${progress.total} voltooid`;
   percentage.textContent = `${progress.percentage}%`;
@@ -124,6 +124,7 @@ function createCatalogTestCard(
 
   article.className =
     "test-card";
+  article.style.setProperty("--domain-color", domain?.color || "#F90E8E");
 
   article.classList.toggle(
     "is-development",
@@ -247,6 +248,8 @@ function createCatalogTestCard(
 
 
 function createPersonalityModelCard() {
+  const domain = domains.find(item => item.id === "persoonlijkheid");
+
   const modelIds = [
     BIG_FIVE_TEST_ID,
     HEXACO_TEST_ID
@@ -273,6 +276,7 @@ function createPersonalityModelCard() {
 
   article.className =
     "test-card personality-model-card";
+  article.style.setProperty("--domain-color", domain.color);
 
   const copy =
     document.createElement(
@@ -433,6 +437,7 @@ function openDomain(domainId) {
   }
 
   activeDomainId = domainId;
+  domainDrawer.style.setProperty("--domain-color", domain.color);
   const progress =
     getDomainProgress(domain);
 

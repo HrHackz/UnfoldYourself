@@ -5,6 +5,8 @@
 **Stijlnaam:** Soft Editorial Tech  
 **Hoofdprincipes:** warm, modern, persoonlijk, premium, rustig, toegankelijk en professioneel.
 
+**Definitieve kleurenbasis v37:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients; alleen primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken.
+
 ---
 
 # 1. Merkuitstraling
@@ -128,16 +130,16 @@ Light mode is de standaard voor lange teksten, rapporten, professioneel gebruik 
 
 | Token | Functie | Hex |
 |---|---|---|
-| `--bg-app` | Algemene appachtergrond | `#F1ECE7` |
-| `--bg-alt` | Alternatieve achtergrond | `#E8E0D9` |
-| `--surface-1` | Hoofdkaart / primair oppervlak | `#FFFCF8` |
-| `--surface-2` | Secundaire kaart | `#F8F3EE` |
-| `--surface-3` | Zacht geselecteerd oppervlak | `#F4ECE7` |
-| `--text-primary` | Primaire tekst | `#25242B` |
-| `--text-secondary` | Secundaire tekst | `#6F6966` |
-| `--text-muted` | Gedempte tekst | `#918984` |
-| `--border-soft` | Zachte rand | `#DED5CE` |
-| `--border-strong` | Sterkere rand | `#CFC3BA` |
+| `--bg-app` | Algemene appachtergrond | `#F7EEE5` |
+| `--bg-alt` | Alternatieve achtergrond | `#F7EEE5` |
+| `--surface-1` | Hoofdkaart / primair oppervlak | `#FBF6F3` |
+| `--surface-2` | Secundaire kaart | `#F6EEE9` |
+| `--surface-3` | Zacht geselecteerd oppervlak | `#F2E7E1` |
+| `--text-primary` | Primaire tekst | `#181B2C` |
+| `--text-secondary` | Secundaire tekst | `#625F67` |
+| `--text-muted` | Gedempte tekst | `#827D84` |
+| `--border-soft` | Zachte rand | `#DFD3CA` |
+| `--border-strong` | Sterkere rand | `#CDBEB4` |
 
 ## 4.2 Light theme-karakter
 
@@ -158,16 +160,16 @@ Dark mode is bedoeld voor schermgebruik, avondgebruik en een krachtigere visuele
 
 | Token | Functie | Hex |
 |---|---|---|
-| `--bg-app` | Algemene appachtergrond | `#11101F` |
-| `--bg-alt` | Alternatieve achtergrond | `#181529` |
-| `--surface-1` | Hoofdkaart / primair oppervlak | `#211E31` |
-| `--surface-2` | Secundaire kaart | `#29253A` |
-| `--surface-3` | Geselecteerd / verhoogd oppervlak | `#302B43` |
-| `--text-primary` | Primaire tekst | `#FAF8F5` |
-| `--text-secondary` | Secundaire tekst | `#B9B3C2` |
-| `--text-muted` | Gedempte tekst | `#8D8797` |
-| `--border-soft` | Zachte rand | `#3A354B` |
-| `--border-strong` | Sterkere rand | `#504862` |
+| `--bg-app` | Algemene appachtergrond | `#252541` |
+| `--bg-alt` | Alternatieve achtergrond | `#252541` |
+| `--surface-1` | Hoofdkaart / primair oppervlak | `#181B2C` |
+| `--surface-2` | Secundaire kaart | `#20243A` |
+| `--surface-3` | Geselecteerd / verhoogd oppervlak | `#292D48` |
+| `--text-primary` | Primaire tekst | `#FBF6F3` |
+| `--text-secondary` | Secundaire tekst | `#CBC6C5` |
+| `--text-muted` | Gedempte tekst | `#AAA5AB` |
+| `--border-soft` | Zachte rand | `#353951` |
+| `--border-strong` | Sterkere rand | `#494E6B` |
 
 ## 5.2 Dark theme-karakter
 
@@ -182,37 +184,36 @@ Dark mode is bedoeld voor schermgebruik, avondgebruik en een krachtigere visuele
 
 # 6. Accentpalet
 
-| Token | Naam | Hex | Primair gebruik |
+Dezelfde zeven accentkleuren worden in light en dark mode gebruikt. Per kaart of profielgebied wordt één accentkleur gebruikt.
+
+| Token | Naam | Hex | Vast profielgebied |
 |---|---|---|---|
-| `--accent-magenta` | Electric Magenta | `#FF0A8F` | primaire actie, geselecteerd antwoord, actieve navigatie |
-| `--accent-rose` | Rose Punch | `#FF4D6D` | waarschuwing, belasting, kwetsbaar aandachtspunt |
-| `--accent-gold` | Warm Gold | `#FFD166` | aandacht, groei, belangrijke nuance |
-| `--accent-mint` | Mint Signal | `#06D6A0` | positief, voltooid, sterke hulpbron |
-| `--accent-ink` | Ink Navy | `#1B1B3A` | diepe contrastkleur |
-| `--accent-peach` | Soft Peach | `#FFB59D` | zachte warme achtergrond |
-| `--accent-blue` | Calm Blue | `#74B9FF` | informatie, cognitie, methodiek |
-| `--accent-lilac` | Soft Lilac | `#B8A1FF` | identiteit, reflectie, verdieping |
+| `--barbie-pink` | Barbie Pink | `#F90E8E` | Persoonlijkheid & zelfbeeld |
+| `--dark-violet` | Dark Violet | `#AA0DD1` | Identiteit & maatschappelijke positie |
+| `--royal-gold` | Royal Gold | `#F9CE66` | Werkoriëntatie & beroepsrichting |
+| `--blue-bell` | Blue Bell | `#0D93D1` | Denken & redeneervermogen |
+| `--strong-cyan` | Strong Cyan | `#0DCED1` | Digitale vaardigheden |
+| `--bubblegum-pink` | Bubblegum Pink | `#F84F6C` | Samenwerking, leiderschap & cultuur |
+| `--mint-leaf` | Mint Leaf | `#0CD29F` | Werkbeleving, welzijn & balans |
 
 ## 6.1 Kleurgebruik
 
-Gebruik accentkleuren voor:
+De vaste profielgebiedkleur wordt consequent gebruikt voor:
 
-- actieve of geselecteerde elementen;
-- kleine badges;
-- iconen;
-- dunne accentlijnen;
-- grafieken;
-- score-indicatoren;
-- highlights;
-- statusfeedback.
+- het profielgebiedicoon;
+- het percentage;
+- de actieve of bovenste rand;
+- de voortgangsbalk in het totaalrapport;
+- verwijzingen naar hetzelfde profielgebied in latere schermen.
 
-Vermijd:
+Vaste regels:
 
-- volledige pagina’s met felle accentachtergrond;
-- willekeurige kleurtoewijzing;
-- meer dan drie concurrerende accenten in één kaart;
-- fel rood voor normale aandachtspunten;
-- kleur als enige betekenisdrager.
+- één accentkleur per kaart;
+- geen decoratieve kleurvlekken of wazige glow-cirkels;
+- geen gradients in kaders, kaarten of rapportblokken;
+- primaire knoppen zijn effen donker in light mode;
+- primaire knoppen gebruiken uitsluitend in dark mode de gradient `#F90E8E → #F84F6C`;
+- kleur is nooit de enige informatiedrager.
 
 ---
 
@@ -220,12 +221,12 @@ Vermijd:
 
 | Betekenis | Accent |
 |---|---|
-| Positief / voltooid / sterke hulpbron | Mint Signal |
-| Aandacht / nuance / groeikans | Warm Gold |
-| Belasting / kwetsbaar aandachtspunt | Rose Punch |
-| Primaire actie / selectie / focus | Electric Magenta |
-| Informatie / methodiek / cognitie | Calm Blue |
-| Reflectie / identiteit / verdieping | Soft Lilac |
+| Positief / voltooid / sterke hulpbron | Mint Leaf |
+| Aandacht / nuance / groeikans | Royal Gold |
+| Belasting / kwetsbaar aandachtspunt | Bubblegum Pink |
+| Primaire actie / selectie / focus | Barbie Pink |
+| Informatie / methodiek / cognitie | Blue Bell |
+| Reflectie / identiteit / verdieping | Dark Violet |
 
 Alle semantische kleurvlakken moeten ook tekst en/of symbolen bevatten. Kleur alleen is niet voldoende.
 
@@ -587,37 +588,37 @@ Dark mode wordt nooit letterlijk naar PDF of papier gekopieerd.
 ```css
 :root,
 html[data-theme="light"] {
-  --bg-app: #F1ECE7;
-  --bg-alt: #E8E0D9;
-  --surface-1: #FFFCF8;
+  --bg-app: #F7EEE5;
+  --bg-alt: #F7EEE5;
+  --surface-1: #FBF6F3;
   --surface-2: #F8F3EE;
   --surface-3: #F4ECE7;
 
-  --text-primary: #25242B;
+  --text-primary: #181B2C;
   --text-secondary: #6F6966;
   --text-muted: #918984;
 
   --border-soft: #DED5CE;
   --border-strong: #CFC3BA;
 
-  --accent-magenta: #FF0A8F;
-  --accent-rose: #FF4D6D;
-  --accent-gold: #FFD166;
-  --accent-mint: #06D6A0;
+  --accent-magenta: #F90E8E;
+  --accent-rose: #F84F6C;
+  --accent-gold: #F9CE66;
+  --accent-mint: #0CD29F;
   --accent-ink: #1B1B3A;
   --accent-peach: #FFB59D;
-  --accent-blue: #74B9FF;
-  --accent-lilac: #B8A1FF;
+  --accent-blue: #0D93D1;
+  --accent-lilac: #AA0DD1;
 }
 
 html[data-theme="dark"] {
-  --bg-app: #11101F;
+  --bg-app: #252541;
   --bg-alt: #181529;
-  --surface-1: #211E31;
+  --surface-1: #181B2C;
   --surface-2: #29253A;
   --surface-3: #302B43;
 
-  --text-primary: #FAF8F5;
+  --text-primary: #FBF6F3;
   --text-secondary: #B9B3C2;
   --text-muted: #8D8797;
 

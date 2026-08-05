@@ -91,6 +91,16 @@
     werkbeleving: "Werkbeleving, welzijn & balans"
   });
 
+  const DOMAIN_COLORS = Object.freeze({
+    persoonlijkheid: "#F90E8E",
+    identiteit: "#AA0DD1",
+    werkorientatie: "#F9CE66",
+    denken: "#0D93D1",
+    vaardigheden: "#0DCED1",
+    samenwerking: "#F84F6C",
+    werkbeleving: "#0CD29F"
+  });
+
   const workspace = document.getElementById("totalReportWorkspace");
   const documentRoot = document.getElementById("totalReportDocument");
   const closeButton = document.getElementById("closeTotalReportButton");
@@ -726,7 +736,8 @@
         label: DOMAIN_META[domainId],
         completed,
         total: tests.length,
-        percentage: tests.length ? Math.round((completed / tests.length) * 100) : 0
+        percentage: tests.length ? Math.round((completed / tests.length) * 100) : 0,
+        color: DOMAIN_COLORS[domainId] || "#F90E8E"
       };
     });
     return {
@@ -1189,6 +1200,7 @@
     const grid = element("div", "tr-coverage-grid");
     coverage.domainCoverage.forEach(item => {
       const node = element("div", "tr-coverage-item");
+      node.style.setProperty("--domain-color", item.color);
       node.append(
         element("strong", "", item.label),
         element("span", "", `${item.completed} van ${item.total} voltooid`)
@@ -1752,6 +1764,7 @@
       launcherDomainCoverage.replaceChildren();
       coverage.domainCoverage.forEach(item => {
         const row = element("div", "total-report-domain-line");
+        row.style.setProperty("--domain-color", item.color);
         row.appendChild(element("span", "", item.label));
         const progress = element("div", "linear-progress");
         const fill = element("span");

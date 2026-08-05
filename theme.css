@@ -14,33 +14,41 @@
 html[data-theme="light"] {
   color-scheme: light;
 
-  --bg-app: #f1ece7;
-  --bg-alt: #e8e0d9;
-  --surface-1: #fffcf8;
-  --surface-2: #f8f3ee;
-  --surface-3: #f4ece7;
-  --surface-glass: rgba(255, 252, 248, 0.84);
+  --bg-app: #f7eee5;
+  --bg-alt: #f7eee5;
+  --surface-1: #fbf6f3;
+  --surface-2: #f6eee9;
+  --surface-3: #f2e7e1;
+  --surface-glass: rgba(251, 246, 243, 0.90);
 
-  --text-primary: #25242b;
-  --text-secondary: #6f6966;
-  --text-muted: #918984;
-  --text-on-accent: #ffffff;
+  --text-primary: #181b2c;
+  --text-secondary: #625f67;
+  --text-muted: #827d84;
+  --text-on-accent: #f9f4f0;
 
-  --border-soft: #ded5ce;
-  --border-strong: #cfc3ba;
+  --border-soft: #dfd3ca;
+  --border-strong: #cdbeb4;
 
-  --accent-magenta: #ff0a8f;
-  --accent-magenta-dark: #d80078;
-  --accent-rose: #ff4d6d;
-  --accent-gold: #ffd166;
-  --accent-gold-dark: #9d6800;
-  --accent-mint: #06d6a0;
-  --accent-mint-dark: #087b62;
-  --accent-ink: #1b1b3a;
+  --accent-magenta: #f90e8e;
+  --accent-magenta-dark: #d90c7c;
+  --accent-rose: #f84f6c;
+  --accent-gold: #f9ce66;
+  --accent-gold-dark: #946100;
+  --accent-mint: #0cd29f;
+  --accent-mint-dark: #08795f;
+  --accent-ink: #181b2c;
   --accent-peach: #ffb59d;
-  --accent-blue: #74b9ff;
-  --accent-blue-dark: #276aa8;
-  --accent-lilac: #b8a1ff;
+  --accent-blue: #0d93d1;
+  --accent-blue-dark: #0874aa;
+  --accent-lilac: #aa0dd1;
+
+  --barbie-pink: #f90e8e;
+  --bubblegum-pink: #f84f6c;
+  --royal-gold: #f9ce66;
+  --mint-leaf: #0cd29f;
+  --strong-cyan: #0dced1;
+  --blue-bell: #0d93d1;
+  --dark-violet: #aa0dd1;
 
   --shadow-xs: 0 2px 8px rgba(55, 45, 40, 0.045);
   --shadow-sm: 0 5px 18px rgba(55, 45, 40, 0.065);
@@ -84,33 +92,41 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg-app: #11101f;
-  --bg-alt: #181529;
-  --surface-1: #211e31;
-  --surface-2: #29253a;
-  --surface-3: #302b43;
-  --surface-glass: rgba(33, 30, 49, 0.86);
+  --bg-app: #252541;
+  --bg-alt: #252541;
+  --surface-1: #181b2c;
+  --surface-2: #20243a;
+  --surface-3: #292d48;
+  --surface-glass: rgba(24, 27, 44, 0.92);
 
-  --text-primary: #faf8f5;
-  --text-secondary: #b9b3c2;
-  --text-muted: #8d8797;
-  --text-on-accent: #ffffff;
+  --text-primary: #fbf6f3;
+  --text-secondary: #cbc6c5;
+  --text-muted: #aaa5ab;
+  --text-on-accent: #f9f4f0;
 
-  --border-soft: #3a354b;
-  --border-strong: #504862;
+  --border-soft: #353951;
+  --border-strong: #494e6b;
 
-  --accent-magenta: #ff2ca0;
-  --accent-magenta-dark: #ff69ba;
-  --accent-rose: #ff6680;
-  --accent-gold: #ffd66e;
-  --accent-gold-dark: #ffd66e;
-  --accent-mint: #23e3b0;
-  --accent-mint-dark: #68f0cb;
-  --accent-ink: #17162b;
+  --accent-magenta: #f90e8e;
+  --accent-magenta-dark: #ff58b2;
+  --accent-rose: #f84f6c;
+  --accent-gold: #f9ce66;
+  --accent-gold-dark: #f9ce66;
+  --accent-mint: #0cd29f;
+  --accent-mint-dark: #0cd29f;
+  --accent-ink: #181b2c;
   --accent-peach: #ffbea9;
-  --accent-blue: #86c5ff;
-  --accent-blue-dark: #a6d6ff;
-  --accent-lilac: #c4b2ff;
+  --accent-blue: #0d93d1;
+  --accent-blue-dark: #0d93d1;
+  --accent-lilac: #aa0dd1;
+
+  --barbie-pink: #f90e8e;
+  --bubblegum-pink: #f84f6c;
+  --royal-gold: #f9ce66;
+  --mint-leaf: #0cd29f;
+  --strong-cyan: #0dced1;
+  --blue-bell: #0d93d1;
+  --dark-violet: #aa0dd1;
 
   --shadow-xs: 0 2px 10px rgba(0, 0, 0, 0.16);
   --shadow-sm: 0 6px 22px rgba(0, 0, 0, 0.22);
@@ -1107,5 +1123,309 @@ html[data-theme="dark"] .toast {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   14. FEEDBACKCORRECTIES v37 — VASTE PALETTEN EN EFFEN KAARTEN
+========================================================= */
+
+@media screen {
+  body {
+    background-image: none !important;
+    background-color: var(--bg-app) !important;
+  }
+
+  .brand-mark {
+    color: #f9f4f0;
+    background: var(--accent-magenta) !important;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--accent-magenta) 22%, transparent);
+  }
+
+  .brand-symbol {
+    width: 29px;
+    height: 29px;
+    display: block;
+    fill: currentColor;
+  }
+
+  .brand-symbol ellipse {
+    opacity: 0.94;
+  }
+
+  .brand-symbol circle {
+    opacity: 1;
+  }
+
+  html[data-theme="light"] :where(
+    .button-primary,
+    .test-start-button,
+    .total-report-mode-tab[aria-selected="true"]
+  ) {
+    border-color: transparent;
+    color: #f9f4f0;
+    background: #2b2a30 !important;
+    box-shadow: 0 10px 24px rgba(43, 42, 48, 0.16);
+  }
+
+  html[data-theme="light"] :where(
+    .button-primary,
+    .test-start-button,
+    .total-report-mode-tab[aria-selected="true"]
+  ):hover {
+    background: #181b2c !important;
+  }
+
+  html[data-theme="dark"] :where(
+    .button-primary,
+    .test-start-button,
+    .total-report-mode-tab[aria-selected="true"]
+  ) {
+    border-color: transparent;
+    color: #f9f4f0;
+    background: linear-gradient(135deg, #f90e8e, #f84f6c) !important;
+    box-shadow: 0 10px 26px rgba(249, 14, 142, 0.22);
+  }
+
+  html[data-theme="dark"] :where(
+    .button-primary,
+    .test-start-button,
+    .total-report-mode-tab[aria-selected="true"]
+  ):hover {
+    background: linear-gradient(135deg, #e60d83, #ec4764) !important;
+  }
+
+  /* Geen decoratieve kleurvlekken of glow-cirkels. */
+  .hero-card::before,
+  .hero-card::after {
+    display: none !important;
+  }
+
+  /* Kaders en rapportkaarten gebruiken effen oppervlakken. */
+  :where(
+    .hero-card,
+    .wheel-center,
+    .total-report-section,
+    .total-report-workspace,
+    .test-workspace,
+    .result-hero,
+    .cognitive-result-hero,
+    .tr-hero,
+    .total-report-mode-card.is-featured,
+    .tr-card,
+    .tr-theme-card,
+    .tr-insight-card,
+    .tr-test-card,
+    .tr-source-card,
+    .tr-empty-state,
+    .ww-balance-score,
+    .wec-radar-wrap,
+    .leadership-complete-card,
+    .digital-skills-area-score-card
+  ) {
+    background-image: none !important;
+  }
+
+  :where(
+    .hero-card,
+    .wheel-center,
+    .result-hero,
+    .cognitive-result-hero,
+    .tr-hero,
+    .total-report-mode-card.is-featured,
+    .tr-card,
+    .tr-theme-card,
+    .tr-insight-card,
+    .tr-test-card,
+    .tr-source-card,
+    .tr-empty-state,
+    .ww-balance-score,
+    .wec-radar-wrap
+  ) {
+    background-color: var(--surface-1) !important;
+  }
+
+  .total-report-section,
+  .total-report-workspace,
+  .test-workspace {
+    background-color: var(--bg-app) !important;
+  }
+
+  .leadership-complete-card,
+  .digital-skills-area-score-card {
+    border: 1px solid var(--border-soft);
+    color: var(--text-primary);
+    background-color: var(--surface-1) !important;
+  }
+
+  .leadership-complete-card p,
+  .digital-skills-area-score-card p {
+    color: var(--text-secondary) !important;
+  }
+
+  /* Effen voortgangsbalken; per profielgebied één accentkleur. */
+  :where(
+    .linear-progress span,
+    .question-progress span,
+    .drawer-progress .linear-progress span,
+    .dimension-bar span,
+    .facet-bar span,
+    .tr-meter > span
+  ) {
+    background-image: none !important;
+    background-color: var(--accent-magenta) !important;
+  }
+
+  .total-report-domain-line .linear-progress > span,
+  .tr-coverage-item .tr-meter > span {
+    background-color: var(--domain-color, var(--accent-magenta)) !important;
+  }
+
+  .tr-coverage-item {
+    border-top: 3px solid var(--domain-color, var(--accent-magenta));
+    background-color: var(--surface-1) !important;
+  }
+
+  /* Profielwiel: één vaste kleur per gebied en echte lijniconen. */
+  .domain-node {
+    border-color: color-mix(in srgb, var(--domain-color) 34%, var(--border-soft));
+    background-color: var(--surface-1) !important;
+  }
+
+  .domain-node:hover {
+    border-color: var(--domain-color);
+  }
+
+  .domain-icon {
+    color: var(--domain-color) !important;
+    background: color-mix(in srgb, var(--domain-color) 12%, var(--surface-1)) !important;
+  }
+
+  .domain-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .domain-percentage {
+    color: var(--domain-color) !important;
+  }
+
+  .drawer {
+    --active-domain-color: var(--domain-color, var(--accent-magenta));
+  }
+
+  .drawer .linear-progress span,
+  .test-card .test-status {
+    background-color: var(--domain-color, var(--accent-magenta)) !important;
+  }
+
+  .test-card .test-status {
+    color: #f9f4f0;
+  }
+
+  .test-card:hover {
+    border-color: color-mix(in srgb, var(--domain-color, var(--accent-magenta)) 52%, var(--border-soft));
+  }
+
+  /* Centrale profielcirkel: icoon → percentage → voltooid → actie. */
+  .wheel-center {
+    gap: 0;
+  }
+
+  .wheel-center > strong {
+    margin-top: 10px;
+  }
+
+  .wheel-progress-label {
+    margin: 4px 0 0 !important;
+    color: var(--text-secondary) !important;
+    font-size: 0.8rem !important;
+    font-weight: 750 !important;
+  }
+
+  .wheel-center .text-button {
+    margin-top: 10px;
+  }
+
+  /* Inverse privacykaart: donker in light, licht in dark. */
+  html[data-theme="light"] .privacy-card {
+    border-color: #2b2a30;
+    color: #f9f4f0;
+    background: #2b2a30 !important;
+  }
+
+  html[data-theme="light"] .privacy-card :where(h3, p) {
+    color: #f9f4f0 !important;
+  }
+
+  html[data-theme="light"] .privacy-card p {
+    opacity: 0.78;
+  }
+
+  html[data-theme="light"] .privacy-icon {
+    border-color: rgba(249, 244, 240, 0.22);
+    color: #f9f4f0;
+    background: rgba(249, 244, 240, 0.08) !important;
+  }
+
+  html[data-theme="dark"] .privacy-card {
+    border-color: #fbf6f3;
+    color: #181b2c;
+    background: #fbf6f3 !important;
+  }
+
+  html[data-theme="dark"] .privacy-card :where(h3, p) {
+    color: #181b2c !important;
+  }
+
+  html[data-theme="dark"] .privacy-card p {
+    opacity: 0.76;
+  }
+
+  html[data-theme="dark"] .privacy-icon {
+    border-color: rgba(24, 27, 44, 0.16);
+    color: #f90e8e;
+    background: rgba(249, 14, 142, 0.08) !important;
+  }
+
+  /* Rapporttonen: effen kaarten met één gekleurde rand. */
+  .tr-card.is-positive,
+  .tr-insight-card.is-positive {
+    border-color: var(--accent-mint) !important;
+    background-color: var(--surface-1) !important;
+  }
+
+  .tr-card.is-watch,
+  .tr-insight-card.is-watch {
+    border-color: var(--accent-rose) !important;
+    background-color: var(--surface-1) !important;
+  }
+
+  .tr-card.is-context,
+  .tr-insight-card.is-context {
+    border-color: var(--accent-blue) !important;
+    background-color: var(--surface-1) !important;
+  }
+
+  :where(
+    .tr-card,
+    .tr-theme-card,
+    .tr-insight-card,
+    .tr-test-card,
+    .tr-source-card,
+    .tr-empty-state
+  ) :where(p, li) {
+    color: var(--text-secondary) !important;
+  }
+
+  .total-report-mode-card.is-featured {
+    border-color: var(--accent-magenta) !important;
   }
 }

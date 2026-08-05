@@ -39,7 +39,7 @@
     if (meta) {
       meta.setAttribute(
         "content",
-        theme === DARK_THEME ? "#11101F" : "#F1ECE7"
+        theme === DARK_THEME ? "#252541" : "#F7EEE5"
       );
     }
   }
