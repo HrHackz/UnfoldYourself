@@ -41,6 +41,8 @@ function createDomainButton(domain, index, forMobile = false) {
 
   button.dataset.domainId = domain.id;
   button.style.setProperty("--domain-color", domain.color);
+  button.style.setProperty("--domain-gradient", domain.gradient || domain.color);
+  button.style.setProperty("--domain-on-accent", domain.onGradient || "#F9F4F0");
   button.setAttribute("aria-label", `${domain.title}: ${progress.completed} van ${progress.total} testen voltooid`);
 
   icon.innerHTML = domain.icon || "";
@@ -125,6 +127,8 @@ function createCatalogTestCard(
   article.className =
     "test-card";
   article.style.setProperty("--domain-color", domain?.color || "#F90E8E");
+  article.style.setProperty("--domain-gradient", domain?.gradient || domain?.color || "#F90E8E");
+  article.style.setProperty("--domain-on-accent", domain?.onGradient || "#F9F4F0");
 
   article.classList.toggle(
     "is-development",
@@ -277,6 +281,8 @@ function createPersonalityModelCard() {
   article.className =
     "test-card personality-model-card";
   article.style.setProperty("--domain-color", domain.color);
+  article.style.setProperty("--domain-gradient", domain.gradient || domain.color);
+  article.style.setProperty("--domain-on-accent", domain.onGradient || "#F9F4F0");
 
   const copy =
     document.createElement(
@@ -367,6 +373,10 @@ function openPersonalityModelChooser() {
   }
 
   activeDomainId = domain.id;
+  domainDrawer.style.setProperty("--domain-color", domain.color);
+  domainDrawer.style.setProperty("--domain-gradient", domain.gradient || domain.color);
+  domainDrawer.style.setProperty("--domain-on-accent", domain.onGradient || "#F9F4F0");
+  domainDrawer.dataset.domainId = domain.id;
 
   document.querySelector(
     "#drawerEyebrow"
@@ -438,6 +448,9 @@ function openDomain(domainId) {
 
   activeDomainId = domainId;
   domainDrawer.style.setProperty("--domain-color", domain.color);
+  domainDrawer.style.setProperty("--domain-gradient", domain.gradient || domain.color);
+  domainDrawer.style.setProperty("--domain-on-accent", domain.onGradient || "#F9F4F0");
+  domainDrawer.dataset.domainId = domain.id;
   const progress =
     getDomainProgress(domain);
 
@@ -520,6 +533,10 @@ function closeDomain() {
   overlay.hidden = true;
   document.body.classList.remove("no-scroll");
   activeDomainId = null;
+  delete domainDrawer.dataset.domainId;
+  domainDrawer.style.removeProperty("--domain-color");
+  domainDrawer.style.removeProperty("--domain-gradient");
+  domainDrawer.style.removeProperty("--domain-on-accent");
 }
 
 function toggleDemoCompletion(testId) {

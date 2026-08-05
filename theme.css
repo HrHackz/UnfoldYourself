@@ -1510,3 +1510,429 @@ html[data-theme="dark"] {
   }
 }
 
+
+/* =========================================================
+   16. PROFIELGEBIEDGRADIENTEN EN CONTEXTUELE TESTACCENTEN v40
+========================================================= */
+
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --gradient-persoonlijkheid: linear-gradient(135deg, #f90e8e 30%, #f84f6c 100%);
+  --gradient-identiteit: linear-gradient(135deg, #f84f6c 30%, #f9ce66 100%);
+  --gradient-werkorientatie: linear-gradient(135deg, #f9ce66 32%, #d6cf6e 65%, #8fcf7c 87%, #0cd29f 100%);
+  --gradient-denken: linear-gradient(135deg, #0cd29f 40%, #0dced1 100%);
+  --gradient-vaardigheden: linear-gradient(135deg, #0dced1 40%, #0d93d1 100%);
+  --gradient-samenwerking: linear-gradient(135deg, #0d93d1 40%, #4c5dd1 71%, #aa0dd1 100%);
+  --gradient-werkbeleving: linear-gradient(135deg, #aa0dd1 40%, #c00dbe 70%, #f90e8e 100%);
+}
+
+@media screen {
+  /* Het totaalrapport-keuzeblok hoort uitsluitend bij de hoofdpagina. */
+  body.test-active .total-report-section {
+    display: none !important;
+  }
+
+  /* Neutrale introductiekaart: geen afwijkend blauw vlak. */
+  .test-guidance {
+    border: 1px solid var(--border-soft) !important;
+    color: var(--text-primary) !important;
+    background: var(--surface-2) !important;
+    box-shadow: none !important;
+  }
+
+  .test-guidance :where(h3, li) {
+    color: inherit !important;
+  }
+
+  .test-guidance ul {
+    color: var(--text-secondary) !important;
+  }
+
+  /* In dark mode blijft 'Je ontvangt' bewust een lichte inverse kaart. */
+  html[data-theme="dark"] .test-preview-card {
+    border-color: #fbf6f3 !important;
+    color: #181b2c !important;
+    background: #fbf6f3 !important;
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22) !important;
+  }
+
+  html[data-theme="dark"] .test-preview-card :where(h3, p, li) {
+    color: #181b2c !important;
+  }
+
+  html[data-theme="dark"] .test-preview-card p {
+    border-top-color: rgba(24, 27, 44, 0.14) !important;
+    opacity: 0.76;
+  }
+
+  html[data-theme="dark"] .test-preview-card li::before {
+    color: #181b2c !important;
+    background: color-mix(in srgb, var(--test-accent, #f90e8e) 18%, #fbf6f3) !important;
+  }
+
+  /* -------------------------------------------------------
+     Profielwiel: gradient als rand, icoonvlak en percentage.
+  -------------------------------------------------------- */
+  .domain-node {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--domain-gradient, var(--brand-gradient)) border-box !important;
+  }
+
+  .domain-node:hover {
+    border-color: transparent !important;
+    box-shadow:
+      var(--shadow-md),
+      0 0 0 2px color-mix(in srgb, var(--domain-color, #f90e8e) 18%, transparent) !important;
+  }
+
+  .domain-icon {
+    color: var(--domain-on-accent, #f9f4f0) !important;
+    background: var(--domain-gradient, var(--brand-gradient)) !important;
+    box-shadow: 0 8px 18px color-mix(in srgb, var(--domain-color, #f90e8e) 18%, transparent);
+  }
+
+  .domain-percentage,
+  .drawer-progress strong {
+    color: var(--domain-color, #f90e8e) !important;
+  }
+
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .domain-percentage,
+    .drawer-progress strong,
+    .drawer > .drawer-header .eyebrow {
+      color: transparent !important;
+      background: var(--domain-gradient, var(--brand-gradient));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  /* -------------------------------------------------------
+     Profielgebied-zijpaneel: dezelfde gradient op alle
+     gevulde accenten, voortgang, badges, knoppen en kaders.
+  -------------------------------------------------------- */
+  .drawer {
+    --domain-gradient: var(--brand-gradient);
+    --domain-on-accent: #f9f4f0;
+  }
+
+  .drawer .linear-progress > span {
+    background: var(--domain-gradient) !important;
+  }
+
+  .drawer .test-card {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--domain-gradient) border-box !important;
+  }
+
+  .drawer .test-card:hover {
+    border-color: transparent !important;
+    box-shadow:
+      var(--shadow-md),
+      0 0 0 2px color-mix(in srgb, var(--domain-color, #f90e8e) 16%, transparent) !important;
+  }
+
+  .drawer .test-status,
+  .drawer .test-start-button {
+    border-color: transparent !important;
+    color: var(--domain-on-accent) !important;
+    background: var(--domain-gradient) !important;
+    box-shadow: 0 10px 22px color-mix(in srgb, var(--domain-color, #f90e8e) 22%, transparent) !important;
+  }
+
+  .drawer .test-start-button:hover:not(:disabled) {
+    filter: brightness(1.05) saturate(1.05);
+    transform: translateY(-1px);
+  }
+
+  .drawer .personality-model-back {
+    border: 1px solid transparent !important;
+    color: var(--text-primary) !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--domain-gradient) border-box !important;
+  }
+
+  /* -------------------------------------------------------
+     Actieve test: alle generieke accenten volgen het gebied.
+  -------------------------------------------------------- */
+  .test-workspace {
+    --test-accent: #f90e8e;
+    --test-gradient: var(--gradient-persoonlijkheid);
+    --test-on-accent: #f9f4f0;
+    --primary: var(--test-accent);
+    --primary-dark: var(--test-accent);
+    --success: var(--test-accent);
+  }
+
+  html[data-theme] .test-workspace :where(
+    .linear-progress > span,
+    .question-progress > span,
+    .dimension-bar > span,
+    .facet-bar > span,
+    .cognitive-progress-fill,
+    .leadership-progress-fill,
+    .ww-progress-fill,
+    .wec-progress-fill,
+    .digital-skills-progress-fill
+  ) {
+    background: var(--test-gradient) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .button-primary,
+    .test-start-button,
+    .cognitive-status-badge,
+    .leadership-status-badge,
+    .digital-skills-status-badge,
+    .ww-status-badge,
+    .wec-status-badge
+  ) {
+    border-color: transparent !important;
+    color: var(--test-on-accent) !important;
+    background: var(--test-gradient) !important;
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--test-accent) 22%, transparent) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .button-primary,
+    .test-start-button
+  ):hover:not(:disabled) {
+    filter: brightness(1.05) saturate(1.05);
+    box-shadow: 0 14px 30px color-mix(in srgb, var(--test-accent) 28%, transparent) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .eyebrow,
+    .question-category,
+    .test-preview-label,
+    .result-card-label,
+    .result-method-label,
+    .test-evidence-label,
+    .facet-interpretation-label,
+    .facet-item-score,
+    .dimension-card-header strong
+  ) {
+    color: var(--test-accent) !important;
+  }
+
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    html[data-theme] .test-workspace :where(
+      .eyebrow,
+      .question-category,
+      .result-card-label,
+      .result-method-label,
+      .test-evidence-label,
+      .facet-interpretation-label,
+      .facet-item-score,
+      .dimension-card-header strong
+    ) {
+      color: transparent !important;
+      background: var(--test-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  html[data-theme] .test-workspace .test-preview-label {
+    color: var(--test-on-accent) !important;
+    background: var(--test-gradient) !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .test-preview-label {
+    color: var(--test-on-accent) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .test-intro-main,
+    .question-card,
+    .result-hero,
+    .cognitive-result-hero,
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .result-method-note,
+    .cognitive-dashboard-card,
+    .leadership-complete-card
+  ) {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--test-gradient) border-box !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .answer-option,
+    .cognitive-answer-option,
+    .digital-skills-answer-button,
+    .leadership-answer-button,
+    .wec-rank-button,
+    .wec-selection-card,
+    .identity-multi-option,
+    .career-group-button,
+    .career-skill-option,
+    .work-values-impact-option,
+    .cognitive-mode-button,
+    .cognitive-module-card
+  ):hover:not(:disabled) {
+    border-color: var(--test-accent) !important;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--test-accent) 14%, transparent), var(--shadow-sm) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .answer-option,
+    .cognitive-answer-option,
+    .digital-skills-answer-button,
+    .leadership-answer-button,
+    .wec-rank-button,
+    .wec-selection-card,
+    .identity-multi-option,
+    .career-group-button,
+    .career-skill-option,
+    .work-values-impact-option,
+    .cognitive-mode-button,
+    .cognitive-module-card
+  ).is-selected {
+    border: 2px solid transparent !important;
+    color: var(--text-primary) !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--test-gradient) border-box !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--test-accent) 16%, transparent), var(--shadow-sm) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .answer-option.is-selected .answer-option-marker,
+    .cognitive-answer-option.is-selected .cognitive-answer-marker,
+    .wec-selection-card.is-selected .wec-selection-marker,
+    .cognitive-module-card.is-selected .cognitive-module-check
+  ) {
+    border-color: transparent !important;
+    color: var(--test-on-accent) !important;
+    background: var(--test-gradient) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-score-card,
+    .cognitive-result-score,
+    .leadership-profile-badge
+  ) {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-2), var(--surface-2)) padding-box,
+      var(--test-gradient) border-box !important;
+  }
+
+  /* -------------------------------------------------------
+     Totaalrapport-dekking gebruikt dezelfde gebiedsgradients.
+  -------------------------------------------------------- */
+  .total-report-domain-line .linear-progress > span,
+  .tr-coverage-item .tr-meter > span {
+    background: var(--domain-gradient, var(--domain-color, var(--brand-gradient))) !important;
+  }
+
+  .tr-coverage-item {
+    border-top: 3px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--domain-gradient, var(--brand-gradient)) border-box !important;
+  }
+
+  /* Rapportkeuzes: hun eerdere volle accentkleur wordt gradient. */
+  .total-report-mode-card.is-compact {
+    --report-mode-gradient: var(--gradient-identiteit);
+    --report-mode-accent: var(--bubblegum-pink);
+    --report-mode-on-accent: #181b2c;
+  }
+
+  .total-report-mode-card.is-full {
+    --report-mode-gradient: var(--gradient-werkorientatie);
+    --report-mode-accent: var(--royal-gold);
+    --report-mode-on-accent: #181b2c;
+  }
+
+  .total-report-mode-card.is-ultimate {
+    --report-mode-gradient: var(--gradient-denken);
+    --report-mode-accent: var(--mint-leaf);
+    --report-mode-on-accent: #181b2c;
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate) {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-1), var(--surface-1)) padding-box,
+      var(--report-mode-gradient) border-box !important;
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate)
+    :is(.total-report-mode-kicker, .button) {
+    border-color: transparent !important;
+    color: var(--report-mode-on-accent) !important;
+    background: var(--report-mode-gradient) !important;
+  }
+
+  .total-report-mode-card:is(.is-compact, .is-full, .is-ultimate)
+    .button:hover:not(:disabled) {
+    filter: brightness(1.05) saturate(1.04);
+    background: var(--report-mode-gradient) !important;
+  }
+}
+
+@media screen {
+  /* Aanvullende testaccenten: ook compacte iconen en hulpkaders
+     volgen de actieve profielgebiedgradient. */
+  html[data-theme] .test-workspace :where(
+    .information-icon,
+    .test-evidence summary::after,
+    .test-preview-card li::before
+  ) {
+    border-color: transparent !important;
+    color: var(--test-on-accent) !important;
+    background: var(--test-gradient) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .test-information-item,
+    .test-evidence,
+    .question-counter-block
+  ) {
+    border: 1px solid transparent !important;
+    background:
+      linear-gradient(var(--surface-2), var(--surface-2)) padding-box,
+      var(--test-gradient) border-box !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .test-preview-card li::before {
+    color: var(--test-on-accent) !important;
+    background: var(--test-gradient) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .question-counter-block strong,
+    .result-score-card strong,
+    .cognitive-result-score strong
+  ) {
+    color: var(--test-accent) !important;
+  }
+
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    html[data-theme] .test-workspace :where(
+      .question-counter-block strong,
+      .result-score-card strong,
+      .cognitive-result-score strong
+    ) {
+      color: transparent !important;
+      background: var(--test-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}

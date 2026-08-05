@@ -692,3 +692,41 @@ Bij iedere visuele release:
 - minimaal één rapport uit iedere testgroep controleren;
 - geen scoring- of inhoudswijzigingen opnemen in dezelfde stylingpatch tenzij expliciet gepland.
 
+
+---
+
+# 26. Profielgebiedgradients — v40
+
+De zeven profielgebieden gebruiken vanaf v40 geen volle accentvlakken meer. Iedere bestaande accentkleur is de startkleur van een vaste gradient.
+
+| Profielgebied | Gradient | Tekst op gevuld accent |
+|---|---|---|
+| Persoonlijkheid & zelfbeeld | `#F90E8E 30% → #F84F6C 100%` | licht |
+| Identiteit & maatschappelijke positie | `#F84F6C 30% → #F9CE66 100%` | donker |
+| Werkoriëntatie & beroepsrichting | `#F9CE66 32% → #D6CF6E 65% → #8FCF7C 87% → #0CD29F 100%` | donker |
+| Denken & redeneervermogen | `#0CD29F 40% → #0DCED1 100%` | donker |
+| Digitale vaardigheden | `#0DCED1 40% → #0D93D1 100%` | donker |
+| Samenwerking, leiderschap & cultuur | `#0D93D1 40% → #4C5DD1 71% → #AA0DD1 100%` | licht |
+| Werkbeleving, welzijn & balans | `#AA0DD1 40% → #C00DBE 70% → #F90E8E 100%` | licht |
+
+De gradient van het profielgebied wordt consequent gebruikt voor:
+
+- profielgebiediconen en gradientranden;
+- voortgangsbalken;
+- statusbadges;
+- primaire knoppen;
+- geselecteerde antwoordopties;
+- test- en resultaataccenten;
+- profielgebied-zijpanelen;
+- dekking per profielgebied in het totaalrapport.
+
+Neutrale kaartoppervlakken blijven effen. De gradients worden niet gebruikt als decoratieve achtergrondvlek of als groot inhoudsvlak.
+
+## Zichtbaarheidsregel totaalrapport
+
+Het blok **Breng al je resultaten samen in één persoonlijk rapport** is alleen zichtbaar op de hoofdpagina. Het wordt volledig verborgen wanneer een test, testresultaat of afzonderlijk rapport actief is.
+
+## Contrastregel testintroductie
+
+- **Voor je begint** gebruikt een neutraal kaartoppervlak en nooit een afwijkend blauw vlak.
+- **Je ontvangt** gebruikt in dark mode een licht oppervlak (`#FBF6F3`) met donkere tekst (`#181B2C`).

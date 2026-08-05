@@ -207,6 +207,34 @@ function getQuestionsForSession(
 }
 
 
+
+function applyActiveTestDomainTheme(definition) {
+  const catalogDomain = domains.find(domain => domain.id === definition?.domainId);
+
+  if (!catalogDomain) {
+    testWorkspace.style.removeProperty("--test-accent");
+    testWorkspace.style.removeProperty("--test-gradient");
+    testWorkspace.style.removeProperty("--test-on-accent");
+    delete testWorkspace.dataset.domainId;
+    delete document.body.dataset.activeTestDomain;
+    return;
+  }
+
+  testWorkspace.style.setProperty("--test-accent", catalogDomain.color);
+  testWorkspace.style.setProperty("--test-gradient", catalogDomain.gradient || catalogDomain.color);
+  testWorkspace.style.setProperty("--test-on-accent", catalogDomain.onGradient || "#F9F4F0");
+  testWorkspace.dataset.domainId = catalogDomain.id;
+  document.body.dataset.activeTestDomain = catalogDomain.id;
+}
+
+function clearActiveTestDomainTheme() {
+  testWorkspace.style.removeProperty("--test-accent");
+  testWorkspace.style.removeProperty("--test-gradient");
+  testWorkspace.style.removeProperty("--test-on-accent");
+  delete testWorkspace.dataset.domainId;
+  delete document.body.dataset.activeTestDomain;
+}
+
 function hideAllTestScreens() {
   testIntroScreen.hidden = true;
   questionScreen.hidden = true;
@@ -233,6 +261,7 @@ function closeTestWorkspace() {
   testWorkspace.hidden = true;
 
   document.body.classList.remove("test-active");
+  clearActiveTestDomainTheme();
 
   activeTestId = null;
 
@@ -278,6 +307,7 @@ function openTestFlow(testId) {
   }
 
   activeTestId = testId;
+  applyActiveTestDomainTheme(definition);
 
   if (typeof definition.prepareStoredState === "function") {
     definition.prepareStoredState({

@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v39";
+const CACHE_VERSION = "v40";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 

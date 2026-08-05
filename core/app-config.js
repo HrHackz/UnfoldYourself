@@ -12,6 +12,8 @@ const LEGACY_PROFILE_STORAGE_KEY = "unfold-yourself-big-five-v1";
 const domains = [
   {
     "id": "persoonlijkheid",
+    "gradient": "linear-gradient(135deg, #F90E8E 30%, #F84F6C 100%)",
+    "onGradient": "#F9F4F0",
     "short": "PZ",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"8\" r=\"3.2\"></circle><path d=\"M5.5 20c.8-4.1 3-6.2 6.5-6.2s5.7 2.1 6.5 6.2\"></path><path d=\"M18.2 4.2l.55 1.25 1.25.55-1.25.55-.55 1.25-.55-1.25-1.25-.55 1.25-.55.55-1.25Z\"></path></svg>",
     "title": "Persoonlijkheid & zelfbeeld",
@@ -41,6 +43,8 @@ const domains = [
   },
   {
     "id": "identiteit",
+    "gradient": "linear-gradient(135deg, #F84F6C 30%, #F9CE66 100%)",
+    "onGradient": "#181B2C",
     "short": "IM",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"8.3\" cy=\"9\" r=\"3.2\"></circle><circle cx=\"15.7\" cy=\"9\" r=\"3.2\"></circle><path d=\"M3.5 20c.5-3.7 2.1-5.6 4.8-5.6 1.6 0 2.8.7 3.7 2\"></path><path d=\"M12 16.4c.9-1.3 2.1-2 3.7-2 2.7 0 4.3 1.9 4.8 5.6\"></path></svg>",
     "title": "Identiteit & maatschappelijke positie",
@@ -54,6 +58,8 @@ const domains = [
   },
   {
     "id": "werkorientatie",
+    "gradient": "linear-gradient(135deg, #F9CE66 32%, #D6CF6E 65%, #8FCF7C 87%, #0CD29F 100%)",
+    "onGradient": "#181B2C",
     "short": "WO",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"></circle><path d=\"m15.6 8.4-2.1 5.1-5.1 2.1 2.1-5.1 5.1-2.1Z\"></path><circle cx=\"12\" cy=\"12\" r=\"1.2\"></circle></svg>",
     "title": "Werkoriëntatie & beroepsrichting",
@@ -71,6 +77,8 @@ const domains = [
   },
   {
     "id": "denken",
+    "gradient": "linear-gradient(135deg, #0CD29F 40%, #0DCED1 100%)",
+    "onGradient": "#181B2C",
     "short": "DR",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9.2 4.2A3.5 3.5 0 0 0 6 9.1 3.4 3.4 0 0 0 6.7 15 3.3 3.3 0 0 0 11 19.5V5.4a2 2 0 0 0-1.8-1.2Z\"></path><path d=\"M14.8 4.2A3.5 3.5 0 0 1 18 9.1a3.4 3.4 0 0 1-.7 5.9 3.3 3.3 0 0 1-4.3 4.5V5.4a2 2 0 0 1 1.8-1.2Z\"></path><path d=\"M7.2 9.2h3.2M13.6 9.2h3.2M7.5 14.1h2.9M13.6 14.1h2.9\"></path></svg>",
     "title": "Denken & redeneervermogen",
@@ -84,6 +92,8 @@ const domains = [
   },
   {
     "id": "vaardigheden",
+    "gradient": "linear-gradient(135deg, #0DCED1 40%, #0D93D1 100%)",
+    "onGradient": "#181B2C",
     "short": "DV",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2.4\"></rect><path d=\"M8 21h8M12 17v4M9.3 8.2 7.5 10l1.8 1.8M14.7 8.2l1.8 1.8-1.8 1.8\"></path></svg>",
     "title": "Digitale vaardigheden",
@@ -97,6 +107,8 @@ const domains = [
   },
   {
     "id": "samenwerking",
+    "gradient": "linear-gradient(135deg, #0D93D1 40%, #4C5DD1 71%, #AA0DD1 100%)",
+    "onGradient": "#F9F4F0",
     "short": "SL",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"7.5\" r=\"3\"></circle><circle cx=\"5.5\" cy=\"10\" r=\"2.2\"></circle><circle cx=\"18.5\" cy=\"10\" r=\"2.2\"></circle><path d=\"M6.5 20c.5-3.8 2.3-5.8 5.5-5.8s5 2 5.5 5.8M1.8 19c.3-2.7 1.5-4.1 3.7-4.1 1.1 0 2 .4 2.7 1.2M22.2 19c-.3-2.7-1.5-4.1-3.7-4.1-1.1 0-2 .4-2.7 1.2\"></path></svg>",
     "title": "Samenwerking, leiderschap & cultuur",
@@ -118,6 +130,8 @@ const domains = [
   },
   {
     "id": "werkbeleving",
+    "gradient": "linear-gradient(135deg, #AA0DD1 40%, #C00DBE 70%, #F90E8E 100%)",
+    "onGradient": "#F9F4F0",
     "short": "WW",
     "icon": "<svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20.6 5.8c-2.2-2.3-5.8-1.6-7.2.7L12 8.6l-1.4-2.1C9.2 4.2 5.6 3.5 3.4 5.8 1 8.4 2.1 12 4.2 14.2L12 21l7.8-6.8c2.1-2.2 3.2-5.8.8-8.4Z\"></path><path d=\"M5.8 12h3l1.2-2.3 2.1 4.7 1.5-2.4h4.6\"></path></svg>",
     "title": "Werkbeleving, welzijn & balans",

@@ -101,6 +101,16 @@
     werkbeleving: "#AA0DD1"
   });
 
+  const DOMAIN_GRADIENTS = Object.freeze({
+    persoonlijkheid: "linear-gradient(135deg, #F90E8E 30%, #F84F6C 100%)",
+    identiteit: "linear-gradient(135deg, #F84F6C 30%, #F9CE66 100%)",
+    werkorientatie: "linear-gradient(135deg, #F9CE66 32%, #D6CF6E 65%, #8FCF7C 87%, #0CD29F 100%)",
+    denken: "linear-gradient(135deg, #0CD29F 40%, #0DCED1 100%)",
+    vaardigheden: "linear-gradient(135deg, #0DCED1 40%, #0D93D1 100%)",
+    samenwerking: "linear-gradient(135deg, #0D93D1 40%, #4C5DD1 71%, #AA0DD1 100%)",
+    werkbeleving: "linear-gradient(135deg, #AA0DD1 40%, #C00DBE 70%, #F90E8E 100%)"
+  });
+
   const workspace = document.getElementById("totalReportWorkspace");
   const documentRoot = document.getElementById("totalReportDocument");
   const closeButton = document.getElementById("closeTotalReportButton");
@@ -737,7 +747,8 @@
         completed,
         total: tests.length,
         percentage: tests.length ? Math.round((completed / tests.length) * 100) : 0,
-        color: DOMAIN_COLORS[domainId] || "#F90E8E"
+        color: DOMAIN_COLORS[domainId] || "#F90E8E",
+        gradient: DOMAIN_GRADIENTS[domainId] || DOMAIN_COLORS[domainId] || "#F90E8E"
       };
     });
     return {
@@ -1765,6 +1776,7 @@
       coverage.domainCoverage.forEach(item => {
         const row = element("div", "total-report-domain-line");
         row.style.setProperty("--domain-color", item.color);
+        row.style.setProperty("--domain-gradient", item.gradient || item.color);
         row.appendChild(element("span", "", item.label));
         const progress = element("div", "linear-progress");
         const fill = element("span");
