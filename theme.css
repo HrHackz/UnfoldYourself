@@ -3311,3 +3311,299 @@ html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-repo
   color: #d6d1d0 !important;
   -webkit-text-fill-color: #d6d1d0 !important;
 }
+
+/* =========================================================
+   V46 — DEFINITIEVE PRINT- EN PDF-LAAG
+
+   Deze regels gelden uitsluitend tijdens afdrukken of opslaan
+   als PDF. De normale light- en dark-weergave wordt niet
+   gewijzigd.
+========================================================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 13mm;
+    background: #ffffff;
+  }
+
+  :root,
+  html[data-theme="light"],
+  html[data-theme="dark"] {
+    color-scheme: light !important;
+    --bg-app: #ffffff !important;
+    --bg-alt: #ffffff !important;
+    --surface-1: #ffffff !important;
+    --surface-2: #ffffff !important;
+    --surface-3: #ffffff !important;
+    --background: #ffffff !important;
+    --surface: #ffffff !important;
+    --surface-soft: #ffffff !important;
+    --text-primary: #000000 !important;
+    --text-secondary: #000000 !important;
+    --text-muted: #000000 !important;
+    --text: #000000 !important;
+    --muted: #000000 !important;
+    --shadow: none !important;
+    --shadow-soft: none !important;
+  }
+
+  html,
+  body,
+  body.printing-result,
+  body.total-report-printing,
+  body.printing-result #testWorkspace,
+  body.printing-result .test-workspace,
+  body.printing-result #resultScreen,
+  body.printing-result .result-screen,
+  body.total-report-printing #totalReportWorkspace,
+  body.total-report-printing .total-report-workspace,
+  body.total-report-printing .total-report-document {
+    color: #000000 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Nooit interactieve of zwevende interface-elementen afdrukken. */
+  .skip-link,
+  a[href="#hoofdinhoud"],
+  .site-header,
+  .site-footer,
+  .test-topbar,
+  .total-report-topbar,
+  .total-report-mode-tabs,
+  .total-report-toolbar,
+  .result-actions,
+  .theme-toggle-button,
+  .toast,
+  .overlay,
+  .drawer,
+  .dialog,
+  .storage-dialog,
+  .back-button,
+  .facet-toggle-button,
+  .facet-item-toggle,
+  .uy-report-toggle-label,
+  .uy-report-section-toggle,
+  .uy-report-inline-summary,
+  .tr-rich-toggle,
+  .button,
+  button,
+  [role="button"],
+  nav {
+    display: none !important;
+  }
+
+  /* Alle zichtbare rapportinhoud gebruikt zwarte tekst. */
+  body.printing-result #resultScreen :where(*),
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(*) {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  body.printing-result #resultScreen :where(svg text),
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(svg text) {
+    fill: #000000 !important;
+    stroke: none !important;
+  }
+
+  /* Alle rapportkaarten, kaders en geneste inhoud worden wit. */
+  body.printing-result #resultScreen :where(
+    .result-hero,
+    .cognitive-result-hero,
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .cognitive-report-card,
+    .cognitive-dashboard-card,
+    .cognitive-module-card,
+    .cognitive-report-table-wrap,
+    .digital-skills-report-area,
+    .digital-skills-area-card,
+    .digital-skills-profile-card,
+    .leadership-style-card,
+    .leadership-flexibility-card,
+    .leadership-quality-note,
+    .leadership-styles-report,
+    .leadership-advice-card,
+    .team-role-top-overview,
+    .team-role-combination-card,
+    .team-role-profiles-card,
+    .team-role-lower-card,
+    .team-role-method-card,
+    .team-role-quality-note,
+    .team-role-profile,
+    .team-role-profile-body,
+    .wec-report-card,
+    .wec-culture-details,
+    .wec-culture-details-body,
+    .ww-report-card,
+    .ww-dimension-details,
+    .ww-dimension-details-body,
+    .identity-overview-card,
+    .identity-axis-card,
+    .identity-axis-content,
+    .identity-detail-block,
+    .work-values-report-card,
+    .work-values-dimension-detail,
+    .work-values-highlight,
+    .career-result-block,
+    .career-occupation-card,
+    .career-skill-summary,
+    details,
+    details > summary,
+    details > :not(summary),
+    table,
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th,
+    section,
+    article,
+    aside,
+    figure,
+    figcaption
+  ),
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(
+    .tr-hero,
+    .tr-hero-score,
+    .tr-card,
+    .tr-test-card,
+    .tr-test-card-body,
+    .tr-source-card,
+    .tr-source-card-body,
+    .tr-detail-section,
+    .tr-detail-section-body,
+    .tr-insight-card,
+    .tr-theme-card,
+    .tr-metric,
+    .tr-coverage-item,
+    .tr-empty-state,
+    .tr-rich-card,
+    .tr-rich-card-body,
+    .tr-rich-subsection,
+    .tr-table-wrap,
+    .tr-badge,
+    .tr-confidence,
+    details,
+    details > summary,
+    details > :not(summary),
+    table,
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th,
+    section,
+    article,
+    aside,
+    figure,
+    figcaption
+  ) {
+    color: #000000 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Ook decoratieve lagen mogen geen donker vlak achterlaten. */
+  body.printing-result #resultScreen :where(*)::before,
+  body.printing-result #resultScreen :where(*)::after,
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(*)::before,
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(*)::after {
+    color: #000000 !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Voortgang blijft in zwart-wit begrijpelijk. */
+  body.printing-result #resultScreen :where(
+    .dimension-bar,
+    .facet-bar,
+    .linear-progress,
+    .cognitive-progress,
+    .leadership-progress,
+    .digital-skills-progress,
+    .ww-progress,
+    .wec-progress,
+    .tr-meter
+  ),
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(
+    .dimension-bar,
+    .facet-bar,
+    .linear-progress,
+    .tr-meter
+  ) {
+    background: #e5e5e5 !important;
+    background-image: none !important;
+  }
+
+  body.printing-result #resultScreen :where(
+    .dimension-bar > span,
+    .facet-bar > span,
+    .linear-progress > span,
+    .cognitive-progress-fill,
+    .leadership-progress-fill,
+    .digital-skills-progress-fill,
+    .ww-progress-fill,
+    .wec-progress-fill,
+    .tr-meter > span
+  ),
+  body.total-report-printing #totalReportWorkspace .total-report-document :where(
+    .dimension-bar > span,
+    .facet-bar > span,
+    .linear-progress > span,
+    .tr-meter > span
+  ) {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+  }
+
+  progress {
+    accent-color: #000000 !important;
+  }
+
+  progress::-webkit-progress-bar {
+    background: #e5e5e5 !important;
+  }
+
+  progress::-webkit-progress-value {
+    background: #000000 !important;
+  }
+
+  progress::-moz-progress-bar {
+    background: #000000 !important;
+  }
+
+  /* Fallback wanneer een browser beforeprint later of niet uitvoert. */
+  :where(#resultScreen.result-screen, #totalReportWorkspace .total-report-document) {
+    color: #000000 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
+  :where(#resultScreen.result-screen, #totalReportWorkspace .total-report-document) :where(*) {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+}

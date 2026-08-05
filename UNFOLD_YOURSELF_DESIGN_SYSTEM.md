@@ -821,3 +821,17 @@ Voor compacte scorekaarten met een knop **Toon uitleg / Verberg uitleg** geldt v
 - deze componentregel wordt via `core/report-uniformity.js` structureel toegekend en niet door opeenvolgende visuele wrappers.
 
 Deze regel voorkomt dubbele kaders, verschillende afrondingen, losgeraakte toggleteksten en geneste uitlegpanelen.
+
+# 28. V46 — Definitieve print- en PDF-weergave
+
+Deze regels gelden uitsluitend wanneer de browser afdrukt of als PDF opslaat.
+
+- De normale light- en dark-interface blijven volledig ongewijzigd.
+- Iedere afdrukbare pagina gebruikt een witte achtergrond.
+- Alle rapportkaarten, kaders, tabellen en geneste inhoud worden wit weergegeven.
+- Alle zichtbare rapporttekst wordt zwart weergegeven.
+- Schaduwen, donkere buitenvlakken, thematische achtergrondafbeeldingen en donkere pseudo-elementen worden niet afgedrukt.
+- Voortgangsbalken worden voor print omgezet naar een lichtgrijze track met zwarte voortgang, zodat ze ook zonder kleur begrijpelijk blijven.
+- Interactieve schermelementen worden nooit afgedrukt, waaronder navigatie, terugknoppen, themaknoppen, rapportacties en de toegankelijkheidslink `Ga naar de inhoud`.
+- De printuitvoer is identiek vanuit light en dark mode en geldt voor alle afzonderlijke testrapporten en alle totaalrapporttypen.
+
