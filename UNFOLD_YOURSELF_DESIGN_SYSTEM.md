@@ -775,3 +775,32 @@ Het vaste Unfold Yourself-merkicoon gebruikt een 3×3-mozaïek van negen stippen
 - Voortgangsteksten zoals `Vraag X van Y` en `X van Y tests voltooid` hebben geen afzonderlijk kader of achtergrondvlak.
 - Alle generieke testaccenten erven de actieve profielgebiedkleur of -gradient; standaardroze restaccenten zijn verboden buiten het persoonlijkheidsgebied.
 - Afdruk en PDF forceren altijd een witte, randloze pagina en zijn onafhankelijk van light of dark mode.
+
+---
+
+# 26. V44 — Structurele contrast- en componentregels
+
+## Dark mode
+
+- Rapportinhoud gebruikt uitsluitend donkere oppervlakken (`#181B2C` en donkere verhoogde varianten).
+- Witte of zeer lichte rapportkaarten zijn in dark mode niet toegestaan, behalve expliciet ontworpen inverse modals.
+- Primaire tekst is `#FBF6F3`; secundaire tekst blijft duidelijk leesbaar.
+- Tabellen, accordeons, scorekaarten, methodiekblokken en totaalrapportkaarten volgen dezelfde regel.
+- Lichte statistiekkaarten in modals gebruiken altijd donkere tekst.
+
+## Score- en voortgangskaarten
+
+- Per kaart is maximaal één voortgangstrack toegestaan.
+- Titel, uitklapknop en voortgangsbalk staan op vaste verticale posities.
+- Uitklapknoppen zijn verticaal en horizontaal gecentreerd.
+- Het pijlicoon staat exact gecentreerd in zijn ronde vlak.
+- Lange titels mogen de actieknop of voortgangsbalk niet verschuiven.
+
+## Profielaccenten
+
+- Binnen een actieve test mag geen standaardmagenta verschijnen wanneer die test bij een ander profielgebied hoort.
+- Scores, toggles, badges, voortgang en geselecteerde staten erven de profielgebiedgradient.
+
+## Versie
+
+- De publieke footer toont vanaf deze release `Versie 1.0`.

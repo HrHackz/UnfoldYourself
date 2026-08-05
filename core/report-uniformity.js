@@ -211,6 +211,46 @@ function normalizeUniformFacetToggle(root) {
   }
 }
 
+
+function removeDuplicateUniformProgressTracks(root) {
+  const cardSelectors = [
+    ".dimension-card",
+    ".cognitive-module-card",
+    ".leadership-style-card",
+    ".digital-skills-area-card",
+    ".tr-coverage-item",
+    ".tr-metric"
+  ].join(",");
+
+  root.querySelectorAll(cardSelectors).forEach(card => {
+    const tracks = Array.from(
+      card.querySelectorAll(
+        ":scope > .dimension-bar, :scope > .facet-bar, :scope > .linear-progress, :scope > .tr-meter"
+      )
+    );
+
+    const seen = new Set();
+    tracks.forEach(track => {
+      const key = Array.from(track.classList).sort().join(" ");
+      if (seen.has(key)) {
+        track.remove();
+        return;
+      }
+      seen.add(key);
+    });
+  });
+}
+
+function normalizeUniformScoreCards(root) {
+  root.querySelectorAll(".dimension-card").forEach(card => {
+    card.classList.add("uy-uniform-score-card");
+    card.classList.toggle(
+      "uy-uniform-score-card-has-details",
+      Boolean(card.querySelector(":scope > details"))
+    );
+  });
+}
+
 function applyUniformReportPresentation(result) {
   const root = document.getElementById("resultScreen");
   if (!root) return;
@@ -235,4 +275,6 @@ function applyUniformReportPresentation(result) {
 
   normalizeUniformReportDetails(root);
   normalizeUniformFacetToggle(root);
+  removeDuplicateUniformProgressTracks(root);
+  normalizeUniformScoreCards(root);
 }

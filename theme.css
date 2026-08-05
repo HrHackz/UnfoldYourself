@@ -2645,3 +2645,612 @@ html[data-theme="dark"] {
     filter: none !important;
   }
 }
+
+/* =========================================================
+   V44 — STRUCTURELE CONTRAST- EN UITLIJNINGSCORRECTIES
+
+   Deze laag corrigeert gedeelde componenten in plaats van
+   losse rapportpagina's. Zo gelden dezelfde regels in alle
+   tests, totaalrapporten, modals en beide schermthema's.
+========================================================= */
+
+/* ---------------------------------------------------------
+   1. Opslag & back-up: lichte statistiekkaarten houden in
+      dark mode altijd donkere, duidelijk leesbare inhoud.
+---------------------------------------------------------- */
+html[data-theme="dark"] body .storage-dialog .storage-summary > div {
+  border-color: color-mix(in srgb, #181b2c 18%, transparent) !important;
+  color: #181b2c !important;
+  background: #fbf6f3 !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] body .storage-dialog .storage-summary > div :where(span, strong) {
+  color: #181b2c !important;
+  -webkit-text-fill-color: #181b2c !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+/* ---------------------------------------------------------
+   2. Light mode: lichte rapportkaarten gebruiken overal
+      donkere tekst. Alleen echte gradientbadges blijven wit.
+---------------------------------------------------------- */
+html[data-theme="light"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .wec-report-card,
+  .ww-report-card,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-detail-block,
+  details.uy-report-details,
+  details.uy-report-details > summary,
+  details.uy-report-details > :not(summary)
+) {
+  color: #181b2c !important;
+  background-color: #fbf6f3 !important;
+}
+
+html[data-theme="light"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .wec-report-card,
+  .ww-report-card,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-detail-block,
+  details.uy-report-details
+) :where(h1, h2, h3, h4, h5, h6, strong, summary) {
+  color: #181b2c !important;
+  -webkit-text-fill-color: #181b2c !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="light"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .wec-report-card,
+  .ww-report-card,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-detail-block,
+  details.uy-report-details
+) :where(p, li, td, th, small, figcaption, caption, label) {
+  color: #4b4b55 !important;
+  -webkit-text-fill-color: #4b4b55 !important;
+  opacity: 1 !important;
+}
+
+/* ---------------------------------------------------------
+   3. Dark mode: ALLE inhoudskaarten in afzonderlijke en
+      geïntegreerde rapporten gebruiken donkere oppervlakken.
+---------------------------------------------------------- */
+html[data-theme="dark"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .cognitive-report-table-wrap,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .team-role-profile,
+  .team-role-profile-body,
+  .wec-report-card,
+  .wec-culture-details,
+  .wec-culture-details-body,
+  .ww-report-card,
+  .ww-dimension-details,
+  .ww-dimension-details-body,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-axis-content,
+  .identity-detail-block,
+  details.uy-report-details,
+  details.uy-report-details > summary,
+  details.uy-report-details > :not(summary),
+  table,
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  td,
+  th
+) {
+  border-color: #3a3d56 !important;
+  color: #fbf6f3 !important;
+  background: #181b2c !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .wec-report-card,
+  .ww-report-card,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-detail-block,
+  details.uy-report-details
+) :where(h1, h2, h3, h4, h5, h6, strong, summary) {
+  color: #fbf6f3 !important;
+  -webkit-text-fill-color: #fbf6f3 !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-content-card,
+  .dimension-card,
+  .facet-report,
+  .facet-domain-group,
+  .facet-item,
+  .result-method-note,
+  .cognitive-report-card,
+  .cognitive-dashboard-card,
+  .cognitive-module-card,
+  .digital-skills-report-area,
+  .digital-skills-area-card,
+  .digital-skills-profile-card,
+  .leadership-style-card,
+  .leadership-flexibility-card,
+  .leadership-quality-note,
+  .leadership-styles-report,
+  .leadership-advice-card,
+  .team-role-top-overview,
+  .team-role-combination-card,
+  .team-role-profiles-card,
+  .team-role-lower-card,
+  .team-role-method-card,
+  .team-role-quality-note,
+  .wec-report-card,
+  .ww-report-card,
+  .identity-overview-card,
+  .identity-axis-card,
+  .identity-detail-block,
+  details.uy-report-details
+) :where(p, li, td, th, small, figcaption, caption, label) {
+  color: #d6d1d0 !important;
+  -webkit-text-fill-color: #d6d1d0 !important;
+  opacity: 1 !important;
+}
+
+/* Ook totaalrapporten krijgen in dark mode uitsluitend donkere kaarten. */
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-hero,
+  .tr-hero-score,
+  .tr-card,
+  .tr-test-card,
+  .tr-source-card,
+  .tr-detail-section,
+  .tr-insight-card,
+  .tr-theme-card,
+  .tr-metric,
+  .tr-coverage-item,
+  .tr-empty-state,
+  details,
+  details > summary,
+  details > :not(summary),
+  table,
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  td,
+  th
+) {
+  border-color: #3a3d56 !important;
+  color: #fbf6f3 !important;
+  background: #181b2c !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-hero,
+  .tr-hero-score,
+  .tr-card,
+  .tr-test-card,
+  .tr-source-card,
+  .tr-detail-section,
+  .tr-insight-card,
+  .tr-theme-card,
+  .tr-metric,
+  .tr-coverage-item,
+  .tr-empty-state,
+  details
+) :where(h1, h2, h3, h4, h5, h6, strong, summary) {
+  color: #fbf6f3 !important;
+  -webkit-text-fill-color: #fbf6f3 !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-hero,
+  .tr-hero-score,
+  .tr-card,
+  .tr-test-card,
+  .tr-source-card,
+  .tr-detail-section,
+  .tr-insight-card,
+  .tr-theme-card,
+  .tr-metric,
+  .tr-coverage-item,
+  .tr-empty-state,
+  details
+) :where(p, li, span, small, td, th, figcaption, caption, label) {
+  color: #d6d1d0 !important;
+  -webkit-text-fill-color: #d6d1d0 !important;
+  opacity: 1 !important;
+}
+
+/* ---------------------------------------------------------
+   4. Gebiedsaccenten: oude magenta hardcoderingen verliezen
+      binnen een actieve test van de actuele testgradient.
+---------------------------------------------------------- */
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .dimension-card strong,
+  .cognitive-result-count strong,
+  .cognitive-module-score,
+  .leadership-style-score,
+  .digital-skills-area-score,
+  .uy-report-toggle-label,
+  .uy-report-section-toggle,
+  details > summary::after
+) {
+  color: var(--test-accent) !important;
+  -webkit-text-fill-color: var(--test-accent) !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .dimension-bar > span,
+  .facet-bar > span,
+  .linear-progress > span,
+  .tr-meter > span,
+  .cognitive-progress-fill,
+  .leadership-progress-fill,
+  .digital-skills-progress-fill,
+  .ww-progress-fill,
+  .wec-progress-fill
+) {
+  background: var(--test-gradient) !important;
+  background-color: transparent !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .result-card-label,
+  .result-method-label,
+  .facet-interpretation-label,
+  .test-evidence-label
+) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: var(--test-gradient) !important;
+  text-shadow: var(--gradient-content-glow) !important;
+}
+
+/* ---------------------------------------------------------
+   5. Uniforme scorekaarten: vaste interne rijen houden titel,
+      uitklapknop en voortgangsbalk overal op dezelfde hoogte.
+---------------------------------------------------------- */
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card {
+  display: flex !important;
+  min-height: 12.2rem;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card > :first-child {
+  width: 100%;
+  min-height: 3.25rem;
+  align-items: flex-start !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card > .dimension-card-description {
+  flex: 1 1 auto;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card > details {
+  width: 100%;
+  margin-top: auto !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card > .dimension-bar {
+  width: 100%;
+  margin-top: 0.8rem !important;
+  flex: 0 0 auto;
+}
+
+/* Dubbele voortgangselementen met dezelfde ouder worden nooit getoond. */
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card > .dimension-bar ~ .dimension-bar,
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .cognitive-module-card > .linear-progress ~ .linear-progress,
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .leadership-style-card > .dimension-bar ~ .dimension-bar,
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-coverage-item > .tr-meter ~ .tr-meter,
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-metric > .tr-meter ~ .tr-meter {
+  display: none !important;
+}
+
+/* Uitklapknoppen worden als één gecentreerde pill uitgelijnd. */
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card details > summary,
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .uy-report-toggle-label,
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .uy-report-section-toggle {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  min-height: 2.65rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.48rem !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform .dimension-card details > summary {
+  width: 100% !important;
+  padding: 0.5rem 0.72rem !important;
+  border: 1px solid var(--border-soft) !important;
+  border-radius: 999px !important;
+}
+
+html[data-theme] body .test-workspace #resultScreen.uy-report-uniform :where(
+  .uy-report-toggle-label::before,
+  .uy-report-section-toggle::before
+) {
+  box-sizing: border-box !important;
+  display: inline-grid !important;
+  width: 1.55rem !important;
+  height: 1.55rem !important;
+  padding: 0 0 0.08rem !important;
+  place-items: center !important;
+  align-self: center !important;
+  flex: 0 0 1.55rem !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+/* ---------------------------------------------------------
+   6. Profieldekking: één echte voortgangsbalk per kaart en
+      uniforme verticale positionering in beide thema's.
+---------------------------------------------------------- */
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-coverage-grid {
+  align-items: stretch !important;
+}
+
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-coverage-item {
+  display: flex !important;
+  min-height: 8.5rem;
+  flex-direction: column !important;
+}
+
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-coverage-item > span {
+  flex: 1 1 auto;
+}
+
+html[data-theme] body.total-report-open #totalReportWorkspace .tr-coverage-item > .tr-meter {
+  width: 100%;
+  margin-top: auto !important;
+}
+
+/* ---------------------------------------------------------
+   7. Print/PDF blijft volledig licht, ook na de uitgebreidere
+      dark-modekaartregels hierboven.
+---------------------------------------------------------- */
+@media print {
+  html[data-theme="dark"],
+  html[data-theme="dark"] body,
+  html[data-theme="dark"] body .test-workspace,
+  html[data-theme="dark"] body .test-workspace #resultScreen,
+  html[data-theme="dark"] body #totalReportWorkspace,
+  html[data-theme="dark"] body #totalReportWorkspace .total-report-document {
+    color: #181b2c !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="dark"] body :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .uy-report-details,
+    .tr-hero,
+    .tr-hero-score,
+    .tr-card,
+    .tr-test-card,
+    .tr-source-card,
+    .tr-detail-section,
+    .tr-insight-card,
+    .tr-theme-card,
+    .tr-metric,
+    .tr-coverage-item,
+    table,
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th
+  ) {
+    color: #181b2c !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="dark"] body :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .uy-report-details,
+    .tr-hero,
+    .tr-hero-score,
+    .tr-card,
+    .tr-test-card,
+    .tr-source-card,
+    .tr-detail-section,
+    .tr-insight-card,
+    .tr-theme-card,
+    .tr-metric,
+    .tr-coverage-item
+  ) :where(h1, h2, h3, h4, h5, h6, p, li, span, small, strong, td, th) {
+    color: #181b2c !important;
+    -webkit-text-fill-color: #181b2c !important;
+    text-shadow: none !important;
+  }
+}
+
+/* V44 aanvullende totaalrapportdetails: ook geneste lichtere vlakken blijven donker. */
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-test-card-body,
+  .tr-source-card-body,
+  .tr-detail-section-body,
+  .tr-rich-card,
+  .tr-rich-card-body,
+  .tr-rich-subsection,
+  .tr-table-wrap,
+  .tr-badge,
+  .tr-confidence
+) {
+  border-color: #3a3d56 !important;
+  color: #fbf6f3 !important;
+  background: #20243a !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-test-card-body,
+  .tr-source-card-body,
+  .tr-detail-section-body,
+  .tr-rich-card,
+  .tr-rich-card-body,
+  .tr-rich-subsection,
+  .tr-table-wrap,
+  .tr-badge,
+  .tr-confidence
+) :where(h1, h2, h3, h4, h5, h6, strong, summary) {
+  color: #fbf6f3 !important;
+  -webkit-text-fill-color: #fbf6f3 !important;
+}
+
+html[data-theme="dark"] body.total-report-open #totalReportWorkspace .total-report-document :where(
+  .tr-test-card-body,
+  .tr-source-card-body,
+  .tr-detail-section-body,
+  .tr-rich-card,
+  .tr-rich-card-body,
+  .tr-rich-subsection,
+  .tr-table-wrap,
+  .tr-badge,
+  .tr-confidence
+) :where(p, li, span, small, td, th) {
+  color: #d6d1d0 !important;
+  -webkit-text-fill-color: #d6d1d0 !important;
+}
