@@ -835,3 +835,16 @@ Deze regels gelden uitsluitend wanneer de browser afdrukt of als PDF opslaat.
 - Interactieve schermelementen worden nooit afgedrukt, waaronder navigatie, terugknoppen, themaknoppen, rapportacties en de toegankelijkheidslink `Ga naar de inhoud`.
 - De printuitvoer is identiek vanuit light en dark mode en geldt voor alle afzonderlijke testrapporten en alle totaalrapporttypen.
 
+
+
+---
+
+# 26. Centrale printarchitectuur — v47
+
+- Alle print- en PDF-kleuren worden beheerd in één afzonderlijk bestand: `print.css`.
+- `print.css` wordt uitsluitend geladen met `media="print"` en heeft geen invloed op de normale light- of dark-weergave.
+- Binnen het actieve individuele rapport en het actieve totaalrapport worden alle achtergronden wit, alle teksten zwart, gradients verwijderd en schaduwen uitgeschakeld.
+- Testspecifieke dark-mode- en accentregels mogen niet doorlekken naar print.
+- Alleen het actieve rapport wordt afgedrukt; navigatie, knoppen, modals, de toegankelijkheidslink en andere interactieve schermelementen worden verborgen.
+- De printstatus van een individueel rapport en een totaalrapport kan nooit gelijktijdig actief zijn.
+- Openklapbare rapportinhoud wordt volledig zichtbaar gemaakt voor print, terwijl de interactieve toggle zelf wordt verborgen.

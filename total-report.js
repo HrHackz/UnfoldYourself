@@ -1748,6 +1748,8 @@
 
   function prepareTotalReportPrint() {
     if (workspace.hidden) return;
+    if (document.body.classList.contains("total-report-printing")) return;
+    document.body.classList.remove("printing-result");
     printOpenStates = Array.from(documentRoot.querySelectorAll("details")).map(details => ({ details, open: details.open }));
     documentRoot.querySelectorAll("details").forEach(details => { details.open = true; });
     document.body.classList.add("total-report-printing");
@@ -1762,7 +1764,9 @@
 
   function printTotalReport() {
     prepareTotalReportPrint();
-    window.print();
+    requestAnimationFrame(() => {
+      window.print();
+    });
   }
 
   function updateLauncher() {

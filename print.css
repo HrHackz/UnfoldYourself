@@ -1,0 +1,316 @@
+/*
+  Unfold Yourself — centrale print- en PDF-stijl v47
+
+  Dit bestand wordt uitsluitend geladen voor printmedia.
+  De normale light- en dark-weergave wordt niet gewijzigd.
+*/
+
+@page {
+  size: A4;
+  margin: 13mm;
+}
+
+:root,
+html,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  color-scheme: light !important;
+  --bg-app: #ffffff !important;
+  --bg-alt: #ffffff !important;
+  --surface-1: #ffffff !important;
+  --surface-2: #ffffff !important;
+  --surface-3: #ffffff !important;
+  --background: #ffffff !important;
+  --surface: #ffffff !important;
+  --surface-soft: #ffffff !important;
+  --text-primary: #000000 !important;
+  --text-secondary: #000000 !important;
+  --text-muted: #000000 !important;
+  --text: #000000 !important;
+  --muted: #000000 !important;
+  --line: #b8b8b8 !important;
+  --border-soft: #c7c7c7 !important;
+  --border-strong: #9f9f9f !important;
+  --shadow: none !important;
+  --shadow-soft: none !important;
+}
+
+html,
+body {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-print-color-adjust: economy !important;
+  print-color-adjust: economy !important;
+}
+
+html::before,
+html::after,
+body::before,
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Alleen het actieve rapport wordt afgedrukt. */
+body.printing-result > *:not(#testWorkspace),
+body.total-report-printing > *:not(#totalReportWorkspace) {
+  display: none !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace,
+body.printing-result #testWorkspace .test-shell,
+html[data-theme] body.printing-result #testWorkspace #resultScreen,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document {
+  position: static !important;
+  inset: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border-color: #c7c7c7 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+body.printing-result #testWorkspace .test-topbar,
+body.printing-result #testIntroScreen,
+body.printing-result #questionScreen,
+body.total-report-printing #totalReportWorkspace .total-report-topbar,
+body.total-report-printing #totalReportWorkspace .total-report-mode-tabs,
+body.total-report-printing #totalReportWorkspace .total-report-toolbar {
+  display: none !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen {
+  display: block !important;
+}
+
+/*
+  Doorslaggevende reset: iedere laag binnen het afgedrukte rapport
+  krijgt een witte achtergrond en zwarte tekst. Hierdoor kunnen
+  testspecifieke dark-mode- of gradientregels niet doorlekken.
+*/
+html[data-theme] body.printing-result #testWorkspace #resultScreen,
+html[data-theme] body.printing-result #testWorkspace #resultScreen *,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document * {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border-color: #c7c7c7 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen *::before,
+html[data-theme] body.printing-result #testWorkspace #resultScreen *::after,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document *::before,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document *::after {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  border-color: #c7c7c7 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Afdrukkop blijft zichtbaar en helder. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen .print-report-header,
+body.total-report-printing #totalReportWorkspace .total-report-print-header {
+  display: flex !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+  border-color: #9f9f9f !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen .brand-symbol-dark {
+  display: none !important;
+}
+html[data-theme] body.printing-result #testWorkspace #resultScreen .brand-symbol-light {
+  display: block !important;
+}
+
+/* Interactieve schermonderdelen horen nooit in papier/PDF. */
+.skip-link,
+a[href="#hoofdinhoud"],
+.site-header,
+.site-footer,
+.test-topbar,
+.total-report-topbar,
+.total-report-mode-tabs,
+.total-report-toolbar,
+.result-actions,
+.result-report-actions,
+.leadership-report-actions,
+.digital-skills-report-retry,
+.theme-toggle-button,
+.toast,
+.overlay,
+.drawer,
+.dialog,
+.storage-dialog,
+.back-button,
+.facet-toggle-button,
+.facet-item-toggle,
+.uy-report-toggle-label,
+.uy-report-section-toggle,
+.uy-report-inline-summary,
+.tr-rich-toggle,
+.test-evidence > summary,
+button,
+[role="button"],
+nav {
+  display: none !important;
+}
+
+/* Inhoud van openklapbare delen wordt wel volledig afgedrukt. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen details,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details {
+  display: block !important;
+  overflow: visible !important;
+  break-inside: auto !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen details > *:not(summary),
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details > *:not(summary),
+html[data-theme] body.printing-result #testWorkspace #resultScreen details:not([open]) > *:not(summary),
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details:not([open]) > *:not(summary) {
+  display: block !important;
+  visibility: visible !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen details > summary,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details > summary {
+  list-style: none !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen details > summary::marker,
+html[data-theme] body.printing-result #testWorkspace #resultScreen details > summary::-webkit-details-marker,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details > summary::marker,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document details > summary::-webkit-details-marker {
+  display: none !important;
+  content: "" !important;
+}
+
+/* Tabellen en tekst blijven zwart op wit. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen table,
+html[data-theme] body.printing-result #testWorkspace #resultScreen thead,
+html[data-theme] body.printing-result #testWorkspace #resultScreen tbody,
+html[data-theme] body.printing-result #testWorkspace #resultScreen tfoot,
+html[data-theme] body.printing-result #testWorkspace #resultScreen tr,
+html[data-theme] body.printing-result #testWorkspace #resultScreen th,
+html[data-theme] body.printing-result #testWorkspace #resultScreen td,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document table,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document thead,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document tbody,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document tfoot,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document tr,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document th,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document td {
+  color: #000000 !important;
+  background: #ffffff !important;
+  border-color: #9f9f9f !important;
+}
+
+/* SVG-tekst en lijnwerk leesbaar maken zonder rapportillustraties te verbergen. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen svg,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document svg {
+  background: #ffffff !important;
+  filter: none !important;
+}
+html[data-theme] body.printing-result #testWorkspace #resultScreen svg text,
+html[data-theme] body.printing-result #testWorkspace #resultScreen svg tspan,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document svg text,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document svg tspan {
+  fill: #000000 !important;
+  color: #000000 !important;
+  stroke: none !important;
+}
+
+/* Voortgang en scores blijven zwart-wit interpreteerbaar. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen .linear-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .dimension-bar,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .facet-bar,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .cognitive-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .leadership-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .digital-skills-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .ww-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .wec-progress,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .tr-meter,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .linear-progress,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .dimension-bar,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .facet-bar,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-meter {
+  background: #e2e2e2 !important;
+  border-color: #e2e2e2 !important;
+}
+
+html[data-theme] body.printing-result #testWorkspace #resultScreen .linear-progress > span,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .dimension-bar > span,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .facet-bar > span,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .cognitive-progress-fill,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .leadership-progress-fill,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .digital-skills-progress-fill,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .ww-progress-fill,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .wec-progress-fill,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .tr-meter > span,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .linear-progress > span,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .dimension-bar > span,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .facet-bar > span,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-meter > span {
+  background: #000000 !important;
+  border-color: #000000 !important;
+}
+
+progress {
+  accent-color: #000000 !important;
+}
+progress::-webkit-progress-bar { background: #e2e2e2 !important; }
+progress::-webkit-progress-value { background: #000000 !important; }
+progress::-moz-progress-bar { background: #000000 !important; }
+
+/* Kaarten mogen niet onnodig over twee pagina's worden gesplitst. */
+html[data-theme] body.printing-result #testWorkspace #resultScreen article,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .result-content-card,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .dimension-card,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .cognitive-report-card,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .leadership-style-card,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .team-role-profile,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .ww-report-card,
+html[data-theme] body.printing-result #testWorkspace #resultScreen .wec-report-card,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-card,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-test-card,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-insight-card,
+html[data-theme] body.total-report-open.total-report-printing #totalReportWorkspace .total-report-document .tr-theme-card {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}

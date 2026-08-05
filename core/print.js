@@ -18,7 +18,29 @@
 let resultPrintState = null;
 
 
+function isResultReportActive() {
+  const workspace = document.getElementById("testWorkspace");
+  const result = document.getElementById("resultScreen");
+
+  return Boolean(
+    workspace &&
+    result &&
+    !workspace.hidden &&
+    !result.hidden &&
+    !document.body.classList.contains("total-report-open") &&
+    !document.body.classList.contains("total-report-printing")
+  );
+}
+
+
 function prepareResultForPrint() {
+  if (!isResultReportActive()) {
+    return;
+  }
+
+  if (document.body.classList.contains("printing-result")) {
+    return;
+  }
   const facetItems =
     Array.from(
       document.querySelectorAll(
@@ -120,7 +142,11 @@ function restoreResultAfterPrint() {
 
 
 function printActiveResult() {
-  window.print();
+  prepareResultForPrint();
+
+  requestAnimationFrame(() => {
+    window.print();
+  });
 }
 
 function finishActiveTest() {

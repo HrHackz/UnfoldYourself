@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v46";
+const CACHE_VERSION = "v47";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -29,6 +29,7 @@ const ESSENTIAL_APP_FILES = [
   "./report-uniformity.css",
   "./total-report.css",
   "./theme.css",
+  "./print.css",
   "./theme.js",
   "./core/app-config.js",
   "./core/test-utils.js",
