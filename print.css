@@ -1,5 +1,5 @@
 /*
-  Unfold Yourself — centrale print- en PDF-stijl v47
+  Unfold Yourself — centrale print- en PDF-stijl v48
 
   Dit bestand wordt uitsluitend geladen voor printmedia.
   De normale light- en dark-weergave wordt niet gewijzigd.
@@ -62,9 +62,28 @@ body::after {
   display: none !important;
 }
 
-/* Alleen het actieve rapport wordt afgedrukt. */
-body.printing-result > *:not(#testWorkspace),
+/* Alleen het actieve rapport wordt afgedrukt.
+   Het individuele testresultaat staat binnen #hoofdinhoud;
+   daarom moet die voorouder zichtbaar blijven. */
+body.printing-result > *:not(#hoofdinhoud),
 body.total-report-printing > *:not(#totalReportWorkspace) {
+  display: none !important;
+}
+
+body.printing-result #hoofdinhoud {
+  display: block !important;
+  visibility: visible !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+}
+
+body.printing-result #hoofdinhoud > *:not(#testWorkspace) {
   display: none !important;
 }
 

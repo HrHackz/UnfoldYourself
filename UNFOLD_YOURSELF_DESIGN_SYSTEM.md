@@ -848,3 +848,8 @@ Deze regels gelden uitsluitend wanneer de browser afdrukt of als PDF opslaat.
 - Alleen het actieve rapport wordt afgedrukt; navigatie, knoppen, modals, de toegankelijkheidslink en andere interactieve schermelementen worden verborgen.
 - De printstatus van een individueel rapport en een totaalrapport kan nooit gelijktijdig actief zijn.
 - Openklapbare rapportinhoud wordt volledig zichtbaar gemaakt voor print, terwijl de interactieve toggle zelf wordt verborgen.
+
+
+## Printcorrectie v48
+
+Bij individuele testrapporten blijft `#hoofdinhoud` tijdens printmedia zichtbaar, waarna uitsluitend `#testWorkspace` wordt afgedrukt. Dit voorkomt een blanco afdrukpagina doordat de vooroudercontainer van het individuele rapport niet langer wordt verborgen. De bestaande wit-zwarte printreset en de totaalrapportprint blijven ongewijzigd.
