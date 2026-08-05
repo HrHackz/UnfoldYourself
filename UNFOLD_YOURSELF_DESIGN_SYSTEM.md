@@ -1,6 +1,6 @@
 # Unfold Yourself — Design System & Visuele Richtlijnen
 
-**Status:** Definitieve visuele basis — v41  
+**Status:** Definitieve visuele basis — v43  
 **Doel:** Deze richtlijnen bewaken dat Unfold Yourself bij toekomstige uitbreidingen visueel consistent blijft.  
 **Stijlnaam:** Soft Editorial Tech  
 **Hoofdprincipes:** warm, modern, persoonlijk, premium, rustig, toegankelijk en professioneel.
@@ -764,3 +764,14 @@ Het vaste Unfold Yourself-merkicoon gebruikt een 3×3-mozaïek van negen stippen
 - De buitenste stippen gebruiken uitsluitend de bestaande profielgradients.
 - Favicon en headerlogo wisselen automatisch mee met de gekozen light/dark-modus.
 - Het geïnstalleerde PWA-icoon gebruikt één universele donkere variant en een afzonderlijke maskable variant.
+
+
+# 29. Rapportcontrast en printregels — v43
+
+- Light-mode rapportkaarten gebruiken donkere, duidelijk leesbare tekst op `#FBF6F3`.
+- De grote resultaatkop van ieder afzonderlijk testrapport is een donker contrastvlak met lichte tekst.
+- Rapportlabels gebruiken de actieve profielgebiedgradient met witte tekst en een subtiele contrastgloed.
+- Dark-mode accordeons en hun geopende inhoud blijven volledig donker; lichte rapportvlakken zijn daar niet toegestaan.
+- Voortgangsteksten zoals `Vraag X van Y` en `X van Y tests voltooid` hebben geen afzonderlijk kader of achtergrondvlak.
+- Alle generieke testaccenten erven de actieve profielgebiedkleur of -gradient; standaardroze restaccenten zijn verboden buiten het persoonlijkheidsgebied.
+- Afdruk en PDF forceren altijd een witte, randloze pagina en zijn onafhankelijk van light of dark mode.

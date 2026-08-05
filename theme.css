@@ -2193,3 +2193,455 @@ html[data-theme="dark"] {
     display: block !important;
   }
 }
+
+/* =========================================================
+   19. RAPPORTCONTRAST, CONTEXTACCENTEN EN PRINTCORRECTIES v43
+========================================================= */
+
+@media screen {
+  /* -------------------------------------------------------
+     Alle generieke accentvariabelen binnen een actieve test
+     volgen het profielgebied. Zo kunnen oudere componenten
+     geen standaardroze accenten meer tonen.
+  -------------------------------------------------------- */
+  html[data-theme] .test-workspace {
+    --accent-magenta: var(--test-accent) !important;
+    --accent-magenta-dark: var(--test-accent) !important;
+    --accent-rose: var(--test-accent) !important;
+    --primary: var(--test-accent) !important;
+    --primary-dark: var(--test-accent) !important;
+    --success: var(--test-accent) !important;
+    --focus-ring: color-mix(in srgb, var(--test-accent) 38%, transparent) !important;
+    --selection-soft: color-mix(in srgb, var(--test-accent) 10%, transparent) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .text-button,
+    .facet-toggle-button,
+    .uy-report-toggle-label,
+    .uy-report-section-toggle,
+    .facet-item-toggle,
+    .team-role-toggle,
+    .leadership-style-toggle,
+    .wec-culture-toggle,
+    .ww-dimension-toggle,
+    .result-card-label,
+    .result-method-label,
+    .facet-interpretation-label,
+    .test-evidence-label
+  ) {
+    color: var(--test-accent) !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .uy-report-toggle-label::before,
+    .uy-report-section-toggle::before,
+    .facet-item-toggle::before,
+    .team-role-toggle::before,
+    .leadership-style-toggle::before,
+    .wec-culture-toggle::before,
+    .ww-dimension-toggle::before
+  ) {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: var(--test-gradient) !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+
+  html[data-theme] .test-workspace details > summary::after {
+    color: var(--test-accent) !important;
+  }
+
+  /* -------------------------------------------------------
+     Rapportlabels worden echte, leesbare gradientbadges.
+  -------------------------------------------------------- */
+  html[data-theme] .test-workspace :where(
+    .result-card-label,
+    .result-method-label,
+    .facet-interpretation-label,
+    .test-evidence-label
+  ) {
+    display: inline-flex !important;
+    width: fit-content !important;
+    min-height: 1.75rem !important;
+    align-items: center !important;
+    padding: 0.3rem 0.68rem !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: var(--test-gradient) !important;
+    background-clip: border-box !important;
+    -webkit-background-clip: border-box !important;
+    text-shadow: var(--gradient-content-glow) !important;
+    font-weight: 850 !important;
+    line-height: 1.15 !important;
+  }
+
+  /* -------------------------------------------------------
+     Voortgangstekst heeft geen eigen vlak of kader.
+  -------------------------------------------------------- */
+  html[data-theme] .drawer-progress > div:first-child,
+  html[data-theme] .test-workspace .question-counter-block {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme] .drawer-progress > div:first-child {
+    margin-bottom: 11px !important;
+  }
+
+  /* -------------------------------------------------------
+     De grote resultaatkop is altijd een donker contrastvlak.
+  -------------------------------------------------------- */
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) {
+    border: 1px solid transparent !important;
+    color: #fbf6f3 !important;
+    background:
+      linear-gradient(#181b2c, #181b2c) padding-box,
+      var(--test-gradient) border-box !important;
+    box-shadow: var(--shadow-md) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) :where(h1, h2, h3, h4, p, li, span, small, strong, time) {
+    color: #fbf6f3 !important;
+    -webkit-text-fill-color: #fbf6f3 !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) :where(p, li, small, time, .result-completed-date) {
+    color: #d6d1d0 !important;
+    -webkit-text-fill-color: #d6d1d0 !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) .eyebrow {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: none !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) :where(.result-score-card, .cognitive-result-score) {
+    border: 1px solid transparent !important;
+    color: #fbf6f3 !important;
+    background:
+      linear-gradient(#252541, #252541) padding-box,
+      var(--test-gradient) border-box !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme] .test-workspace :where(
+    .result-hero,
+    .cognitive-result-hero
+  ) :where(.result-score-card, .cognitive-result-score) * {
+    color: #fbf6f3 !important;
+    -webkit-text-fill-color: #fbf6f3 !important;
+  }
+
+  /* -------------------------------------------------------
+     Light mode: gewone rapportinhoud gebruikt donker leesbare
+     tekst op de afgesproken lichte kaartkleur.
+  -------------------------------------------------------- */
+  html[data-theme="light"] .test-workspace :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .cognitive-report-card,
+    .cognitive-dashboard-card,
+    .digital-skills-report-area,
+    .digital-skills-area-card,
+    .digital-skills-profile-card,
+    .leadership-style-card,
+    .leadership-flexibility-card,
+    .leadership-quality-note,
+    .leadership-styles-report,
+    .leadership-advice-card,
+    .team-role-top-overview,
+    .team-role-combination-card,
+    .team-role-profiles-card,
+    .team-role-lower-card,
+    .team-role-method-card,
+    .team-role-quality-note,
+    .wec-report-card,
+    .ww-report-card,
+    .identity-overview-card,
+    .identity-axis-card,
+    .identity-detail-block,
+    details.uy-report-details
+  ) {
+    color: #181b2c !important;
+    background-color: #fbf6f3 !important;
+  }
+
+  html[data-theme="light"] .test-workspace :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .cognitive-report-card,
+    .cognitive-dashboard-card,
+    .digital-skills-report-area,
+    .digital-skills-area-card,
+    .digital-skills-profile-card,
+    .leadership-style-card,
+    .leadership-flexibility-card,
+    .leadership-quality-note,
+    .leadership-styles-report,
+    .leadership-advice-card,
+    .team-role-top-overview,
+    .team-role-combination-card,
+    .team-role-profiles-card,
+    .team-role-lower-card,
+    .team-role-method-card,
+    .team-role-quality-note,
+    .wec-report-card,
+    .ww-report-card,
+    .identity-overview-card,
+    .identity-axis-card,
+    .identity-detail-block,
+    details.uy-report-details
+  ) :where(h1, h2, h3, h4, h5, h6, strong, summary) {
+    color: #181b2c !important;
+  }
+
+  html[data-theme="light"] .test-workspace :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .cognitive-report-card,
+    .cognitive-dashboard-card,
+    .digital-skills-report-area,
+    .digital-skills-area-card,
+    .digital-skills-profile-card,
+    .leadership-style-card,
+    .leadership-flexibility-card,
+    .leadership-quality-note,
+    .leadership-styles-report,
+    .leadership-advice-card,
+    .team-role-top-overview,
+    .team-role-combination-card,
+    .team-role-profiles-card,
+    .team-role-lower-card,
+    .team-role-method-card,
+    .team-role-quality-note,
+    .wec-report-card,
+    .ww-report-card,
+    .identity-overview-card,
+    .identity-axis-card,
+    .identity-detail-block,
+    details.uy-report-details
+  ) :where(p, li, td, th, small, figcaption, caption) {
+    color: #4b4b55 !important;
+    -webkit-text-fill-color: #4b4b55 !important;
+    opacity: 1 !important;
+  }
+
+  /* Gradientbadges blijven wit na de globale light-tekstregel. */
+  html[data-theme="light"] .test-workspace :where(
+    .result-card-label,
+    .result-method-label,
+    .facet-interpretation-label,
+    .test-evidence-label
+  ) {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+
+  /* -------------------------------------------------------
+     Dark mode: accordeons en alle geopende rapportinhoud
+     blijven volledig donker met lichte, leesbare tekst.
+  -------------------------------------------------------- */
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details,
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details[open],
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details > summary {
+    border-color: var(--border-soft) !important;
+    color: #fbf6f3 !important;
+    background: #181b2c !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details > :not(summary) {
+    color: #fbf6f3 !important;
+    background-color: #20243a !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details :where(
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .facet-domain-group,
+    .facet-item,
+    .result-method-note,
+    .cognitive-report-card,
+    .cognitive-dashboard-card,
+    .digital-skills-report-area,
+    .digital-skills-area-card,
+    .digital-skills-profile-card,
+    .identity-overview-card,
+    .identity-axis-card,
+    .identity-detail-block,
+    table,
+    thead,
+    tbody,
+    tfoot,
+    tr,
+    td,
+    th
+  ) {
+    border-color: var(--border-soft) !important;
+    color: #fbf6f3 !important;
+    background-color: #20243a !important;
+    box-shadow: none !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details :where(
+    h1, h2, h3, h4, h5, h6, strong, summary
+  ) {
+    color: #fbf6f3 !important;
+    -webkit-text-fill-color: #fbf6f3 !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details :where(
+    p, li, td, th, small, figcaption, caption,
+    span:not(.uy-report-toggle-label):not(.result-card-label):not(.result-method-label):not(.facet-interpretation-label):not(.test-evidence-label)
+  ) {
+    color: #d2cdcc !important;
+    -webkit-text-fill-color: #d2cdcc !important;
+    opacity: 1 !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details .uy-report-toggle-label {
+    color: var(--test-accent) !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details :where(
+    .result-card-label,
+    .result-method-label,
+    .facet-interpretation-label,
+    .test-evidence-label
+  ) {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background: var(--test-gradient) !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details table {
+    border-collapse: collapse;
+  }
+
+  html[data-theme="dark"] .test-workspace .uy-report-uniform details.uy-report-details :where(td, th) {
+    border-color: var(--border-strong) !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   Afdruk/PDF is altijd een volledig lichte, randloze pagina,
+   ongeacht het actieve schermthema.
+---------------------------------------------------------- */
+@media print {
+  @page {
+    background: #ffffff;
+  }
+
+  html,
+  body,
+  body.total-report-open,
+  body.total-report-printing,
+  #testWorkspace,
+  .test-workspace,
+  #totalReportWorkspace,
+  .total-report-workspace,
+  .total-report-document,
+  #resultScreen,
+  .result-screen {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    color: #1f2027 !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    filter: none !important;
+    overflow: visible !important;
+  }
+
+  html::before,
+  html::after,
+  body::before,
+  body::after,
+  #testWorkspace::before,
+  #testWorkspace::after,
+  #totalReportWorkspace::before,
+  #totalReportWorkspace::after,
+  .test-workspace::before,
+  .test-workspace::after,
+  .total-report-workspace::before,
+  .total-report-workspace::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  body.total-report-printing #totalReportWorkspace,
+  body.total-report-printing .total-report-document {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  :where(
+    .result-hero,
+    .cognitive-result-hero,
+    .result-content-card,
+    .dimension-card,
+    .facet-report,
+    .result-method-note,
+    .uy-report-details,
+    .tr-hero,
+    .tr-card,
+    .tr-test-card,
+    .tr-insight-card,
+    .tr-theme-card,
+    .tr-source-card,
+    .tr-detail-section
+  ) {
+    color: #1f2027 !important;
+    background: #ffffff !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    filter: none !important;
+  }
+}
