@@ -1,11 +1,11 @@
 # Unfold Yourself — Design System & Visuele Richtlijnen
 
-**Status:** Definitieve visuele basis  
+**Status:** Definitieve visuele basis — v41  
 **Doel:** Deze richtlijnen bewaken dat Unfold Yourself bij toekomstige uitbreidingen visueel consistent blijft.  
 **Stijlnaam:** Soft Editorial Tech  
 **Hoofdprincipes:** warm, modern, persoonlijk, premium, rustig, toegankelijk en professioneel.
 
-**Definitieve kleurenbasis v39:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Kaders gebruiken nooit gradients. De vaste merkgradient `#F90E8E → #F84F6C → #F9CE66` is alleen toegestaan op het Unfold Yourself-merkicoon, de centrale profielavatar en de actieve voortgangsboog. Algemene primaire knoppen mogen in dark mode de gradient `#F90E8E → #F84F6C` gebruiken; rapportkeuzeknoppen gebruiken hun eigen vaste accentkleur.
+**Definitieve kleurenbasis v41:** light achtergrond `#F7EEE5`, light kaarten `#FBF6F3`, dark achtergrond `#252541`, dark kaarten `#181B2C`. Neutrale kaders gebruiken nooit gradients. De vaste merkgradient wordt gebruikt op de drie merkelementen; zeven profielgebiedgradients worden gebruikt voor functionele accenten zoals iconen, badges, knoppen, voortgang en testcontext. Alle inhoud op een gevuld gradientvlak is wit en krijgt uitsluitend een subtiele, richtingloze donkere gloed voor leesbaarheid.
 
 ---
 
@@ -701,13 +701,13 @@ De zeven profielgebieden gebruiken vanaf v40 geen volle accentvlakken meer. Iede
 
 | Profielgebied | Gradient | Tekst op gevuld accent |
 |---|---|---|
-| Persoonlijkheid & zelfbeeld | `#F90E8E 30% → #F84F6C 100%` | licht |
-| Identiteit & maatschappelijke positie | `#F84F6C 30% → #F9CE66 100%` | donker |
-| Werkoriëntatie & beroepsrichting | `#F9CE66 32% → #D6CF6E 65% → #8FCF7C 87% → #0CD29F 100%` | donker |
-| Denken & redeneervermogen | `#0CD29F 40% → #0DCED1 100%` | donker |
-| Digitale vaardigheden | `#0DCED1 40% → #0D93D1 100%` | donker |
-| Samenwerking, leiderschap & cultuur | `#0D93D1 40% → #4C5DD1 71% → #AA0DD1 100%` | licht |
-| Werkbeleving, welzijn & balans | `#AA0DD1 40% → #C00DBE 70% → #F90E8E 100%` | licht |
+| Persoonlijkheid & zelfbeeld | `#F90E8E 30% → #F84F6C 100%` | wit |
+| Identiteit & maatschappelijke positie | `#F84F6C 30% → #F9CE66 100%` | wit |
+| Werkoriëntatie & beroepsrichting | `#F9CE66 32% → #D6CF6E 65% → #8FCF7C 87% → #0CD29F 100%` | wit |
+| Denken & redeneervermogen | `#0CD29F 40% → #0DCED1 100%` | wit |
+| Digitale vaardigheden | `#0DCED1 40% → #0D93D1 100%` | wit |
+| Samenwerking, leiderschap & cultuur | `#0D93D1 40% → #4C5DD1 71% → #AA0DD1 100%` | wit |
+| Werkbeleving, welzijn & balans | `#AA0DD1 40% → #C00DBE 70% → #F90E8E 100%` | wit |
 
 De gradient van het profielgebied wordt consequent gebruikt voor:
 
@@ -730,3 +730,23 @@ Het blok **Breng al je resultaten samen in één persoonlijk rapport** is alleen
 
 - **Voor je begint** gebruikt een neutraal kaartoppervlak en nooit een afwijkend blauw vlak.
 - **Je ontvangt** gebruikt in dark mode een licht oppervlak (`#FBF6F3`) met donkere tekst (`#181B2C`).
+
+
+---
+
+# 27. Witte inhoud op gradientvlakken — v41
+
+Wanneer een van de zeven profielgebiedgradients of de vaste merkgradient als **gevuld vlak** wordt gebruikt, is de inhoud daarop altijd wit. Dit geldt in light en dark mode voor tekst, cijfers, iconen, symbolen, badges en knoplabels.
+
+Om het contrast op de lichtere delen van een gradient te bewaken, krijgt witte inhoud een zeer subtiele, richtingloze donkere gloed:
+
+```css
+color: #FFFFFF;
+text-shadow:
+  0 0 2px rgba(18, 20, 35, 0.42),
+  0 0 5px rgba(18, 20, 35, 0.18);
+```
+
+SVG- en lijniconen gebruiken `currentColor` en een smalle diffuse `drop-shadow`. De gloed mag nooit ogen als een harde slagschaduw, mag geen zichtbare richting hebben en blijft uitsluitend zo sterk als nodig voor leesbaarheid.
+
+Deze regel geldt alleen voor **gevulde gradientcomponenten**. Gradientranden, voortgangsbalken zonder tekst en gradienttekst op een neutrale achtergrond vallen er niet onder.

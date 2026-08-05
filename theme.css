@@ -1936,3 +1936,216 @@ html[data-theme="dark"] {
     }
   }
 }
+
+/* =========================================================
+   17. WITTE INHOUD OP PROFIELGRADIENTEN v41
+========================================================= */
+
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+  --gradient-content: #ffffff;
+  --gradient-content-glow:
+    0 0 2px rgba(18, 20, 35, 0.42),
+    0 0 5px rgba(18, 20, 35, 0.18);
+  --gradient-icon-glow: drop-shadow(0 0 2px rgba(18, 20, 35, 0.38));
+}
+
+@media screen {
+  /* Alle gevulde gradientcomponenten krijgen één vaste contrastregel. */
+  :where(
+    .brand-mark,
+    .avatar,
+    .domain-icon,
+    .drawer .test-status,
+    .drawer .test-start-button,
+    .test-workspace .button-primary,
+    .test-workspace .test-start-button,
+    .test-workspace .cognitive-status-badge,
+    .test-workspace .leadership-status-badge,
+    .test-workspace .digital-skills-status-badge,
+    .test-workspace .ww-status-badge,
+    .test-workspace .wec-status-badge,
+    .test-workspace .test-preview-label,
+    .test-workspace .answer-option.is-selected .answer-option-marker,
+    .test-workspace .cognitive-answer-option.is-selected .cognitive-answer-marker,
+    .test-workspace .wec-selection-card.is-selected .wec-selection-marker,
+    .test-workspace .cognitive-module-card.is-selected .cognitive-module-check,
+    .test-workspace .information-icon,
+    .total-report-mode-card.is-compact .total-report-mode-kicker,
+    .total-report-mode-card.is-compact .button,
+    .total-report-mode-card.is-full .total-report-mode-kicker,
+    .total-report-mode-card.is-full .button,
+    .total-report-mode-card.is-ultimate .total-report-mode-kicker,
+    .total-report-mode-card.is-ultimate .button
+  ) {
+    color: var(--gradient-content) !important;
+    -webkit-text-fill-color: var(--gradient-content) !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+
+  :where(
+    .brand-mark,
+    .avatar,
+    .domain-icon,
+    .drawer .test-status,
+    .drawer .test-start-button,
+    .test-workspace .button-primary,
+    .test-workspace .test-start-button,
+    .test-workspace .cognitive-status-badge,
+    .test-workspace .leadership-status-badge,
+    .test-workspace .digital-skills-status-badge,
+    .test-workspace .ww-status-badge,
+    .test-workspace .wec-status-badge,
+    .test-workspace .test-preview-label,
+    .total-report-mode-card.is-compact .total-report-mode-kicker,
+    .total-report-mode-card.is-compact .button,
+    .total-report-mode-card.is-full .total-report-mode-kicker,
+    .total-report-mode-card.is-full .button,
+    .total-report-mode-card.is-ultimate .total-report-mode-kicker,
+    .total-report-mode-card.is-ultimate .button
+  ) * {
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
+    text-shadow: inherit !important;
+  }
+
+
+  .avatar::before,
+  .avatar::after {
+    background: var(--gradient-content) !important;
+    filter: var(--gradient-icon-glow) !important;
+  }
+
+  /* Pseudo-iconen en markers die zelf het gradientvlak vormen. */
+  .test-workspace .test-evidence summary::after,
+  .test-workspace .test-preview-card li::before {
+    color: var(--gradient-content) !important;
+    -webkit-text-fill-color: var(--gradient-content) !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+
+  /* SVG- en lijniconen volgen wit, met een smalle diffuse gloed. */
+  :where(
+    .brand-mark,
+    .avatar,
+    .domain-icon,
+    .drawer .test-status,
+    .drawer .test-start-button,
+    .test-workspace .button-primary,
+    .test-workspace .test-start-button,
+    .test-workspace .cognitive-status-badge,
+    .test-workspace .leadership-status-badge,
+    .test-workspace .digital-skills-status-badge,
+    .test-workspace .ww-status-badge,
+    .test-workspace .wec-status-badge,
+    .test-workspace .test-preview-label,
+    .test-workspace .answer-option.is-selected .answer-option-marker,
+    .test-workspace .cognitive-answer-option.is-selected .cognitive-answer-marker,
+    .test-workspace .wec-selection-card.is-selected .wec-selection-marker,
+    .test-workspace .cognitive-module-card.is-selected .cognitive-module-check,
+    .test-workspace .information-icon,
+    .total-report-mode-card.is-compact .total-report-mode-kicker,
+    .total-report-mode-card.is-compact .button,
+    .total-report-mode-card.is-full .total-report-mode-kicker,
+    .total-report-mode-card.is-full .button,
+    .total-report-mode-card.is-ultimate .total-report-mode-kicker,
+    .total-report-mode-card.is-ultimate .button
+  ) svg {
+    color: var(--gradient-content) !important;
+    filter: var(--gradient-icon-glow) !important;
+  }
+
+  :where(
+    .brand-mark,
+    .avatar,
+    .domain-icon,
+    .drawer .test-status,
+    .drawer .test-start-button,
+    .test-workspace .button-primary,
+    .test-workspace .test-start-button,
+    .test-workspace .cognitive-status-badge,
+    .test-workspace .leadership-status-badge,
+    .test-workspace .digital-skills-status-badge,
+    .test-workspace .ww-status-badge,
+    .test-workspace .wec-status-badge,
+    .test-workspace .test-preview-label,
+    .test-workspace .answer-option.is-selected .answer-option-marker,
+    .test-workspace .cognitive-answer-option.is-selected .cognitive-answer-marker,
+    .test-workspace .wec-selection-card.is-selected .wec-selection-marker,
+    .test-workspace .cognitive-module-card.is-selected .cognitive-module-check,
+    .test-workspace .information-icon
+  ) svg [stroke] {
+    stroke: currentColor !important;
+  }
+
+  :where(
+    .brand-mark,
+    .avatar,
+    .domain-icon,
+    .drawer .test-status,
+    .drawer .test-start-button,
+    .test-workspace .button-primary,
+    .test-workspace .test-start-button,
+    .test-workspace .cognitive-status-badge,
+    .test-workspace .leadership-status-badge,
+    .test-workspace .digital-skills-status-badge,
+    .test-workspace .ww-status-badge,
+    .test-workspace .wec-status-badge,
+    .test-workspace .test-preview-label,
+    .test-workspace .answer-option.is-selected .answer-option-marker,
+    .test-workspace .cognitive-answer-option.is-selected .cognitive-answer-marker,
+    .test-workspace .wec-selection-card.is-selected .wec-selection-marker,
+    .test-workspace .cognitive-module-card.is-selected .cognitive-module-check,
+    .test-workspace .information-icon
+  ) svg [fill]:not([fill="none"]) {
+    fill: currentColor !important;
+  }
+}
+
+@media screen {
+  /* Specificiteitsanker: oudere componentspecifieke !important-regels
+     mogen de vaste witte gradientinhoud niet terug overschrijven. */
+  .drawer {
+    --domain-on-accent: #ffffff !important;
+  }
+
+  .test-workspace {
+    --test-on-accent: #ffffff !important;
+  }
+
+  .total-report-mode-card.is-compact,
+  .total-report-mode-card.is-full,
+  .total-report-mode-card.is-ultimate {
+    --report-mode-on-accent: #ffffff !important;
+  }
+
+  .brand-mark,
+  .avatar,
+  .domain-icon,
+  .drawer .test-status,
+  .drawer .test-start-button,
+  .test-workspace .button-primary,
+  .test-workspace .test-start-button,
+  .test-workspace .cognitive-status-badge,
+  .test-workspace .leadership-status-badge,
+  .test-workspace .digital-skills-status-badge,
+  .test-workspace .ww-status-badge,
+  .test-workspace .wec-status-badge,
+  .test-workspace .test-preview-label,
+  .test-workspace .answer-option.is-selected .answer-option-marker,
+  .test-workspace .cognitive-answer-option.is-selected .cognitive-answer-marker,
+  .test-workspace .wec-selection-card.is-selected .wec-selection-marker,
+  .test-workspace .cognitive-module-card.is-selected .cognitive-module-check,
+  .test-workspace .information-icon,
+  .total-report-mode-card.is-compact .total-report-mode-kicker,
+  .total-report-mode-card.is-compact .button,
+  .total-report-mode-card.is-full .total-report-mode-kicker,
+  .total-report-mode-card.is-full .button,
+  .total-report-mode-card.is-ultimate .total-report-mode-kicker,
+  .total-report-mode-card.is-ultimate .button {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    text-shadow: var(--gradient-content-glow) !important;
+  }
+}
