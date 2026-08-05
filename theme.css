@@ -2149,3 +2149,47 @@ html[data-theme="dark"] {
     text-shadow: var(--gradient-content-glow) !important;
   }
 }
+
+
+/* =========================================================
+   18. MERKICOON EN THEMA-AFHANKELIJKE ASSETS v42
+========================================================= */
+
+@media screen {
+  .brand-mark {
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: 0 10px 24px rgba(18, 20, 35, 0.12) !important;
+  }
+
+  .brand-symbol-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  html[data-theme="light"] .brand-symbol-dark,
+  html[data-theme="dark"] .brand-symbol-light {
+    display: none;
+  }
+
+  html[data-theme="light"] .brand-symbol-light,
+  html[data-theme="dark"] .brand-symbol-dark {
+    display: block;
+  }
+}
+
+@media print {
+  .brand-symbol-dark {
+    display: none !important;
+  }
+
+  .brand-symbol-light {
+    display: block !important;
+  }
+}

@@ -8,7 +8,7 @@
   update automatisch verwijderd.
 */
 
-const CACHE_VERSION = "v41";
+const CACHE_VERSION = "v42";
 const CACHE_PREFIX = "unfold-yourself";
 const CACHE_NAME = `${CACHE_PREFIX}-${CACHE_VERSION}`;
 
@@ -44,7 +44,12 @@ const ESSENTIAL_APP_FILES = [
   "./app.js",
   "./total-report.js",
   "./manifest.webmanifest",
-  "./favicon.svg"
+  "./favicon.svg",
+  "./favicon.ico",
+  "./icons/favicon-light.svg",
+  "./icons/favicon-dark.svg",
+  "./icons/brand-icon-light.svg",
+  "./icons/brand-icon-dark.svg"
 ];
 
 
@@ -157,7 +162,14 @@ const OPTIONAL_APP_FILES = [
   "./data/work-wellbeing/sources.js",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
-  "./icons/apple-touch-icon.png"
+  "./icons/icon-maskable-512.png",
+  "./icons/apple-touch-icon.png",
+  "./icons/favicon-16.png",
+  "./icons/favicon-32.png",
+  "./icons/favicon-48.png",
+  "./icons/app-icon-source.svg",
+  "./icons/app-icon-maskable-source.svg",
+  "./BRAND_ICON_SYSTEM.md"
 ];
 
 

@@ -750,3 +750,17 @@ text-shadow:
 SVG- en lijniconen gebruiken `currentColor` en een smalle diffuse `drop-shadow`. De gloed mag nooit ogen als een harde slagschaduw, mag geen zichtbare richting hebben en blijft uitsluitend zo sterk als nodig voor leesbaarheid.
 
 Deze regel geldt alleen voor **gevulde gradientcomponenten**. Gradientranden, voortgangsbalken zonder tekst en gradienttekst op een neutrale achtergrond vallen er niet onder.
+
+
+# 26. Merkicoon
+
+Het vaste Unfold Yourself-merkicoon gebruikt een 3×3-mozaïek van negen stippen.
+
+- De middelste stip staat voor de gebruiker en het centrale profiel.
+- Zeven buitenste stippen staan voor de zeven profielgebieden.
+- De achtste buitenste stip staat voor het geïntegreerde totaalbeeld.
+- Light mode gebruikt `#FBF6F3` als achtergrond en `#181B2C` voor het middelpunt.
+- Dark mode en het geïnstalleerde app-icoon gebruiken `#181B2C` als achtergrond en `#FBF6F3` voor het middelpunt.
+- De buitenste stippen gebruiken uitsluitend de bestaande profielgradients.
+- Favicon en headerlogo wisselen automatisch mee met de gekozen light/dark-modus.
+- Het geïnstalleerde PWA-icoon gebruikt één universele donkere variant en een afzonderlijke maskable variant.

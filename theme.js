@@ -44,6 +44,22 @@
     }
   }
 
+  function updateFavicon(theme) {
+    const favicon = document.querySelector("#themeFavicon");
+
+    if (!favicon) {
+      return;
+    }
+
+    favicon.setAttribute(
+      "href",
+      theme === DARK_THEME
+        ? "./icons/favicon-dark.svg"
+        : "./icons/favicon-light.svg"
+    );
+  }
+
+
   function updateToggle(theme) {
     const button = document.querySelector("#themeToggleButton");
 
@@ -73,6 +89,7 @@
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
     updateThemeColor(theme);
+    updateFavicon(theme);
     updateToggle(theme);
 
     if (options.persist) {
